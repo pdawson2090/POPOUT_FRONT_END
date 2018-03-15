@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { SidebarModule } from 'primeng/sidebar';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -40,7 +41,8 @@ import { EventService } from './services/event.service';
     }),
     AgmSnazzyInfoWindowModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SidebarModule
     //BrowserAnimationsModule,
   ],
   schemas: [
