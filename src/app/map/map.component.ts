@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
+import { Event } from '../domain/event';
 
 declare var google: any;
 
@@ -12,8 +13,9 @@ export class MapComponent implements OnInit {
 
   geocoder: any;
   address: string;
-  lat: number;
-  lng: number;
+  lat: number = 0;
+  lng: number = 0;
+  event: Event;
 
   constructor(private maps: MapsAPILoader) { }
 
@@ -26,6 +28,7 @@ export class MapComponent implements OnInit {
       this.geocoder.geocode({'address' : this.address}, (results, status) => {
         this.lat = results[0].geometry.location.lat();
         this.lng = results[0].geometry.location.lng();
+        this.event = new Event(1,"Test Title","This is just a test so that I can get it in the descriptor","4/15/18","7:30",this.lat,this.lng);
       });
 
     });
