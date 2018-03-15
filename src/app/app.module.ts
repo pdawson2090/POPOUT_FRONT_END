@@ -11,7 +11,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { SidebarModule } from 'primeng/sidebar';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { AppRoutesModule } from './app-routes.module';
