@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist/",
+      "outDir": "dist",
       "assets": [
         "assets",
         "favicon.ico"
@@ -21,15 +21,11 @@
       "styles": [
         "styles.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
-        "../node_modules/primeng/resources/primeng.min.css",
-        "../node_modules/primeng/resources/themes/darkness/theme.css"
+        "../node_modules/primeng/resources/themes/omega/theme.css",
+        "../node_modules/primeng/resources/primeng.min.css"
+        
       ],
-      "scripts": [
-
-      "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/chart.js/dist/Chart.bundle.js"
-
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -65,6 +61,4 @@
     "styleExt": "css",
     "component": {}
   }
-
-
 }
