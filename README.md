@@ -12,5 +12,5 @@ Repo for development purposes
 - Justin Jarrard
 - Max Qi
 
-##Travis CI 
+## Travis CI 
 - https://travis-ci.org/pdawson2090
