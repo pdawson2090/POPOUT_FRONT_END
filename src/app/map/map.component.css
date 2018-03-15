@@ -1,3 +1,7 @@
 agm-map {
-    height: 700px;
+    height: stretch;
+}
+
+.container{
+    padding-bottom: 30px;
 }

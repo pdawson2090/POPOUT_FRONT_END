@@ -10,13 +10,14 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { AppRoutesModule } from './app-routes.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MapComponent } from './map/map.component';
 import { EventService } from './services/event.service';
+import { SidebarModule } from 'primeng/sidebar';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { EventService } from './services/event.service';
     BrowserModule,
     ToolbarModule,
     SplitButtonModule,
+    SidebarModule,
     BrowserAnimationsModule,
     BrowserModule,
     BrowserAnimationsModule,
