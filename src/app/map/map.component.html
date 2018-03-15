@@ -1,0 +1,24 @@
+<!-- <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
+  <agm-marker [latitude]="lat" [longitude]="lng">
+    <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <div class="si-content">
+          <h1>Test</h1>
+        </div>
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
+</agm-map> -->
+
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="event.lat" [longitude]="event.lng">
+    <agm-snazzy-info-window [maxWidth]="400" [maxHeight]="400" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <h4>{{event.eventTitle}}</h4>
+        <h4>{{event.eventDescription}}</h4>
+        <h4>{{event.eventDate}}</h4>
+        <h4>{{event.eventTime}}</h4>
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
+</agm-map>
