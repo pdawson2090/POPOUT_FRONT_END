@@ -1,7 +1,7 @@
 # RevPg2Front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
----------------------------------FRONT END ONLY-------------------------------------------------
+- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+- ---------------------------------FRONT END ONLY-------------------------------------------------
 
 ## Development server
 
