@@ -12,14 +12,31 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LoginFormComponent } from './login/login-form.component';
-import { AppRoutesModule } from './app-routes.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MapComponent } from './map/map.component';
 import { EventService } from './services/event.service';
 import {UserService} from './user.service';
 import {AuthguardGuard} from './authguard.guard';
+import {RouterModule} from '@angular/router';
 
+const appRoutes = [
+  {
+    path: '',
+    component: LoginFormComponent
+  },
+  {
+    path: '',
+    canActivate: [AuthguardGuard],
+    children: [
+      {
+        path: 'map',
+        component: MapComponent
+      },
 
+    ]
+  },
+
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +47,12 @@ import {AuthguardGuard} from './authguard.guard';
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(appRoutes),
     ToolbarModule,
     SplitButtonModule,
     BrowserAnimationsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutesModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCCLK3i1TBLm_tUGc0_OkRFmAlih6GWBqo'
     }),
