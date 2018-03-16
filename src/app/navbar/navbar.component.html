@@ -1,12 +1,13 @@
 <p-toolbar>
-  <div class="ui-toolbar-group-left">
-    <button pButton type="button" label="Menu" icon="fa-bars"></button>
-    <!-- <i class="fa fa-bars"></i> -->
-
-    <!-- <p-splitButton icon="fa-check" [model]="items"></p-splitButton> -->
-  </div>
   <div class="ui-toolbar-group-right">
-    <button pButton type="button" label="Add New Event" icon="fa-plus"></button>
+    <!-- <i class="fa fa-bars"></i> -->
+    <!-- <p-splitButton icon="fa-check" [model]="items"></p-splitButton> -->
+    <button pButton type="button" label="Add New Event" icon="fa-plus" (click)="toggleSidebar()"></button>
     <button *ngIf="loggedIn" pButton type="button" label="Logout" icon="fa-minus"></button>
+    <p-sidebar [(visible)]="display" position="right">
+      <!--<p>sidebar works</p>-->
+      <button pButton type="button" label="Submit" (click)="toggleSidebar()"></button>
+      <button pButton type="button" label="Cancel" (click)="toggleSidebar()"></button>
+    </p-sidebar>
   </div>
 </p-toolbar>
