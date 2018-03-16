@@ -9,9 +9,22 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  display: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleSidebar(): void {
+
+    if(!this.display){
+      this.display = true;
+    }
+    else{
+      this.display = false;
+    }
+
   }
 
 }
