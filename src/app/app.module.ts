@@ -11,7 +11,10 @@ import { SidebarModule } from 'primeng/sidebar';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { LoginFormComponent } from './login/login-form.component';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { ButtonModule } from 'primeng/button';
+import { TooltipModule } from 'primeng/tooltip';
+//import { LoginFormComponent } from '';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MapComponent } from './map/map.component';
 import { EventService } from './services/event.service';
@@ -23,7 +26,7 @@ import { LoginComponent } from './login/login.component';
 const appRoutes = [
   {
     path: '',
-    component: LoginFormComponent
+    component: LoginComponent
   },
   {
     path: '',
@@ -42,7 +45,7 @@ const appRoutes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginFormComponent,
+    //LoginFormComponent,
     LoginComponent,
     PageNotFoundComponent,
     MapComponent
@@ -61,7 +64,10 @@ const appRoutes = [
     AgmSnazzyInfoWindowModule,
     FormsModule,
     HttpClientModule,
-    SidebarModule
+    SidebarModule,
+    TooltipModule,
+    ButtonModule,
+    KeyFilterModule
     //BrowserAnimationsModule,
   ],
   schemas: [

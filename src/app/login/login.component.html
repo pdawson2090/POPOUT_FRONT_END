@@ -1,16 +1,17 @@
-<!-- <p-growl [(value)]="msgs">
-</p-growl>
-
-<form>
-  <div class="box">
-    <div class="input">
-      <input type="text" placeholder="..." class="inside">
+<div class="login container ui-g-12">
+    <div id="login">
+        <form action="submit" method="post">
+            <input type="text" pTooltip="Enter your username" tooltipPosition="top" pInputText placeholder="username" />
+            <br>
+            <br>
+            <input type="password" pTooltip="Enter your password" tooltipPosition="top" pInputText placeholder="password" />
+            <br>
+            <br>
+            <button pButton type="button" (click)="login()" label="Log In" class="ui-button-success"></button>
+            <br>
+        </form>
+        <br>
+        <!-- <br> -->
+        <button pButton type="button" (click)="signUp()" label="Sign Up" class="ui-button-info"></button>
     </div>
-    <div class="input">
-      <input pInputText type="password" pKeyFilter="alphanum" placeholder="..." class="inside">
-    </div>
-    <div class="input">
-      <input pInputText type="submit" value="LOGIN" class="button ui-g-6">
-    </div>
-  </div>
-</form> -->
+</div>
