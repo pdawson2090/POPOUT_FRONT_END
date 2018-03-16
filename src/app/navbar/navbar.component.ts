@@ -9,6 +9,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  loggedIn: boolean = false;
+
   constructor() { }
 
   ngOnInit() {

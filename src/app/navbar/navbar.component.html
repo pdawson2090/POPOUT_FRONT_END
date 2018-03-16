@@ -5,4 +5,8 @@
 
     <!-- <p-splitButton icon="fa-check" [model]="items"></p-splitButton> -->
   </div>
+  <div class="ui-toolbar-group-right">
+    <button pButton type="button" label="Add New Event" icon="fa-plus"></button>
+    <button *ngIf="loggedIn" pButton type="button" label="Logout" icon="fa-minus"></button>
+  </div>
 </p-toolbar>
