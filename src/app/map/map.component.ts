@@ -29,9 +29,9 @@ export class MapComponent implements OnInit {
       this.geocoder.geocode({'address' : this.address}, (results, status) => {
         this.lat = results[0].geometry.location.lat();
         this.lng = results[0].geometry.location.lng();
-        this.event = new Event(1,"Test Title","This is just a test so that I can get it in the descriptor","4/15/18","7:30",this.lat,this.lng);
+        this.event = new Event(1,"Test Title","This is just a test so that I can get it in the descriptor","11730 Plaza America Dr, Reston, VA 20190","4/15/18","7:30",this.lat,this.lng);
         this.addEvent(this.event);
-        this.event = new Event(2,"Other Test Title","This is the second Test","7/22/18","6:45",31,-60);
+        this.event = new Event(2,"Other Test Title","This is the second Test","","7/22/18","6:45",31,-60);
         this.addEvent(this.event);
       });
 
@@ -42,7 +42,7 @@ export class MapComponent implements OnInit {
   addEvent(event: Event){
 
     this.events.push(event);
-    this.event = new Event(0,"","","","",0,0);
+    this.event = new Event(0,"","","","","",0,0);
 
   }
 

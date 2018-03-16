@@ -3,11 +3,7 @@
     <!-- <i class="fa fa-bars"></i> -->
     <!-- <p-splitButton icon="fa-check" [model]="items"></p-splitButton> -->
     <button pButton type="button" label="Add New Event" icon="fa-plus" (click)="toggleSidebar()"></button>
+    <app-sidebar [(display)]="display"></app-sidebar>
     <button *ngIf="loggedIn" pButton type="button" label="Logout" icon="fa-minus"></button>
-    <p-sidebar [(visible)]="display" position="right">
-      <!--<p>sidebar works</p>-->
-      <button pButton type="button" label="Submit" (click)="toggleSidebar()"></button>
-      <button pButton type="button" label="Cancel" (click)="toggleSidebar()"></button>
-    </p-sidebar>
   </div>
 </p-toolbar>

@@ -1,5 +1,6 @@
 import { ToolbarModule } from 'primeng/toolbar';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { InputTextModule } from 'primeng/inputtext';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +20,7 @@ import { UserService } from './user.service';
 import { AuthguardGuard } from './authguard.guard';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const appRoutes = [
   {
@@ -45,7 +47,8 @@ const appRoutes = [
     LoginFormComponent,
     LoginComponent,
     PageNotFoundComponent,
-    MapComponent
+    MapComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ const appRoutes = [
     AgmSnazzyInfoWindowModule,
     FormsModule,
     HttpClientModule,
-    SidebarModule
+    SidebarModule,
+    InputTextModule
     //BrowserAnimationsModule,
   ],
   schemas: [
