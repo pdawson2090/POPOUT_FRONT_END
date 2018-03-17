@@ -1,5 +1,6 @@
 import { ToolbarModule } from 'primeng/toolbar';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { InputTextModule } from 'primeng/inputtext';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,9 +16,11 @@ import { LoginFormComponent } from './login/login-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MapComponent } from './map/map.component';
 import { EventService } from './services/event.service';
-import {UserService} from './user.service';
-import {AuthguardGuard} from './authguard.guard';
-import {RouterModule} from '@angular/router';
+import { UserService } from './user.service';
+import { AuthguardGuard } from './authguard.guard';
+import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const appRoutes = [
   {
@@ -26,7 +29,7 @@ const appRoutes = [
   },
   {
     path: '',
-    canActivate: [AuthguardGuard],
+    //canActivate: [AuthguardGuard],
     children: [
       {
         path: 'map',
@@ -42,8 +45,10 @@ const appRoutes = [
     AppComponent,
     NavbarComponent,
     LoginFormComponent,
+    LoginComponent,
     PageNotFoundComponent,
-    MapComponent
+    MapComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -59,13 +64,18 @@ const appRoutes = [
     AgmSnazzyInfoWindowModule,
     FormsModule,
     HttpClientModule,
-    SidebarModule
+    SidebarModule,
+    InputTextModule
     //BrowserAnimationsModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: [EventService,UserService,AuthguardGuard],
+  providers: [
+    EventService,
+    UserService,
+    AuthguardGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

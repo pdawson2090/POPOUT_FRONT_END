@@ -31,7 +31,7 @@ export class LoginFormComponent implements OnInit {
     e.preventDefault();
 
 
-    var url = 'https://popout-back.herokuapp.com/login';
+    var url = 'http://localhost:8080/login';
     const req = this.http.post(url, {
       username: e.target.elements[0].value,
       password: e.target.elements[1].value
