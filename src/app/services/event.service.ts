@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { Event } from '../domain/event';
 import { Observable } from 'rxjs/Observable';
@@ -29,7 +30,7 @@ export class EventService {
   //This method will submit a new event
   newEvent(event: Event): void {
 
-    this.http.post('http://localhost:8080/event/new', event);
+    this.http.post('http://localhost:8080/newEvent', event);
 
   }
 
