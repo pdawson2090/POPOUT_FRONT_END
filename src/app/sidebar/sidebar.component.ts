@@ -27,21 +27,14 @@ export class SidebarComponent implements OnInit {
       event_time: new FormControl('',Validators.required),
       event_title: new FormControl('',Validators.required),
       event_address: new FormControl('',Validators.required),
-
-
     });
-    // this.event = new Event(0,"","","","","",0,0);
 
   }
 
   newEvent(e){
     console.log(this.eventForm.value.event_address);
-    console.log("WoW");
     this.event = new Event(0,this.eventForm.value.event_title,this.eventForm.value.event_description,this.eventForm.value.event_date,this.eventForm.value.event_time,this.eventForm.value.event_address,0,0);
-
     this.eventService.newEvent(this.event);
-    
-
   }
 
   toggleSidebar(): void {
