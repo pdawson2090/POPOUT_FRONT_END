@@ -38,7 +38,7 @@ export class SidebarComponent implements OnInit {
 
   //Im tired this is redundant but it works.
 
-    var url = 'http://localhost:8080/newEvent';
+    var url = 'https://popout-back.herokuapp.com/newEvent';
     const req = this.http.post(url, {
       event_title: this.event.event_title,
       event_description: this.event.event_description,
