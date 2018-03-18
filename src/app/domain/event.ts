@@ -1,32 +1,32 @@
 export class Event {
 
-    public eventId: number;
-    public eventTitle: string;
-    public eventDescription: string;
-    public eventDate: string;
-    public eventTime: string;
-    public eventAddress: string;
+    public id: number;
+    public event_title: string;
+    public event_description: string;
+    public event_date: string;
+    public event_time: string;
+    public event_address: string;
     public lat: number;
-    public lng: number;
+    public long: number;
 
     constructor(
-        eventId: number, 
-        eventTitle: string, 
-        eventDescription: string, 
-        eventDate: string, 
+        eventId: number,
+        eventTitle: string,
+        eventDescription: string,
+        eventDate: string,
         eventTime: string,
         eventAddress: string,
-        lat: number, 
+        lat: number,
         lng: number
     ) {
-        this.eventId = eventId;
-        this.eventTitle = eventTitle;
-        this.eventDescription = eventDescription;
-        this.eventDate = eventDate;
-        this.eventTime = eventTime;
-        this.eventAddress = eventAddress;
+        this.id = eventId;
+        this.event_title = eventTitle;
+        this.event_description = eventDescription;
+        this.event_date = eventDate;
+        this.event_time = eventTime;
+        this.event_address = eventAddress;
         this.lat = lat;
-        this.lng = lng;
+        this.long = lng;
     }
 
 
