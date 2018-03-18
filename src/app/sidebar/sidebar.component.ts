@@ -53,6 +53,14 @@ export class SidebarComponent implements OnInit {
     }
   ).subscribe(res => { console.log("Submitted")});
 
+    //Uncomment this line when the backend is ready
+    //this.eventService.newEvent(this.event);
+    
+    //Comment or Delete this when the backend is ready.  It only adds events on the client side.
+    // this.eventService.addLocalEvent(this.event);
+
+    // this.event = new Event(0,"","","","","",0,0);
+    // this.display = false;
 
   }
 
