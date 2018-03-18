@@ -1,6 +1,6 @@
 <div class="container">
   <app-navbar></app-navbar>
-  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
+  <agm-map [latitude]="events[0].lat" [longitude]="events[0].lng" [zoom]="16">
     <agm-marker *ngFor="let event of events" [latitude]="event.lat" [longitude]="event.lng">
       <agm-snazzy-info-window [maxWidth]="400" [maxHeight]="400" [closeWhenOthersOpen]="true">
         <ng-template>

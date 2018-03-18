@@ -10,6 +10,8 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
+  events: Event[] = [];
+
   display: boolean = false;
 
   //This method will return a given event by event ID
@@ -30,6 +32,20 @@ export class EventService {
   newEvent(event: Event): void {
 
     this.http.post('http://localhost:8080/event/new', event);
+
+  }
+
+  //Used for local debugging of adding event code.  Gets all the events stored in the array of events.
+  getLocalEvents(): Event[] {
+
+    return this.events;
+
+  }
+
+  //Used for local debugging of adding event code.  Actually adds the event to the local array of events.
+  addLocalEvent(event: Event): void {
+
+    this.events.push(event);
 
   }
 

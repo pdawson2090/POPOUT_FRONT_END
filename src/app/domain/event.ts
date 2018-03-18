@@ -12,10 +12,10 @@ export class Event {
     constructor(
         eventId: number, 
         eventTitle: string, 
-        eventDescription: string, 
+        eventDescription: string,
+        eventAddress: string,
         eventDate: string, 
         eventTime: string,
-        eventAddress: string,
         lat: number, 
         lng: number
     ) {
