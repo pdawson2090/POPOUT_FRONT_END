@@ -1,0 +1,17 @@
+
+<p-growl [(value)]="msgs"></p-growl>
+
+<form (submit)="loginUser($event)">
+  <div class="box">
+    <div class="input">
+      <input type="text" placeholder="..." class="inside">
+    </div>
+    <div class="input">
+      <input pInputText type="password" pKeyFilter="alphanum" placeholder="..." class="inside">
+    </div>
+    <div class="input">
+      <input pInputText type="submit" value="LOGIN" class="button ui-g-6">
+    </div>
+  </div>
+</form>
+

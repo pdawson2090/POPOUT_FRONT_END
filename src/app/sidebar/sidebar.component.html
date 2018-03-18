@@ -1,0 +1,11 @@
+<p-sidebar [(visible)]="display" position="right">
+  <form>
+    <input type="text" pInputText placeholder="Event Title" id="event-title" required [(ngModel)]="event.eventTitle" name="eventTitle">
+    <input type="text" pInputText placeholder="Event Description" id="event-description" required [(ngModel)]="event.eventDescription" name="eventDescription">
+    <input type="text" pInputText placeholder="Event Address" id="event-address" required [(ngModel)]="event.eventAddress" name="eventAddress">
+    <input type="text" pInputText placeholder="Event Date" id="event-date" required [(ngModel)]="event.eventDate" name="eventDate">
+    <input type="text" pInputText placeholder="Event Time" id="event-time" required [(ngModel)]="event.eventTime" name="eventTime">
+    <button pButton type="button" label="Submit" (click)="newEvent()"></button>
+    <button pButton type="button" label="Cancel" (click)="toggleSidebar()"></button>
+  </form>
+</p-sidebar>
