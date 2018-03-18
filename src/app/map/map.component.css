@@ -1,7 +1,8 @@
 agm-map {
-    height: stretch;
+  height: 100%;
+  width: 100%;
 }
 
-.container{
-    padding-bottom: 30px;
+.container {
+  height: calc(100vh - 55px);
 }
