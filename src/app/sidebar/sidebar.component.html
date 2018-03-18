@@ -1,4 +1,5 @@
 <p-sidebar [(visible)]="display" position="right">
+
   <form [formGroup]="eventForm" (ngSubmit)="newEvent(eventForm.value)" >
 
     <input pInputText type="text" placeholder="Event Title" formControlName="event_title" >
@@ -13,4 +14,5 @@
     <input type="submit" value="SUBMIT" class="button">
   </form>
 </p-sidebar>
+
 

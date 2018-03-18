@@ -30,7 +30,6 @@ export class EventService {
   //This method will submit a new event
   newEvent(event: Event): void {
 
-    console.log(event.event_address);
     this.http.post('http://localhost:8080/newEvent', event);
 
   }

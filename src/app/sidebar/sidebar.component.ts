@@ -1,15 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from '../domain/event';
 import { EventService } from '../services/event.service';
+
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Http, Headers, RequestOptions} from '@angular/http';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+
 
   constructor(private eventService: EventService, private fb: FormBuilder,private http: HttpClient) { }
 
@@ -49,6 +52,7 @@ export class SidebarComponent implements OnInit {
       long: this.event.long
     }
   ).subscribe(res => { console.log("Submitted")});
+
 
   }
 

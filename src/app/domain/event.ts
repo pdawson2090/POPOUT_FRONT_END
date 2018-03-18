@@ -10,6 +10,7 @@ export class Event {
     public long: number;
 
     constructor(
+
         eventId: number,
         eventTitle: string,
         eventDescription: string,
