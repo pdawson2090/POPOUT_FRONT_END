@@ -32,7 +32,17 @@ export class EventService {
   //This method will submit a new event
   newEvent(event: Event): void {
 
-    this.http.post('http://localhost:8080/newEvent', event);
+    var url = 'http://localhost:8080/newEvent';
+    const req =  this.http.post(url, {
+        event_title: event.event_title,
+        event_description: event.event_description,
+        event_date:  event.event_date,
+        event_time:  event.event_time,
+        event_address:  event.event_address,
+        lat:  event.lat,
+        long:  event.long
+      }
+    ).subscribe(res => { console.log("Submitted")});
 
   }
 

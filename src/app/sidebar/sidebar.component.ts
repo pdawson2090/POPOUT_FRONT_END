@@ -39,28 +39,8 @@ export class SidebarComponent implements OnInit {
     console.log("WoW");
     this.event = new Event(0,this.eventForm.value.event_title,this.eventForm.value.event_description,this.eventForm.value.event_date,this.eventForm.value.event_time,this.eventForm.value.event_address,0,0);
 
-  //Im tired this is redundant but it works.
-
-    var url = 'http://localhost:8080/newEvent';
-    const req = this.http.post(url, {
-      event_title: this.event.event_title,
-      event_description: this.event.event_description,
-      event_date: this.event.event_date,
-      event_time: this.event.event_time,
-      event_address: this.event.event_address,
-      lat: this.event.lat,
-      long: this.event.long
-    }
-  ).subscribe(res => { console.log("Submitted")});
-
-    //Uncomment this line when the backend is ready
-    //this.eventService.newEvent(this.event);
+    this.eventService.newEvent(this.event);
     
-    //Comment or Delete this when the backend is ready.  It only adds events on the client side.
-    // this.eventService.addLocalEvent(this.event);
-
-    // this.event = new Event(0,"","","","","",0,0);
-    // this.display = false;
 
   }
 
