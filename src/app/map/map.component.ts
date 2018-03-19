@@ -34,6 +34,7 @@ export class MapComponent implements OnInit {
         this.geocoder = new google.maps.Geocoder();
         this.geocodeEvents();
         console.log(this.events);
+        console.log(this.events[0].event_title);
   
         // this.geocoder.geocode({'address' : this.address}, (results, status) => {
         //   this.lat = results[0].geometry.location.lat();
