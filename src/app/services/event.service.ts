@@ -32,7 +32,7 @@ export class EventService {
   //This method will submit a new event
   newEvent(event: Event): void {
 
-    var url = 'http://localhost:8080/newEvent';
+    var url = 'https://popout-back.herokuapp.com/newEvent';
     const req =  this.http.post(url, {
         event_title: event.event_title,
         event_description: event.event_description,
