@@ -10,21 +10,21 @@ export class Event {
     public long: number;
 
     constructor(
-        eventId: number,
-        eventTitle: string,
-        eventDescription: string,
-        eventDate: string,
-        eventTime: string,
-        eventAddress: string,
-        lat: number,
+        id: number, 
+        event_title: string, 
+        event_description: string,
+        event_address: string,
+        event_date: string, 
+        event_time: string,
+        lat: number, 
         lng: number
     ) {
-        this.id = eventId;
-        this.event_title = eventTitle;
-        this.event_description = eventDescription;
-        this.event_date = eventDate;
-        this.event_time = eventTime;
-        this.event_address = eventAddress;
+        this.id = id;
+        this.event_title = event_title;
+        this.event_description = event_description;
+        this.event_date = event_date;
+        this.event_time = event_time;
+        this.event_address = event_address;
         this.lat = lat;
         this.long = lng;
     }

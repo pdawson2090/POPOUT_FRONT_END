@@ -22,15 +22,25 @@ import { AuthguardGuard } from './authguard.guard';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes = [
   {
     path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'login',
     component: LoginFormComponent
   },
   {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
     path: '',
-    //canActivate: [AuthguardGuard],
+    canActivate: [AuthguardGuard],
     children: [
       {
         path: 'map',
@@ -49,7 +59,9 @@ const appRoutes = [
     LoginComponent,
     PageNotFoundComponent,
     MapComponent,
-    SidebarComponent
+    SidebarComponent,
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
