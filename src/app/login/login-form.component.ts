@@ -42,7 +42,7 @@ export class LoginFormComponent implements OnInit {
           this.msgs = [];
           this.user.setUsername(e.target.elements[0].value);
           var auth = JSON.parse(JSON.stringify(res));
-          if (true) {
+          if (auth) {
             this.user.setUserLoggedIn();
             this.user.setManager(auth.Manager);
             this.user.setUserCurrentPage('profile');
