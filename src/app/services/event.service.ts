@@ -25,14 +25,14 @@ export class EventService {
   //This method will return all events currently in the database
   getEvents(): Observable<Event[]> {
 
-    return this.http.get<Event[]>(`http://localhost:8080/event/events`);
+    return this.http.post<Event[]>(`http://localhost:8080/allEvents`, {});
 
   }
 
   //This method will submit a new event
   newEvent(event: Event): void {
 
-    var url = 'https://popout-back.herokuapp.com/newEvent';
+    var url = 'https://localhost:8080/newEvent';
     const req =  this.http.post(url, {
         event_title: event.event_title,
         event_description: event.event_description,
@@ -42,7 +42,7 @@ export class EventService {
         lat:  event.lat,
         long:  event.long
       }
-    ).subscribe(res => { console.log("Submitted")});
+    );
 
   }
 
