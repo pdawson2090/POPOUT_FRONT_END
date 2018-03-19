@@ -25,7 +25,7 @@ export class EventService {
   //This method will return all events currently in the database
   getEvents(): Observable<Event[]> {
 
-    return this.http.post<Event[]>(`http://localhost:8080/allEvents`, {});
+    return this.http.get<Event[]>(`http://localhost:8080/allEvents`, {});
 
   }
 
