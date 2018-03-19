@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {User} from './domain/user';
 
 @Injectable()
 export class UserService {
@@ -12,6 +13,7 @@ export class UserService {
     this.isUserLoggedIn = false;
   }
 
+  users : User[];
   setUserLoggedIn() {
     this.isUserLoggedIn = true;
   }
@@ -22,13 +24,6 @@ export class UserService {
 
   getUserLoggedIn() {
     return this.isUserLoggedIn;
-  }
-
-  setUserCurrentPage(x) {
-    this.page = x;
-  }
-  getUserCurrentPage(){
-    return this.page;
   }
   setUsername(y){
     this.username = y;
