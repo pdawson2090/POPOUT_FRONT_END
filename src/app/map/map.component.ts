@@ -13,7 +13,7 @@ declare var google: any;
 export class MapComponent implements OnInit {
 
   geocoder: any;
-  event: Event;
+  //event: Event;
   events: Event[] = [];
 
   constructor(private maps: MapsAPILoader, private eventService: EventService) { }
@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
 
     // this.event = new Event(1,"Revature Party","Party at Revature HQ, Java Batches Only!!!","11730 Plaza America Dr, Reston, VA 20190","4/15/18","5:30",0,0);
     // this.eventService.addLocalEvent(this.event);
-    this.event = new Event(0,"","","","","",0,0);
+    //this.event = new Event(0,"","","","","",0,0);
 
     this.eventService.getEvents().subscribe(data => {
 
@@ -33,6 +33,7 @@ export class MapComponent implements OnInit {
 
         this.geocoder = new google.maps.Geocoder();
         this.geocodeEvents();
+        console.log(this.events);
   
         // this.geocoder.geocode({'address' : this.address}, (results, status) => {
         //   this.lat = results[0].geometry.location.lat();
@@ -54,7 +55,7 @@ export class MapComponent implements OnInit {
 
     for(let i = 0; i < this.events.length; i++){
 
-      if(this.events[i].lat === 0 && this.events[i].long === 0){
+      //if(this.events[i].lat === 0 && this.events[i].long === 0){
 
         this.geocoder.geocode({'address' : this.events[i].event_address }, (results, status) =>{
 
@@ -63,7 +64,7 @@ export class MapComponent implements OnInit {
 
         });
 
-      }
+      //}
 
     }
 
