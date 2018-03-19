@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
 
   registerUser(e) {
     //e.preventDefault();
-    var url = 'http://localhost:8080/register';
+    var url = 'https://popout-back.herokuapp.com/register';
     const req = this.http.post(url, {
       username: this.userForm.value.username,
       password: this.userForm.value.password,
