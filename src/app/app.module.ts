@@ -20,7 +20,6 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import { UserService } from './user.service';
 import { AuthguardGuard } from './authguard.guard';
 import { RouterModule } from '@angular/router';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import {DialogModule} from 'primeng/dialog';
@@ -60,7 +59,6 @@ const appRoutes = [
     LoginFormComponent,
     PageNotFoundComponent,
     MapComponent,
-    SidebarComponent,
     RegisterComponent,
     HomeComponent
   ],
