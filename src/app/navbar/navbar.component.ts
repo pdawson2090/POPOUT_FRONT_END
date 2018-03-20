@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit {
     console.log(this.eventForm.value.event_address);
     this.event = new Event(0,this.eventForm.value.event_title,this.eventForm.value.event_description,this.eventForm.value.event_type,this.eventForm.value.event_host,this.eventForm.value.event_address,this.eventForm.value.event_date,this.eventForm.value.event_time,0,0);
     this.eventService.newEvent(this.event);
-    this.eventService.getLocalEvents();
+    this.event = new Event(0,"","","",0,"","","",0,0);
     this.display = false;
     this.newE.emit();
     //this.router.navigate(['map']);
