@@ -32,9 +32,17 @@ export class MapComponent implements OnInit {
   isSnazzyInfoWindowOpened: boolean = false;
 
   constructor(private maps: MapsAPILoader, private eventService: EventService) {
+
+    // this.eventService.events.subscribe(data => {
+    //   this.events = data;
+    //   this.geocodeEvents();
+    // });
+
   }
 
   ngOnInit() {
+
+    //this.eventService.getLocalEvents();
 
     this.eventService.getEvents().subscribe(data => {
       this.events = data;
@@ -98,6 +106,17 @@ export class MapComponent implements OnInit {
   applyFilter(): void {
 
 
+
+  }
+
+  refreshMap(): void {
+
+    this.eventService.getEvents().subscribe(data => {
+
+      this.events = data;
+      this.geocodeEvents();
+
+    });
 
   }
 
