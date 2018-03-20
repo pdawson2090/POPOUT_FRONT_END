@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { Event } from '../domain/event';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 
 @Injectable()
@@ -11,7 +12,7 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  events: Event[] = [];
+  events: Subject<Event[]> = new Subject<Event[]>();
 
   display: boolean = false;
 
@@ -48,16 +49,13 @@ export class EventService {
   }
 
   //Used for local debugging of adding event code.  Gets all the events stored in the array of events.
-  getLocalEvents(): Event[] {
+  getLocalEvents(): void {
 
-    return this.events;
+    this.getEvents().subscribe(data => {
 
-  }
+      this.events.next(data);
 
-  //Used for local debugging of adding event code.  Actually adds the event to the local array of events.
-  addLocalEvent(event: Event): void {
-
-    this.events.push(event);
+    })
 
   }
 
