@@ -1,16 +1,58 @@
 <div class="container">
   <app-navbar></app-navbar>
-  <agm-map [latitude]="events[0].lat" [longitude]="events[0].long" [zoom]="16">
-    <agm-marker *ngFor="let event of events" [latitude]="event.lat" [longitude]="event.long">
-      <agm-snazzy-info-window [isOpen]="true"[maxWidth]="400" [maxHeight]="400" [closeWhenOthersOpen]="true">
-        <ng-template>
-          <h4>{{event.event_title}}</h4>
-          <h4>{{event.event_description}}</h4>
-          <h4>{{event.event_date}}</h4>
-          <h4>{{event.event_time}}</h4>
+  <agm-map
+    [latitude]="38.9586"
+    [longitude]="-77.3570"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false">
+    <!--(mapClick)="mapClicked($event)">-->
+
+    <agm-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      (dragEnd)="markerDragEnd(m, $event)">
+
+      <agm-snazzy-info-window #snazzyInfoWindow
+                              [closeWhenOthersOpen]="true"
+                              [closeOnMapClick]="true"
+                              maxWidth="300px"
+                              maxHeight="200px"
+                              padding="10px"
+                              [isOpen]="isSnazzyInfoWindowOpened"
+                              [latitude]="m.lat" [longitude]="m.lng">
+        <ng-template class="si-content">
+          <p-card styleClass="ui-card-shadow ui-grid">
+            <div class="ui-g ui-card-title ui-grid-responsive ">
+              {{m.title}}
+            </div>
+            <div class="ui-g  ui-card-subtitle ui-grid-responsive ">
+              Date: {{m.date}} Time: {{m.time}}
+            </div>
+            <p-header class="ui-g ">
+              <img src="Card" src="../../assets/party.png"/>
+            </p-header>
+            <div class="ui-g ui-card-title ui-grid-responsive ">
+              {{m.address}}
+            </div>
+            <div class="ui-g  ui-card-subtitle ui-grid-responsive ">
+              <p class="textdesc">{{m.description}}</p>
+            </div>
+            <p-footer class="ui-g  ui-card-footer ui-grid-responsive ">
+              <button pButton type="button" label="Attend" icon="fa-check"></button>
+            </p-footer>
+          </p-card>
         </ng-template>
       </agm-snazzy-info-window>
+
     </agm-marker>
+
   </agm-map>
+
 </div>
+
 

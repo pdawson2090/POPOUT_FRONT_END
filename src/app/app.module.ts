@@ -20,10 +20,12 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import { UserService } from './user.service';
 import { AuthguardGuard } from './authguard.guard';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import {DialogModule} from 'primeng/dialog';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+
 
 const appRoutes = [
   {
@@ -56,7 +58,6 @@ const appRoutes = [
     AppComponent,
     NavbarComponent,
     LoginFormComponent,
-    LoginComponent,
     PageNotFoundComponent,
     MapComponent,
     SidebarComponent,
@@ -68,6 +69,8 @@ const appRoutes = [
     RouterModule.forRoot(appRoutes),
     ToolbarModule,
     FormsModule,
+    DialogModule,
+    OverlayPanelModule,
     HttpClientJsonpModule,
     SplitButtonModule,
     ReactiveFormsModule,

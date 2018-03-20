@@ -7,6 +7,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Validators, FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import {Message} from 'primeng/api';
 import {MessageService} from 'primeng/components/common/messageservice';
+import {User} from '../domain/user';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginFormComponent implements OnInit {
   password: string;
   return: string = '';
   msgs: Message[];
-
+  users: User;
   constructor(private fb: FormBuilder, private router: Router, private user: UserService, private route: ActivatedRoute, private http: HttpClient) {
   }
 
@@ -42,10 +43,10 @@ export class LoginFormComponent implements OnInit {
           this.msgs = [];
           this.user.setUsername(e.target.elements[0].value);
           var auth = JSON.parse(JSON.stringify(res));
-          if (auth) {
+          if (auth != null) {
+
             this.user.setUserLoggedIn();
             this.user.setManager(auth.Manager);
-            this.user.setUserCurrentPage('profile');
             this.router.navigate(['map']);
 
           } else {
