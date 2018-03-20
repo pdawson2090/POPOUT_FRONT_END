@@ -10,9 +10,11 @@ interface marker {
   title: string;
   address: string;
   description: string;
+  type: string;
   date: string;
   time: string;
   draggable: boolean;
+  visible: boolean;
 }
 declare var google: any;
 
@@ -71,18 +73,34 @@ export class MapComponent implements OnInit {
     for (let i = 0; i < this.events.length; i++) {
       this.geocoder.geocode({'address': this.events[i].event_address}, (results, status) => {
         this.temp = ((this.events[i].event_address).split(","));
-        this.markers.push({
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng(),
-          title: this.events[i].event_title,
-          address: this.temp[0],
-          date: this.events[i].event_date,
-          time: this.events[i].event_time,
-          description: this.events[i].event_description,
-          draggable: false,
-        });
+        var lat = results[0].geometry.location.lat();
+        var lng = results[0].geometry.location.lng();
+        this.addMarker(lat, lng, i);
       });
     }
+
+  }
+
+  addMarker(lat: any, lng: any, i: number): void {
+
+    this.markers.push({
+      lat: lat,
+      lng: lng,
+      title: this.events[i].event_title,
+      address: this.temp[0],
+      date: this.events[i].event_date,
+      time: this.events[i].event_time,
+      description: this.events[i].event_description,
+      type: this.events[i].event_type,
+      draggable: false,
+      visible: true
+    });
+
+  }
+
+  applyFilter(): void {
+
+
 
   }
 
