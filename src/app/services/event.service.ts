@@ -38,6 +38,7 @@ export class EventService {
         event_title: event.event_title,
         event_description: event.event_description,
         event_type: event.event_type,
+        event_host: event.event_host,
         event_address:  event.event_address,
         event_date:  event.event_date,
         event_time:  event.event_time,

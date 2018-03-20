@@ -33,7 +33,7 @@ export class SidebarComponent implements OnInit {
 
   newEvent(e){
     console.log(this.eventForm.value.event_address);
-    this.event = new Event(0,this.eventForm.value.event_title,"",this.eventForm.value.event_description,this.eventForm.value.event_date,this.eventForm.value.event_time,this.eventForm.value.event_address,0,0);
+    this.event = new Event(0,this.eventForm.value.event_title,"","",this.eventForm.value.event_description,this.eventForm.value.event_date,this.eventForm.value.event_time,this.eventForm.value.event_address,0,0);
 
     this.eventService.newEvent(this.event);
 
@@ -42,7 +42,7 @@ export class SidebarComponent implements OnInit {
   toggleSidebar(): void {
 
     this.display = false;
-    this.event = new Event(0,"","","","","","",0,0);
+    this.event = new Event(0,"","","","","","","",0,0);
 
   }
 
