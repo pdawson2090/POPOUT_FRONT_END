@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {UserService} from '../user.service';
+import {UserService} from '../services/user.service';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {HttpErrorResponse} from '@angular/common/http';

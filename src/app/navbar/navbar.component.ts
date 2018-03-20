@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@ang
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Event} from '../domain/event';
 import {EventService} from '../services/event.service';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
