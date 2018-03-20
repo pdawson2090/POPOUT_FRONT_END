@@ -1,16 +1,51 @@
 <div class="container">
   <app-navbar></app-navbar>
-  <agm-map [latitude]="events[0].lat" [longitude]="events[0].long" [zoom]="16">
-    <agm-marker *ngFor="let event of events" [latitude]="event.lat" [longitude]="event.long">
-      <agm-snazzy-info-window [isOpen]="true"[maxWidth]="400" [maxHeight]="400" [closeWhenOthersOpen]="true">
+  <agm-map
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false">
+    <!--(mapClick)="mapClicked($event)">-->
+
+    <agm-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      (dragEnd)="markerDragEnd(m, $event)">
+
+      <agm-snazzy-info-window #snazzyInfoWindow
+                              [closeWhenOthersOpen]="true"
+                              [closeOnMapClick]="true"
+                              maxHeight="400px"
+                              maxWidth="400px"
+                              padding="2px"
+                              [isOpen]="isSnazzyInfoWindowOpened"
+                              [latitude]="m.lat" [longitude]="m.lng">
         <ng-template>
-          <h4>{{event.event_title}}</h4>
-          <h4>{{event.event_description}}</h4>
-          <h4>{{event.event_date}}</h4>
-          <h4>{{event.event_time}}</h4>
+          <p-card title="Event" [style]="{width: '360px'}"
+                  styleClass="ui-card-shadow" class="ui-g-12 ui-md-3 ">
+            <p-header>
+              <img src="../../assets/party.png"/>
+            </p-header>
+            <div>
+
+                <p>{{m.title}}</p>
+                <p>{{m.assddress}}</p>
+                <p>{{m.description}}</p>
+
+            </div>
+
+          </p-card>
         </ng-template>
       </agm-snazzy-info-window>
+
     </agm-marker>
+
   </agm-map>
+
 </div>
 
