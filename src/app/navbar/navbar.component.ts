@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Event} from '../domain/event';
 import {EventService} from '../services/event.service';
@@ -26,6 +26,8 @@ export class NavbarComponent implements OnInit {
     private router: Router
     ) { }
 
+  @Output() newE = new EventEmitter();
+
   ngOnInit() {
 
     this.loggedIn = this.userService.getUserLoggedIn();
@@ -47,7 +49,8 @@ export class NavbarComponent implements OnInit {
     this.eventService.newEvent(this.event);
     this.eventService.getLocalEvents();
     this.display = false;
-    this.router.navigate(['map']);
+    this.newE.emit();
+    //this.router.navigate(['map']);
 
   }
 
