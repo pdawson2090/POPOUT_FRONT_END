@@ -15,7 +15,8 @@
       [longitude]="m.lng"
       [label]="m.label"
       [markerDraggable]="m.draggable"
-      (dragEnd)="markerDragEnd(m, $event)">
+      (dragEnd)="markerDragEnd(m, $event)"
+      [visible]="m.visible">
 
       <agm-snazzy-info-window #snazzyInfoWindow
                               [closeWhenOthersOpen]="true"

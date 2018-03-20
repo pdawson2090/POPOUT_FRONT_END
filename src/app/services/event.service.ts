@@ -25,7 +25,7 @@ export class EventService {
   //This method will return all events currently in the database
   getEvents(): Observable<Event[]> {
 
-    return this.http.get<Event[]>(`http://localhost:8080/allEvents`, {});
+    return this.http.get<Event[]>(`http://localhost:8080/allEvents`);
 
   }
 
@@ -36,9 +36,10 @@ export class EventService {
     const req =  this.http.post(url, {
         event_title: event.event_title,
         event_description: event.event_description,
+        event_type: event.event_type,
+        event_address:  event.event_address,
         event_date:  event.event_date,
         event_time:  event.event_time,
-        event_address:  event.event_address,
         lat:  event.lat,
         lng:  event.long
       }
