@@ -1,8 +1,8 @@
 <div class="container">
   <app-navbar></app-navbar>
   <agm-map
-    [latitude]="lat"
-    [longitude]="lng"
+    [latitude]="38.9586"
+    [longitude]="-77.3570"
     [zoom]="zoom"
     [disableDefaultUI]="false"
     [zoomControl]="false">
@@ -20,25 +20,31 @@
       <agm-snazzy-info-window #snazzyInfoWindow
                               [closeWhenOthersOpen]="true"
                               [closeOnMapClick]="true"
-                              maxHeight="400px"
-                              maxWidth="400px"
-                              padding="2px"
+                              maxWidth="300px"
+                              maxHeight="200px"
+                              padding="10px"
                               [isOpen]="isSnazzyInfoWindowOpened"
                               [latitude]="m.lat" [longitude]="m.lng">
-        <ng-template>
-          <p-card title="Event" [style]="{width: '360px'}"
-                  styleClass="ui-card-shadow" class="ui-g-12 ui-md-3 ">
-            <p-header>
-              <img src="../../assets/party.png"/>
-            </p-header>
-            <div>
-
-                <p>{{m.title}}</p>
-                <p>{{m.assddress}}</p>
-                <p>{{m.description}}</p>
-
+        <ng-template class="si-content">
+          <p-card styleClass="ui-card-shadow ui-grid">
+            <div class="ui-g ui-card-title ui-grid-responsive ">
+              {{m.title}}
             </div>
-
+            <div class="ui-g  ui-card-subtitle ui-grid-responsive ">
+              Date: {{m.date}} Time: {{m.time}}
+            </div>
+            <p-header class="ui-g ">
+              <img src="Card" src="../../assets/party.png"/>
+            </p-header>
+            <div class="ui-g ui-card-title ui-grid-responsive ">
+              {{m.address}}
+            </div>
+            <div class="ui-g  ui-card-subtitle ui-grid-responsive ">
+              <p class="textdesc">{{m.description}}</p>
+            </div>
+            <p-footer class="ui-g  ui-card-footer ui-grid-responsive ">
+              <button pButton type="button" label="Attend" icon="fa-check"></button>
+            </p-footer>
           </p-card>
         </ng-template>
       </agm-snazzy-info-window>
@@ -48,4 +54,5 @@
   </agm-map>
 
 </div>
+
 

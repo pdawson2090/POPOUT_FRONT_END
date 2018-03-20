@@ -10,6 +10,8 @@ interface marker {
   title: string;
   address: string;
   description: string;
+  date: string;
+  time: string;
   draggable: boolean;
 }
 declare var google: any;
@@ -20,12 +22,10 @@ declare var google: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  draggable: boolean;
+  temp: any[];
   markers: marker[] = [];
   zoom: number = 8;
   geocoder: any;
-  display: boolean = false;
-
   events: Event[] = [];
   isSnazzyInfoWindowOpened: boolean = false;
 
@@ -45,24 +45,23 @@ export class MapComponent implements OnInit {
     });
   }
 
-  showDialog() {
-    this.display = true;
-  }
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
   }
 
-  mapClicked($event: MouseEvent) {
-    this.markers.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      title: null,
-      description: null,
-      address: null,
-      draggable: true
-    });
-  }
+  // mapClicked($event: MouseEvent) {
+  //   this.markers.push({
+  //     lat: $event.coords.lat,
+  //     lng: $event.coords.lng,
+  //     title: null,
+  //     date: null,
+  //     description: null,
+  //     time: null,
+  //     address: null,
+  //     draggable: true
+  //   });
+  // }
 
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
@@ -71,13 +70,16 @@ export class MapComponent implements OnInit {
   geocodeEvents(): void {
     for (let i = 0; i < this.events.length; i++) {
       this.geocoder.geocode({'address': this.events[i].event_address}, (results, status) => {
+        this.temp = ((this.events[i].event_address).split(","));
         this.markers.push({
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng(),
           title: this.events[i].event_title,
-          address: this.events[i].event_address,
+          address: this.temp[0],
+          date: this.events[i].event_date,
+          time: this.events[i].event_time,
           description: this.events[i].event_description,
-          draggable: true
+          draggable: false,
         });
       });
     }
