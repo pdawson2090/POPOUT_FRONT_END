@@ -12,10 +12,6 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  events: Subject<Event[]> = new Subject<Event[]>();
-
-  display: boolean = false;
-
   //This method will return a given event by event ID
   getEvent(id: number): Observable<Event> {
 
@@ -49,15 +45,5 @@ export class EventService {
 
   }
 
-  //Used for local debugging of adding event code.  Gets all the events stored in the array of events.
-  getLocalEvents(): void {
-
-    this.getEvents().subscribe(data => {
-
-      this.events.next(data);
-
-    })
-
-  }
 
 }

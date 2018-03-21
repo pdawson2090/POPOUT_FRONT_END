@@ -17,8 +17,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { MapComponent } from './map/map.component';
 import { EventService } from './services/event.service';
 import {Http, Headers, RequestOptions} from '@angular/http';
-import { UserService } from './user.service';
-import { AuthguardGuard } from './authguard.guard';
+import { UserService } from './services/user.service';
+import { AuthguardGuard } from './guards/authguard.guard';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
