@@ -24,21 +24,19 @@ declare var google: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+
   temp: any[];
   markers: marker[] = [];
   zoom: number = 8;
   geocoder: any;
   events: Event[] = [];
   isSnazzyInfoWindowOpened: boolean = false;
+  eventTypes 
 
-  constructor(private maps: MapsAPILoader, private eventService: EventService) {
-
-    // this.eventService.events.subscribe(data => {
-    //   this.events = data;
-    //   this.geocodeEvents();
-    // });
-
-  }
+  constructor(
+    private maps: MapsAPILoader,
+    private eventService: EventService
+    ) {}
 
   ngOnInit() {
 
@@ -106,9 +104,21 @@ export class MapComponent implements OnInit {
 
   }
 
-  applyFilter(): void {
+  applyFilter(filter: string): void {
 
+    for(let i = 0; i < this.markers.length; i++){
 
+      if(this.markers[i].type === filter){
+
+        this.markers[i].visible = true;
+
+      }else{
+
+        this.markers[i].visible = false;
+
+      }
+
+    }
 
   }
 
