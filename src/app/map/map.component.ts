@@ -1,8 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { MapsAPILoader } from '@agm/core';
-import { Event } from '../domain/event';
-import { EventService } from '../services/event.service';
+import {Component, OnInit} from '@angular/core';
+import {MapsAPILoader, MouseEvent} from '@agm/core';
+import {Event} from '../domain/event';
+import {EventService} from '../services/event.service';
 
+
+interface marker {
+  lat: number;
+  lng: number;
+  title: string;
+  address: string;
+  description: string;
+  type: string;
+  date: string;
+  time: string;
+  draggable: boolean;
+  visible: boolean;
+}
 declare var google: any;
 
 @Component({
@@ -11,54 +24,102 @@ declare var google: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-
+  temp: any[];
+  markers: marker[] = [];
+  zoom: number = 8;
   geocoder: any;
-  event: Event;
   events: Event[] = [];
+  isSnazzyInfoWindowOpened: boolean = false;
 
-  constructor(private maps: MapsAPILoader, private eventService: EventService) { }
+  constructor(private maps: MapsAPILoader, private eventService: EventService) {
+
+    // this.eventService.events.subscribe(data => {
+    //   this.events = data;
+    //   this.geocodeEvents();
+    // });
+
+  }
 
   ngOnInit() {
 
-    this.event = new Event(1,"Revature Party","Party at Revature HQ, Java Batches Only!!!","11730 Plaza America Dr, Reston, VA 20190","4/15/18","5:30",0,0);
-    this.eventService.addLocalEvent(this.event);
-    this.event = new Event(0,"","","","","",0,0);
+    //this.eventService.getLocalEvents();
 
-    this.events = this.eventService.getLocalEvents();
+    this.eventService.getEvents().subscribe(data => {
+      this.events = data;
+      this.maps.load().then(() => {
+        this.geocoder = new google.maps.Geocoder();
+        this.geocodeEvents();
+        console.log(this.events);
+        console.log(this.events[0].event_title);
+      });
+    });
+  }
 
-    this.maps.load().then(() => {
 
-      this.geocoder = new google.maps.Geocoder();
-      this.geocodeEvents();
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`);
+  }
 
-      // this.geocoder.geocode({'address' : this.address}, (results, status) => {
-      //   this.lat = results[0].geometry.location.lat();
-      //   this.lng = results[0].geometry.location.lng();
-      //   this.event = new Event(1,"Test Title","This is just a test so that I can get it in the descriptor","11730 Plaza America Dr, Reston, VA 20190","4/15/18","7:30",this.lat,this.lng);
-      //   this.addEvent(this.event);
-      //   this.event = new Event(2,"Other Test Title","This is the second Test","","7/22/18","6:45",31,-60);
-      //   this.addEvent(this.event);
+  // mapClicked($event: MouseEvent) {
+  //   this.markers.push({
+  //     lat: $event.coords.lat,
+  //     lng: $event.coords.lng,
+  //     title: null,
+  //     date: null,
+  //     description: null,
+  //     time: null,
+  //     address: null,
+  //     draggable: true
+  //   });
+  // }
 
+  markerDragEnd(m: marker, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
+  }
+
+  geocodeEvents(): void {
+    for (let i = 0; i < this.events.length; i++) {
+      this.geocoder.geocode({'address': this.events[i].event_address}, (results, status) => {
+        this.temp = ((this.events[i].event_address).split(","));
+        var lat = results[0].geometry.location.lat();
+        var lng = results[0].geometry.location.lng();
+        this.addMarker(lat, lng, i);
+      });
+    }
+
+  }
+
+  addMarker(lat: any, lng: any, i: number): void {
+
+    this.markers.push({
+      lat: lat,
+      lng: lng,
+      title: this.events[i].event_title,
+      address: this.temp[0],
+      date: this.events[i].event_date,
+      time: this.events[i].event_time,
+      description: this.events[i].event_description,
+      type: this.events[i].event_type,
+      draggable: false,
+      visible: true
     });
 
   }
 
-  geocodeEvents(): void {
+  applyFilter(): void {
 
-    for(let i = 0; i < this.events.length; i++){
 
-      if(this.events[i].lat === 0 && this.events[i].long === 0){
 
-        this.geocoder.geocode({'address' : this.events[i].event_address }, (results, status) =>{
+  }
 
-          this.events[i].lat = results[0].geometry.location.lat();
-          this.events[i].long = results[0].geometry.location.lng();
+  refreshMap(): void {
 
-        });
+    this.eventService.getEvents().subscribe(data => {
 
-      }
+      this.events = data;
+      this.geocodeEvents();
 
-    }
+    });
 
   }
 

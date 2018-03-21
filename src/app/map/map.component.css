@@ -6,3 +6,13 @@ agm-map {
 .container {
   height: calc(100vh - 55px);
 }
+
+.si-content {
+
+ width: 300px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.textdesc{
+  max-width: 300px;
+}

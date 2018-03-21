@@ -11,29 +11,40 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { SidebarModule } from 'primeng/sidebar';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LoginFormComponent } from './login/login-form.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
-//import { LoginFormComponent } from '';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MapComponent } from './map/map.component';
 import { EventService } from './services/event.service';
 import {Http, Headers, RequestOptions} from '@angular/http';
-import { UserService } from './user.service';
-import { AuthguardGuard } from './authguard.guard';
+import { UserService } from './services/user.service';
+import { AuthguardGuard } from './guards/authguard.guard';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import {DialogModule} from 'primeng/dialog';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+
 
 const appRoutes = [
   {
     path: '',
-    component: LoginComponent
+    component: HomeComponent
+  },
+  {
+    path: 'login',
+    component: LoginFormComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: '',
-    //canActivate: [AuthguardGuard],
+    canActivate: [AuthguardGuard],
     children: [
       {
         path: 'map',
@@ -48,17 +59,19 @@ const appRoutes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    //LoginFormComponent,
-    LoginComponent,
+    LoginFormComponent,
     PageNotFoundComponent,
     MapComponent,
-    SidebarComponent
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     ToolbarModule,
     FormsModule,
+    DialogModule,
+    OverlayPanelModule,
     HttpClientJsonpModule,
     SplitButtonModule,
     ReactiveFormsModule,
