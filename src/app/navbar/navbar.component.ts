@@ -4,6 +4,7 @@ import {Event} from '../domain/event';
 import {EventService} from '../services/event.service';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import {User} from '../domain/user';
 
 @Component({
   selector: 'app-navbar',
@@ -18,18 +19,22 @@ export class NavbarComponent implements OnInit {
   OPdisplay: boolean = false;
   loggedIn: boolean;
   eventForm : FormGroup;
+  users: User;
   event: Event;
   constructor(
     private eventService: EventService,
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private user: UserService,
     ) { }
 
   @Output() newE = new EventEmitter();
 
   ngOnInit() {
 
+    this.users = this.user.getUser();
+    console.log(this.user.getUserId());
     this.loggedIn = this.userService.getUserLoggedIn();
 
     this.eventForm = this.fb.group({
@@ -39,7 +44,6 @@ export class NavbarComponent implements OnInit {
       event_title: new FormControl('',Validators.required),
       event_address: new FormControl('',Validators.required),
       event_type: new FormControl('', Validators.required),
-      event_host: new FormControl('', Validators.required)
     });
   }
 
@@ -47,7 +51,7 @@ export class NavbarComponent implements OnInit {
     console.log(this.eventForm.value.event_address);
     this.event = new Event(0,this.eventForm.value.event_title,this.eventForm.value.event_description,this.eventForm.value.event_type,this.eventForm.value.event_host,this.eventForm.value.event_address,this.eventForm.value.event_date,this.eventForm.value.event_time,0,0);
     this.eventService.newEvent(this.event);
-    this.event = new Event(0,"","","",0,"","","",0,0);
+    this.event = new Event(0,"","","",this.users.id,"","","",0,0);
     this.display = false;
     this.newE.emit();
     //this.router.navigate(['map']);

@@ -8,12 +8,16 @@ export class UserService {
   private username;
   private page;
   private isUserManager;
+  private id;
 
   constructor() {
     this.isUserLoggedIn = false;
+    this.id = 0;
+    this.users = new User(0,"0","0","0","0","0")
   }
 
-  users : User[];
+  private users: User;
+
   setUserLoggedIn() {
     this.isUserLoggedIn = true;
   }
@@ -25,19 +29,27 @@ export class UserService {
   getUserLoggedIn() {
     return this.isUserLoggedIn;
   }
-  setUsername(y){
-    this.username = y;
-  }
-  getUsername(){
-    return this.username;
-}
 
-setManager(x){
+  setManager(x) {
     this.isUserManager = x;
-}
-getUserManager(){
+  }
+
+  setUser(x:User) {
+    this.users = x;
+    this.id = x.id;
+  }
+
+  getUserId() {
+    return this.id;
+  }
+
+  getUser() {
+    return this.users;
+  }
+
+  getUserManager() {
     return this.isUserManager;
-}
+  }
 
 
 }

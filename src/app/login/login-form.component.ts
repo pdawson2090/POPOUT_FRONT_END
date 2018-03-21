@@ -41,10 +41,12 @@ export class LoginFormComponent implements OnInit {
       .subscribe(
         res => {
           this.msgs = [];
-          this.user.setUsername(e.target.elements[0].value);
-          var auth = JSON.parse(JSON.stringify(res));
-          if (auth != null) {
 
+          var auth = JSON.parse(JSON.stringify(res));
+
+          if (auth != null) {
+            this.users = new User(auth.id, auth.email, auth.favorite_type, auth.first_name, auth.last_name,auth.username);
+            this.user.setUser(this.users);
             this.user.setUserLoggedIn();
             this.user.setManager(auth.Manager);
             this.router.navigate(['map']);
