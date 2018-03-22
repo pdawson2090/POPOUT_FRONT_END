@@ -1,86 +1,180 @@
 
-<form [formGroup]="userForm" (ngSubmit)="registerUser(userForm.value)">
-  <div class="ui-g ui-fluid">
-    <div class="ui-g-6 ui-md-3 ui-g-offset-2">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-        <input pInputText type="text" formControlName="username" placeholder="Username"  pKeyFilter="alphanum"/>
-        <div class="ui-grid-col-4">
-          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['username'].valid&&userForm.controls['username'].dirty">
-            <i class="fa fa-close"></i>
-            Username is required
+<div class="form">
+
+  <ul class="tab-group">
+    <li class="tab active"><a href="#loginscreen">Log In</a></li>
+    <li class="tab"><a href="#signup">Sign Up</a></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <div id="loginscreen">
+      <h1>Welcome Back!</h1>
+
+      <form (submit)="loginUser($event)">
+
+        <div class="field-wrap">
+          <label>
+            Username<span class="req">*</span>
+          </label>
+          <input type="email"required autocomplete="off"/>
+        </div>
+
+        <div class="field-wrap">
+          <label>
+            Password<span class="req">*</span>
+          </label>
+          <input type="password"required autocomplete="off"/>
+        </div>
+
+        <input type="submit" value="SUBMIT" class="button button-block">
+
+
+        <!--<button class="button button-block">Log In</button>-->
+
+      </form>
+
+    </div>
+
+    <div id="signup">
+      <h1>Sign Up for Free</h1>
+
+      <form [formGroup]="userForm" (ngSubmit)="registerUser(userForm.value)">
+
+        <div class="top-row">
+          <div class="field-wrap">
+            <label>
+              First Name<span class="req">*</span>
+            </label>
+            <input pInputText type="text" formControlName="firstn"  required autocomplete="off"  pKeyFilter="alphanum"/>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Last Name<span class="req">*</span>
+            </label>
+            <input pInputText type="text" formControlName="lastn"  required autocomplete="off"  pKeyFilter="alphanum"/>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="ui-g-6 ui-md-3">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon">$</span>
-        <input pInputText type="text"  pKeyFilter="int" formControlName="password" placeholder="Password"/>
-        <div class="ui-grid-col-4">
-          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['password'].valid&&userForm.controls['password'].dirty">
-            <i class="fa fa-close"></i>
-            Password is required
-          </div>
+        <div class="field-wrap">
+          <label>
+            Username<span class="req">*</span>
+          </label>
+          <input pInputText type="text" formControlName="username"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
-      </div>
-    </div>
-
-    <div class="ui-g-6 ui-md-3">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-        <input pInputText type="text" formControlName="firstn" pKeyFilter="alphanum" placeholder="First Name"/>
-        <div class="ui-grid-col-4">
-          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['firstn'].valid&&userForm.controls['firstn'].dirty">
-            <i class="fa fa-close"></i>
-            First Name is required
-          </div>
+        <div class="field-wrap">
+          <label>
+            Set A Password<span class="req">*</span>
+          </label>
+          <input pInputText type="password" formControlName="password"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="ui-g-6 ui-md-3 ui-g-offset-2">
-    <div class="ui-inputgroup">
-      <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-      <input pInputText type="text" formControlName="lastn" placeholder="Last Name"  pKeyFilter="alphanum"/>
-      <div class="ui-grid-col-4">
-        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['lastn'].valid&&userForm.controls['lastn'].dirty">
-          <i class="fa fa-close"></i>
-          Last Name is required
+        <div class="field-wrap">
+          <label>
+            Email<span class="req">*</span>
+          </label>
+          <input pInputText type="text" formControlName="email"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="field-wrap">
+          <label>
+            Favorite Event<span class="req">*</span>
+          </label>
+          <input pInputText type="text" formControlName="favorite"  required autocomplete="off"  pKeyFilter="alphanum"/>
+s        </div>
 
-  <div class="ui-g-6 ui-md-3">
-    <div class="ui-inputgroup">
-      <span class="ui-inputgroup-addon">$</span>
-      <input pInputText type="text"  pKeyFilter="int" formControlName="favorite" placeholder="Favorite Events"/>
-      <div class="ui-grid-col-4">
-        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['favorite'].valid&&userForm.controls['favorite'].dirty">
 
-          Favorite is required
-        </div>
-      </div>
-    </div>
-  </div>
+        <input type="submit" value="SUBMIT" class="button button-block">
 
-  <div class="ui-g-6 ui-md-3">
-    <div class="ui-inputgroup">
-      <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-      <input pInputText type="text" formControlName="email" pKeyFilter="alphanum" placeholder="Email"/>
-      <div class="ui-grid-col-4">
-        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['email'].valid&&userForm.controls['email'].dirty">
-          Email is required
-        </div>
-      </div>
-    </div>
-  </div>
+      </form>
 
-  <div class="ui-g-6 ui-md-4 ui-g-offset-2">
-    <div class="ui-inputgroup">
-      <input type="submit" value="SUBMIT" class="button">
     </div>
-  </div>
-</form>
+
+  </div><!-- tab-content -->
+
+</div> <!-- /form -->
+<div></div>
+<!--<form [formGroup]="userForm" (ngSubmit)="registerUser(userForm.value)">-->
+  <!--<div class="ui-g ui-fluid">-->
+    <!--<div class="ui-g-6 ui-md-3 ui-g-offset-2">-->
+      <!--<div class="ui-inputgroup">-->
+        <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
+        <!--<input pInputText type="text" formControlName="username" placeholder="Username"  pKeyFilter="alphanum"/>-->
+        <!--<div class="ui-grid-col-4">-->
+          <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['username'].valid&&userForm.controls['username'].dirty">-->
+            <!--<i class="fa fa-close"></i>-->
+            <!--Username is required-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="ui-g-6 ui-md-3">-->
+      <!--<div class="ui-inputgroup">-->
+        <!--<span class="ui-inputgroup-addon">$</span>-->
+        <!--<input pInputText type="text"  pKeyFilter="int" formControlName="password" placeholder="Password"/>-->
+        <!--<div class="ui-grid-col-4">-->
+          <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['password'].valid&&userForm.controls['password'].dirty">-->
+            <!--<i class="fa fa-close"></i>-->
+            <!--Password is required-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="ui-g-6 ui-md-3">-->
+      <!--<div class="ui-inputgroup">-->
+        <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
+        <!--<input pInputText type="text" formControlName="firstn" pKeyFilter="alphanum" placeholder="First Name"/>-->
+        <!--<div class="ui-grid-col-4">-->
+          <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['firstn'].valid&&userForm.controls['firstn'].dirty">-->
+            <!--<i class="fa fa-close"></i>-->
+            <!--First Name is required-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="ui-g-6 ui-md-3 ui-g-offset-2">-->
+    <!--<div class="ui-inputgroup">-->
+      <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
+      <!--<input pInputText type="text" formControlName="lastn" placeholder="Last Name"  pKeyFilter="alphanum"/>-->
+      <!--<div class="ui-grid-col-4">-->
+        <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['lastn'].valid&&userForm.controls['lastn'].dirty">-->
+          <!--<i class="fa fa-close"></i>-->
+          <!--Last Name is required-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="ui-g-6 ui-md-3">-->
+    <!--<div class="ui-inputgroup">-->
+      <!--<span class="ui-inputgroup-addon">$</span>-->
+      <!--<input pInputText type="text"  pKeyFilter="int" formControlName="favorite" placeholder="Favorite Events"/>-->
+      <!--<div class="ui-grid-col-4">-->
+        <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['favorite'].valid&&userForm.controls['favorite'].dirty">-->
+
+          <!--Favorite is required-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="ui-g-6 ui-md-3">-->
+    <!--<div class="ui-inputgroup">-->
+      <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
+      <!--<input pInputText type="text" formControlName="email" pKeyFilter="alphanum" placeholder="Email"/>-->
+      <!--<div class="ui-grid-col-4">-->
+        <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['email'].valid&&userForm.controls['email'].dirty">-->
+          <!--Email is required-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="ui-g-6 ui-md-4 ui-g-offset-2">-->
+    <!--<div class="ui-inputgroup">-->
+      <!--<input type="submit" value="SUBMIT" class="button">-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</form>-->
