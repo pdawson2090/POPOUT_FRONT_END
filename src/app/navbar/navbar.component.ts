@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
   eventTypes: SelectItem[];
   selectedEventType: string = "";
   filterValue: string = "";
+  eventFullAddress: string;
 
   constructor(
     private eventService: EventService,
@@ -50,6 +51,9 @@ export class NavbarComponent implements OnInit {
       event_time: new FormControl('',Validators.required),
       event_title: new FormControl('',Validators.required),
       event_address: new FormControl('',Validators.required),
+      event_city: new FormControl('', Validators.required),
+      event_state: new FormControl('', Validators.required),
+      event_zip: new FormControl('', Validators.required),
       event_type: new FormControl('', Validators.required),
     });
 
@@ -70,12 +74,12 @@ export class NavbarComponent implements OnInit {
 
   newEvent(e){
     console.log(this.eventForm.value.event_address);
-    this.event = new Event(0,this.eventForm.value.event_title,this.eventForm.value.event_description,this.eventForm.value.event_type,this.eventForm.value.event_host,this.eventForm.value.event_address,this.eventForm.value.event_date,this.eventForm.value.event_time,0,0);
+    this.makeFullAddress();
+    this.event = new Event(0,this.eventForm.value.event_title,this.eventForm.value.event_description,this.eventForm.value.event_type,this.users.id,this.eventFullAddress,this.eventForm.value.event_date,this.eventForm.value.event_time,0,0);
     this.eventService.newEvent(this.event);
     this.event = new Event(0,"","","",this.users.id,"","","",0,0);
-    this.newEventDisplay = false;
     this.newE.emit();
-    //this.router.navigate(['map']);
+    this.newEventDisplay = false;
 
   }
 
@@ -101,6 +105,13 @@ export class NavbarComponent implements OnInit {
 
     this.userService.setUserLoggedOut();
     this.router.navigate(['login']);
+
+  }
+
+  makeFullAddress(): void {
+
+    this.eventFullAddress = this.eventForm.value.event_address + ', ' + this.eventForm.value.event_city + ', ' + this.eventForm.value.event_state + ' ' + this.eventForm.value.event_zip;
+    
 
   }
 

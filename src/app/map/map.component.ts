@@ -75,9 +75,9 @@ export class MapComponent implements OnInit {
 
   geocodeEvents(): void {
     for (let i = 0; i < this.events.length; i++) {
-      this.temp = ((this.events[i].event_address).split(","));
-      console.log(this.temp);
+      
       this.geocoder.geocode({'address': this.events[i].event_address}, (results, status) => {
+        this.temp = ((this.events[i].event_address).split(","));
         var lat = results[0].geometry.location.lat();
         var lng = results[0].geometry.location.lng();
         this.addMarker(lat, lng, i)
@@ -135,6 +135,8 @@ export class MapComponent implements OnInit {
   refreshMap(): void {
 
     this.eventService.getEvents().subscribe(data => {
+
+      console.log('i was called')
 
       this.events = data;
       this.geocodeEvents();
