@@ -5,6 +5,7 @@ import {EventService} from '../services/event.service';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import {User} from '../domain/user';
+import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-navbar',
@@ -15,12 +16,16 @@ import {User} from '../domain/user';
 })
 export class NavbarComponent implements OnInit {
 
-  display: boolean = false;
+  newEventDisplay: boolean = false;
+  filterDisplay: boolean = false;
   OPdisplay: boolean = false;
   loggedIn: boolean;
   eventForm : FormGroup;
   users: User;
   event: Event;
+  eventTypes: SelectItem[];
+  selectedEventType: string = "";
+
   constructor(
     private eventService: EventService,
     private fb: FormBuilder,
@@ -45,6 +50,20 @@ export class NavbarComponent implements OnInit {
       event_address: new FormControl('',Validators.required),
       event_type: new FormControl('', Validators.required),
     });
+
+    this.eventTypes = [
+
+      {label: "Select Event Type", value: null},
+      {label: "Pickup Game", value: "Pickup Game"},
+      {label: "Bar Crawl", value: "Bar Crawl"},
+      {label: "Birthday Party", value: "Birthday Party"},
+      {label: "Club", value: "Club"},
+      {label: "Brunch", value: "Brunch"},
+      {label: "Televised Event", value: "Televised Event"},
+      {label: "Dancing", value: "Dancing"},
+      {label: "Custom", value: "Custom"}
+
+    ]
   }
 
   newEvent(e){
@@ -52,7 +71,7 @@ export class NavbarComponent implements OnInit {
     this.event = new Event(0,this.eventForm.value.event_title,this.eventForm.value.event_description,this.eventForm.value.event_type,this.eventForm.value.event_host,this.eventForm.value.event_address,this.eventForm.value.event_date,this.eventForm.value.event_time,0,0);
     this.eventService.newEvent(this.event);
     this.event = new Event(0,"","","",this.users.id,"","","",0,0);
-    this.display = false;
+    this.newEventDisplay = false;
     this.newE.emit();
     //this.router.navigate(['map']);
 
@@ -60,11 +79,11 @@ export class NavbarComponent implements OnInit {
 
   toggleSidebar(): void {
 
-    if(!this.display){
-      this.display = true;
+    if(!this.newEventDisplay){
+      this.newEventDisplay = true;
     }
     else{
-      this.display = false;
+      this.newEventDisplay = false;
     }
 
   }
