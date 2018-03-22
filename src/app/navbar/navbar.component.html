@@ -1,23 +1,35 @@
 <p-toolbar class="toolbar">
   <div class="ui-toolbar-group-right">
     <button type="text" pButton label="Basic" (click)="OPdisplay = true"></button>
-    <button pButton type="button" label="Add New Event" icon="fa-plus" (click)="display = true"></button>
+    <button pButton type="button" label="Filter Events" icon="fa-filter" (click)="filterDisplay = true"></button>
+    <button pButton type="button" label="Add New Event" icon="fa-plus" (click)="newEventDisplay = true"></button>
     <button *ngIf="loggedIn" pButton type="button" label="Logout" icon="fa-minus" (click)="logOut()"></button>
   </div>
 </p-toolbar>
 
-<p-sidebar [(visible)]="display" position="right">
+<p-sidebar [(visible)]="newEventDisplay" position="right">
   <form [formGroup]="eventForm" (ngSubmit)="newEvent(eventForm.value)">
     <input pInputText type="text" placeholder="Event Title" formControlName="event_title">
     <input type="text" pInputText placeholder="Event Description" formControlName="event_description">
-    <input type="text" pInputText placeholder="Event Type" formControlName="event_type">
+    <p-dropdown [options]="eventTypes" formControlName="event_type"></p-dropdown>
+    <!-- <input *ngIf="eventForm.event_type === 'Custom'" type="text" pInputText placeholder="Enter Custom Event" formControlName="event_type"> -->
     <input type="text" pInputText placeholder="Event Address" formControlName="event_address">
+    <input type="text" pInputText placeholder="Event City" formControlName="event_city">
+    <input type="text" pInputText placeholder="Event State" formControlName="event_state">
+    <input type="text" pInputText placeholder="Event Zip" formControlName="event_zip">
     <input type="text" pInputText placeholder="Event Date" formControlName="event_date">
     <input type="text" pInputText placeholder="Event Time" formControlName="event_time">
     <div class="ui-g-12">
       <input pButton type="submit" value="SUBMIT" class="button">
     </div>
   </form>
+</p-sidebar>
+
+<p-sidebar [(visible)]="filterDisplay" position="top">
+  <p-dropdown [options]="eventTypes" [(ngModel)]="filterValue"></p-dropdown>
+  {{filterValue}}
+  <button pButton label="Apply Filter" (click)="applyFilter()"></button>
+  <!-- {{selectedEventType.value}} -->
 </p-sidebar>
 
 <p-dialog [(visible)]="OPdisplay">
