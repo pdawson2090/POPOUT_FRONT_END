@@ -86,15 +86,8 @@ const appRoutes = [
     FormsModule,
     HttpClientModule,
     SidebarModule,
-<<<<<<< HEAD
-    TooltipModule,
-    ButtonModule,
-    KeyFilterModule,
-    InputTextModule
-=======
     InputTextModule,
     DropdownModule
->>>>>>> ca7f743f42e97f78246d8735a90c9e81ed7bc7af
     //BrowserAnimationsModule,
   ],
   schemas: [

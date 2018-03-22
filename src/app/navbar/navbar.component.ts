@@ -72,6 +72,11 @@ export class NavbarComponent implements OnInit {
     ]
   }
 
+private option:number;
+  toggle(opt:number){
+    this.option = opt;
+  }
+
   newEvent(e){
     console.log(this.eventForm.value.event_address);
     this.makeFullAddress();
