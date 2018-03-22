@@ -76,6 +76,7 @@ export class MapComponent implements OnInit {
   geocodeEvents(): void {
     for (let i = 0; i < this.events.length; i++) {
       this.temp = ((this.events[i].event_address).split(","));
+      console.log(this.temp);
       this.geocoder.geocode({'address': this.events[i].event_address}, (results, status) => {
         var lat = results[0].geometry.location.lat();
         var lng = results[0].geometry.location.lng();
@@ -105,15 +106,25 @@ export class MapComponent implements OnInit {
 
   applyFilter(filter: string): void {
 
+    console.log(filter);
+
     for(let i = 0; i < this.markers.length; i++){
 
-      if(this.markers[i].type === filter){
+      if(filter == null){
 
         this.markers[i].visible = true;
 
       }else{
 
-        this.markers[i].visible = false;
+        if(this.markers[i].type === filter){
+
+          this.markers[i].visible = true;
+
+        }else{
+
+          this.markers[i].visible = false;
+
+        }
 
       }
 

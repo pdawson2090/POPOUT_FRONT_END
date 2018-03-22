@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
   event: Event;
   eventTypes: SelectItem[];
   selectedEventType: string = "";
+  filterValue: string = "";
 
   constructor(
     private eventService: EventService,
@@ -35,6 +36,7 @@ export class NavbarComponent implements OnInit {
     ) { }
 
   @Output() newE = new EventEmitter();
+  @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit() {
 
@@ -85,6 +87,13 @@ export class NavbarComponent implements OnInit {
     else{
       this.newEventDisplay = false;
     }
+
+  }
+
+  applyFilter(): void {
+
+    this.filter.emit(this.filterValue);
+    this.filterDisplay = false;
 
   }
 

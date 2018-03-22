@@ -23,7 +23,9 @@
 </p-sidebar>
 
 <p-sidebar [(visible)]="filterDisplay" position="top">
-  <p-dropdown [options]="eventTypes" [(ngModel)]="selectedEventType"></p-dropdown>
+  <p-dropdown [options]="eventTypes" [(ngModel)]="filterValue"></p-dropdown>
+  {{filterValue}}
+  <button pButton label="Apply Filter" (click)="applyFilter()"></button>
   <!-- {{selectedEventType.value}} -->
 </p-sidebar>
 
