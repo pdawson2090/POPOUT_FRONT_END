@@ -27,6 +27,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 const appRoutes = [
@@ -85,10 +86,15 @@ const appRoutes = [
     FormsModule,
     HttpClientModule,
     SidebarModule,
+<<<<<<< HEAD
     TooltipModule,
     ButtonModule,
     KeyFilterModule,
     InputTextModule
+=======
+    InputTextModule,
+    DropdownModule
+>>>>>>> ca7f743f42e97f78246d8735a90c9e81ed7bc7af
     //BrowserAnimationsModule,
   ],
   schemas: [
