@@ -4,11 +4,11 @@ $body-bg: #111111;
 $form-bg: #111111;
 $white: #ffffff;
 
-$main: #53AB25;
+$main: #1D2E5C;
 $main-light: lighten($main,5%);
 $main-dark: darken($main,5%);
 
-$gray-light: #53AB25;
+$gray-light: #1D2E5C;
 $gray: #7331AB;
 
 $thin: 300;
@@ -87,6 +87,7 @@ a {
 h1 {
   text-align:center;
   color:$white;
+  font-family: Garamond;
   font-weight:$thin;
   margin:0 0 40px;
 }
