@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { SidebarModule } from 'primeng/sidebar';
@@ -15,15 +15,16 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MapComponent } from './map/map.component';
 import { EventService } from './services/event.service';
-import {Http, Headers, RequestOptions} from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { UserService } from './services/user.service';
 import { AuthguardGuard } from './guards/authguard.guard';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import {DialogModule} from 'primeng/dialog';
-import {OverlayPanelModule} from 'primeng/overlaypanel';
-import {DropdownModule} from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -79,7 +80,8 @@ const appRoutes = [
     HttpClientModule,
     SidebarModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule
     //BrowserAnimationsModule,
   ],
   schemas: [

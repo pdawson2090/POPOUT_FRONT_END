@@ -17,8 +17,8 @@
     <input type="text" pInputText placeholder="Event City" formControlName="event_city">
     <input type="text" pInputText placeholder="Event State" formControlName="event_state">
     <input type="text" pInputText placeholder="Event Zip" formControlName="event_zip">
-    <input type="text" pInputText placeholder="Event Date" formControlName="event_date">
-    <input type="text" pInputText placeholder="Event Time" formControlName="event_time">
+    <p-calendar formControlName="event_date" dateFormat="mm.dd.yy" placeholder="Event Date"></p-calendar>
+    <p-calendar showTime="true" hourFormat="12" timeOnly="true" placeholder="Event Time" formControlName="event_time"></p-calendar>
     <div class="ui-g-12">
       <input pButton type="submit" value="SUBMIT" class="button">
     </div>
