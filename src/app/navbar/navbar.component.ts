@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private user: UserService,
-    private friend: FriendsService
+    private friendService: FriendsService
     ) { }
 
   @Output() newE = new EventEmitter();
@@ -84,19 +84,25 @@ export class NavbarComponent implements OnInit {
 private option:number;
   toggle(opt:number){
     this.option = opt;
-    if(opt == 3){
-      this.friend.getFriends();
-      //.subscribe(data=>{
-      //   this.friends = data;
-      // });
-    }
     if(opt == 2){
-      this.friend.getFriends();
+      this.friendService.getFriends()
+      .subscribe(data=>{
+        console.log(data);
+        
+      });
     }
   }
 
+  getFriends(){
+    this.friendService.getFriends().subscribe(data=>{
+      console.log(data);
+      
+      this.friends = data;
+    });
+  }
+
   addFriend(friendForm){
-    this.friend.addFriend(this.friendForm.value.friend_username)
+    this.friendService.addFriend(this.friendForm.value.friend_username)
   }
 
 
