@@ -12,7 +12,6 @@ import { SidebarModule } from 'primeng/sidebar';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { LoginFormComponent } from './login/login-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MapComponent } from './map/map.component';
 import { EventService } from './services/event.service';
@@ -54,7 +53,6 @@ const appRoutes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginFormComponent,
     PageNotFoundComponent,
     MapComponent,
     RegisterComponent,
