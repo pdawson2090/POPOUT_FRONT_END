@@ -33,8 +33,12 @@ export class FriendsService {
       let fid = data.id;
       console.log('got friend with uid = ' + fid);
       
-      this.http.get(`https://popout-back.herokuapp.com/newFriend?friendA=${uid}&friendB=${fid}`);
-      console.log('added friend');
+      this.http.get(`https://popout-back.herokuapp.com/newFriend?friendA=${uid}&friendB=${fid}`).subscribe(data => {
+        console.log(data);
+        console.log('added friend');
+        
+        
+      });
       
     });
     
