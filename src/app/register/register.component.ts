@@ -9,11 +9,17 @@ import {UserService} from '../services/user.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css','./register.scss']
+  styleUrls: ['./register.component.css','./register.scss','button.scss', '../home/home.scss']
 })
 export class RegisterComponent implements OnInit {
   msgs: Message[];
   users: User;
+  username: any;
+  password:any;
+  email: any;
+  favorite: any;
+  first: any;
+  last: any;
 
   userForm: FormGroup;
 
@@ -39,18 +45,22 @@ export class RegisterComponent implements OnInit {
     s.type = "text/javascript";
     s.src = "../../assets/register.js";
     this.elementRef.nativeElement.appendChild(s);
+    s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/button.js";
+    this.elementRef.nativeElement.appendChild(s);
   }
 
-  registerUser(e) {
+  registerUser(u,p,f,l,e,fav) {
     //e.preventDefault();
     var url = 'https://popout-back.herokuapp.com/register';
     const req = this.http.post(url, {
-      username: this.userForm.value.username,
-      password: this.userForm.value.password,
-      first_name: this.userForm.value.firstn,
-      last_name: this.userForm.value.lastn,
-      favorite_type: this.userForm.value.favorite,
-      email: this.userForm.value.email,
+      username: u,
+      password: p,
+      first_name: f,
+      last_name: l,
+      favorite_type: fav,
+      email: e,
 
 
     })
@@ -79,14 +89,13 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  loginUser(e) {
-    e.preventDefault();
+  loginUser(u,p) {
 
 
     var url = 'https://popout-back.herokuapp.com/login';
     const req = this.http.post(url, {
-      username: e.target.elements[0].value,
-      password: e.target.elements[1].value
+      username: u,
+      password: p,
 
     })
       .subscribe(
