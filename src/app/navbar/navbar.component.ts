@@ -138,14 +138,14 @@ private option:number;
   logOut(): void {
 
     this.userService.setUserLoggedOut();
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
 
   }
 
   makeFullAddress(): void {
 
     this.eventFullAddress = this.eventForm.value.event_address + ', ' + this.eventForm.value.event_city + ', ' + this.eventForm.value.event_state + ' ' + this.eventForm.value.event_zip;
-    
+
 
   }
 

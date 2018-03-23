@@ -12,10 +12,10 @@ import { SidebarModule } from 'primeng/sidebar';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginFormComponent } from './login/login-form.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MapComponent } from './map/map.component';
 import { EventService } from './services/event.service';
@@ -31,14 +31,11 @@ import {DropdownModule} from 'primeng/dropdown';
 import { FriendsService } from './services/friends.service';
 
 
+
 const appRoutes = [
   {
     path: '',
     component: HomeComponent
-  },
-  {
-    path: 'login',
-    component: LoginFormComponent
   },
   {
     path: 'register',
@@ -61,7 +58,6 @@ const appRoutes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginFormComponent,
     PageNotFoundComponent,
     MapComponent,
     RegisterComponent,
