@@ -7,6 +7,7 @@ import {EventService} from '../services/event.service';
 interface marker {
   lat: number;
   lng: number;
+  id : number;
   title: string;
   address: string;
   description: string;
@@ -31,7 +32,7 @@ export class MapComponent implements OnInit {
   geocoder: any;
   events: Event[] = [];
   isSnazzyInfoWindowOpened: boolean = false;
-  eventTypes 
+  eventTypes
 
   constructor(
     private maps: MapsAPILoader,
@@ -75,7 +76,7 @@ export class MapComponent implements OnInit {
 
   geocodeEvents(): void {
     for (let i = 0; i < this.events.length; i++) {
-      
+
       this.geocoder.geocode({'address': this.events[i].event_address}, (results, status) => {
         this.temp = ((this.events[i].event_address).split(","));
         var lat = results[0].geometry.location.lat();
@@ -87,11 +88,12 @@ export class MapComponent implements OnInit {
   }
 
   addMarker(lat: any, lng: any, i: number): void {
-    
+
     this.markers.push({
       lat: lat,
       lng: lng,
       title: this.events[i].event_title,
+      id: this.events[i].id,
       address: this.temp[0],
       date: this.events[i].event_date,
       time: this.events[i].event_time,
@@ -145,4 +147,7 @@ export class MapComponent implements OnInit {
 
   }
 
+  attendEvent(mid:number): void{
+    http
+  }
 }
