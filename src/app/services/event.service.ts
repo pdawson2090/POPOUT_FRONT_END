@@ -15,21 +15,21 @@ export class EventService {
   //This method will return a given event by event ID
   getEvent(id: number): Observable<Event> {
 
-    return this.http.get<Event>(`http://localhost:8080/event/?id=${id}`);
+    return this.http.get<Event>(`https://popout-back.herokuapp.com/event/?id=${id}`);
 
   }
 
   //This method will return all events currently in the database
   getEvents(): Observable<Event[]> {
 
-    return this.http.get<Event[]>(`http://localhost:8080/allEvents`);
+    return this.http.get<Event[]>(`https://popout-back.herokuapp.com/allEvents`);
 
   }
 
   //This method will submit a new event
   newEvent(event: Event): void {
 
-    var url = 'http://localhost:8080/newEvent';
+    var url = 'https://popout-back.herokuapp.com/newEvent';
     const req =  this.http.post(url, {
         event_title: event.event_title,
         event_description: event.event_description,
