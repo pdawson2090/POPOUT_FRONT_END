@@ -2,7 +2,7 @@
 <div class="form">
 
   <ul class="tab-group">
-    <li class="tab active"><a href="#loginscreen"><img src="../../assets/user.png" style="width:55px; height:50px;"/></a></li>
+    <li class="tab active"><a href="#loginscreen"><img src="../../assets/user.png" style="width:40px; height:40px;"/></a></li>
     <li class="tab"><a href="#signup"><img src="../../assets/regis.png" style="width:40px; height:40px;"/></a></li>
   </ul>
   <div class="tab-content">
@@ -26,7 +26,7 @@
           <input type="password" [(ngModel)]="password" required autocomplete="off"/>
         </div>
 
-        <div id="hamburger1" class="hamburglar is-open" (click)="loginUser(username,password)" >
+        <div id="hamburger1" class="hamburglar is-open" (click)="loginUser(username,password)" style="cursor: pointer" >
 
 
           <div class="burger-icon">
@@ -118,7 +118,7 @@ article: https://raygun.io/blog/2014/07/making-svg-html-burger-button/
 --><div></div>
 
 
-        <div id="hamburger" class="hamburglar is-open" (click)="registerUser(username,password,first,last,email,favorite)">
+        <div id="hamburger" style="cursor: pointer" class="hamburglar is-open" (click)="registerUser(username,password,first,last,email,favorite)">
 
           <div class="burger-icon">
             <div class="burger-container">
