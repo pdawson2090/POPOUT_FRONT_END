@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Injectable } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Event} from '../domain/event';
 import {EventService} from '../services/event.service';
@@ -6,6 +6,7 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import {User} from '../domain/user';
 import {SelectItem} from 'primeng/api';
+import { FriendsService } from '../services/friends.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ import {SelectItem} from 'primeng/api';
   styleUrls: ['./navbar.component.css']
 
 })
+
 export class NavbarComponent implements OnInit {
 
   newEventDisplay: boolean = false;
@@ -21,12 +23,14 @@ export class NavbarComponent implements OnInit {
   OPdisplay: boolean = false;
   loggedIn: boolean;
   eventForm : FormGroup;
+  friendForm: FormGroup;
   users: User;
   event: Event;
   eventTypes: SelectItem[];
   selectedEventType: string = "";
   filterValue: string = "";
   eventFullAddress: string;
+  friends: User[];
 
   constructor(
     private eventService: EventService,
@@ -34,6 +38,7 @@ export class NavbarComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private user: UserService,
+    private friend: FriendsService
     ) { }
 
   @Output() newE = new EventEmitter();
@@ -57,6 +62,10 @@ export class NavbarComponent implements OnInit {
       event_type: new FormControl('', Validators.required),
     });
 
+    this.friendForm = this.fb.group({
+      friend_username: new FormControl('', Validators.required)
+    });
+
     this.eventTypes = [
 
       {label: "Select Event Type", value: null},
@@ -75,7 +84,21 @@ export class NavbarComponent implements OnInit {
 private option:number;
   toggle(opt:number){
     this.option = opt;
+    if(opt == 3){
+      this.friend.getFriends();
+      //.subscribe(data=>{
+      //   this.friends = data;
+      // });
+    }
+    if(opt == 2){
+      this.friend.getFriends();
+    }
   }
+
+  addFriend(friendForm){
+    this.friend.addFriend(this.friendForm.value.friend_username)
+  }
+
 
   newEvent(e){
     console.log(this.eventForm.value.event_address);

@@ -1,17 +1,18 @@
 <p-toolbar class="toolbar">
   <div class="ui-toolbar-group-right">
-    <!-- <button type="text" pButton label="Basic" (click)="OPdisplay = true"></button>
     <button pButton type="button" label="Filter Events" icon="fa-filter" (click)="filterDisplay = true"></button>
-    <button pButton type="button" label="Add New Event" icon="fa-plus" (click)="newEventDisplay = true"></button>
-    <button *ngIf="loggedIn" pButton type="button" label="Logout" icon="fa-minus" (click)="logOut()"></button> -->
-    <button type="menu" pButton label="" (click)="sidebarOpen = true"></button>
+    <!-- <button pButton type="button" label="Add New Event" icon="fa-plus" (click)="newEventDisplay = true"></button> -->
+    <button *ngIf="loggedIn" pButton type="button" label="Logout" icon="fa-minus" (click)="logOut()"></button>
+    <button type="menu" pButton icon="fa-bars" (click)="sidebarOpen = true"></button>
   </div>
 </p-toolbar>
 
-<p-sidebar [(visible)]="sidebarOpen" position="right">
-  <button name="newEvent" (click)="toggle(1)">Create New Event</button><br>
-  <button name="viewFriends" (click)="toggle(2)">View Friends</button><br>
-  <button name="addFriends" (click)="toggle(3)">Add Friends</button><br>
+<p-sidebar [(visible)]="sidebarOpen" class="dimmed" position="right">
+  <br>
+  <button pButton name="newEvent" (click)="toggle(1)" label="Add New Event"></button><br><hr>
+  <button pButton name="viewFriends" (click)="toggle(2)" label="View Friends"></button><br><hr>
+  <button pButton name="addFriends" (click)="toggle(3)" label="Add Friends"></button><br><hr>
+  <button pButton name= "vewProfile" type="text" label="Profile" (click)="OPdisplay = true"></button><br><hr>
   <form [formGroup]="eventForm" *ngIf="option == 1" (ngSubmit)="newEvent(eventForm.value)">
     <input pInputText type="text" placeholder="Event Title" formControlName="event_title">
     <input type="text" pInputText placeholder="Event Description" formControlName="event_description">
@@ -27,11 +28,18 @@
       <input pButton type="submit" value="SUBMIT" class="button">
     </div>
   </form>
-
-  <form [formGroup]="addFriendForm" *ngIf="option == 2" (ngSubmit)="addFriend(addFriendForm.value)">
-    <p>add friend data here</p>
+    <ul *ngIf="option == 2">
+      <p>friends</p>
+      <li *ngFor="let friend of friends">
+        {{ friend }}
+        <hr>
+      </li>
+    </ul>
+  <form [formGroup]="friendForm" *ngIf="option == 3" (ngSubmit)="addFriend(friendForm.value)">
+    <input type="text" pInputText placeholder="Username" formControlName="friend_username">
+    <input pButton type="submit" value="Add Friend" class="button"/>
   </form>
-  <p *ngIf="option == 3">view friends here</p>
+   <!-- *ngIf="option == 3" -->
 </p-sidebar>
 
 <p-sidebar [(visible)]="filterDisplay" position="top">

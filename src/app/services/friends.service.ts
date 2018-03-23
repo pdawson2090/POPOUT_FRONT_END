@@ -28,6 +28,7 @@ export class FriendsService {
     var uid: number = this.user.getUserId();
     this.getFriendId(username).subscribe(data=>{
       this.friend = data;
+      // this.http.
     });
     
   }

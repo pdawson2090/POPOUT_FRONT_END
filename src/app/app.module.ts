@@ -28,6 +28,7 @@ import { HomeComponent } from './home/home.component';
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {DropdownModule} from 'primeng/dropdown';
+import { FriendsService } from './services/friends.service';
 
 
 const appRoutes = [
@@ -96,6 +97,7 @@ const appRoutes = [
   providers: [
     EventService,
     UserService,
+    FriendsService,
     AuthguardGuard
   ],
   bootstrap: [AppComponent]
