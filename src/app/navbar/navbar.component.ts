@@ -31,6 +31,8 @@ export class NavbarComponent implements OnInit {
   filterValue: string = "";
   eventFullAddress: string;
   friends: User[];
+  sidebarOpen:boolean;
+  option: number;
 
   constructor(
     private eventService: EventService,
@@ -81,7 +83,6 @@ export class NavbarComponent implements OnInit {
     ]
   }
 
-private option:number;
   toggle(opt:number){
     this.option = opt;
     if(opt == 2){
