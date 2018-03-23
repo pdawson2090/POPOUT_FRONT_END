@@ -54,15 +54,15 @@ export class NavbarComponent implements OnInit {
     this.loggedIn = this.userService.getUserLoggedIn();
 
     this.eventForm = this.fb.group({
-      event_date: new FormControl('',Validators.required),
-      event_description: new FormControl('',Validators.required),
-      event_time: new FormControl('',Validators.required),
-      event_title: new FormControl('',Validators.required),
-      event_address: new FormControl('',Validators.required),
-      event_city: new FormControl('', Validators.required),
-      event_state: new FormControl('', Validators.required),
-      event_zip: new FormControl('', Validators.required),
-      event_type: new FormControl('', Validators.required),
+      event_date: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_description: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_time: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_title: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_address: new FormControl('', [Validators.required, Validators.minLength(9)]),
+      event_city: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_state: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
+      event_zip: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
+      event_type: new FormControl('', [Validators.required, Validators.minLength(2)])
     });
 
     this.friendForm = this.fb.group({
