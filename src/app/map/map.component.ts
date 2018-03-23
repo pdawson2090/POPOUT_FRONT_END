@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {MapsAPILoader, MouseEvent} from '@agm/core';
 import {Event} from '../domain/event';
 import {EventService} from '../services/event.service';
+import {HttpClient} from '@angular/common/http';
+import {UserService} from '../services/user.service';
 
 
 interface marker {
@@ -22,7 +24,7 @@ declare var google: any;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css','map.scss']
 })
 export class MapComponent implements OnInit {
 
@@ -36,7 +38,10 @@ export class MapComponent implements OnInit {
 
   constructor(
     private maps: MapsAPILoader,
-    private eventService: EventService
+    private eventService: EventService,
+    private http : HttpClient,
+    private user : UserService,
+    private elementRef: ElementRef
     ) {}
 
   ngOnInit() {
@@ -52,7 +57,12 @@ export class MapComponent implements OnInit {
     });
   }
 
-
+  ngAfterViewInit() {
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/map.js";
+    this.elementRef.nativeElement.appendChild(s);
+  }
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
   }
@@ -148,6 +158,7 @@ export class MapComponent implements OnInit {
   }
 
   attendEvent(mid:number): void{
-    http
+    this.http.get<Event[]>(`https://popout-back.herokuapp.com/attendEvent?user_id=${this.user.getUserId()}&event_id=${mid}`).subscribe();
+
   }
 }
