@@ -44,7 +44,7 @@
               <p class="textdesc">{{m.description}}</p>
             </div>
             <p-footer class="ui-g  ui-card-footer ui-grid-responsive ">
-              <button pButton type="button" label="Attend" icon="fa-check"></button>
+              <button pButton type="button" (click)="attendEvent(m.id)" label="Attend" icon="fa-check"></button>
             </p-footer>
           </p-card>
         </ng-template>

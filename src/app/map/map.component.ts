@@ -1,12 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {MapsAPILoader, MouseEvent} from '@agm/core';
 import {Event} from '../domain/event';
 import {EventService} from '../services/event.service';
+import {HttpClient} from '@angular/common/http';
+import {UserService} from '../services/user.service';
 
 
 interface marker {
   lat: number;
   lng: number;
+  id : number;
   title: string;
   address: string;
   description: string;
@@ -21,7 +24,7 @@ declare var google: any;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css','map.scss']
 })
 export class MapComponent implements OnInit {
 
@@ -31,11 +34,14 @@ export class MapComponent implements OnInit {
   geocoder: any;
   events: Event[] = [];
   isSnazzyInfoWindowOpened: boolean = false;
-  eventTypes 
+  eventTypes
 
   constructor(
     private maps: MapsAPILoader,
-    private eventService: EventService
+    private eventService: EventService,
+    private http : HttpClient,
+    private user : UserService,
+    private elementRef: ElementRef
     ) {}
 
   ngOnInit() {
@@ -51,7 +57,12 @@ export class MapComponent implements OnInit {
     });
   }
 
-
+  ngAfterViewInit() {
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/map.js";
+    this.elementRef.nativeElement.appendChild(s);
+  }
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
   }
@@ -74,8 +85,10 @@ export class MapComponent implements OnInit {
   }
 
   geocodeEvents(): void {
+    this.markers = [];
+
     for (let i = 0; i < this.events.length; i++) {
-      
+
       this.geocoder.geocode({'address': this.events[i].event_address}, (results, status) => {
         this.temp = ((this.events[i].event_address).split(","));
         var lat = results[0].geometry.location.lat();
@@ -87,11 +100,12 @@ export class MapComponent implements OnInit {
   }
 
   addMarker(lat: any, lng: any, i: number): void {
-    
+
     this.markers.push({
       lat: lat,
       lng: lng,
       title: this.events[i].event_title,
+      id: this.events[i].id,
       address: this.temp[0],
       date: this.events[i].event_date,
       time: this.events[i].event_time,
@@ -139,10 +153,15 @@ export class MapComponent implements OnInit {
       console.log('i was called')
 
       this.events = data;
+      console.log(this.events);
       this.geocodeEvents();
 
     });
 
   }
 
+  attendEvent(mid:number): void{
+    this.http.get<Event[]>(`https://popout-back.herokuapp.com/attendEvent?user_id=${this.user.getUserId()}&event_id=${mid}`).subscribe();
+
+  }
 }
