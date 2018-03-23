@@ -34,10 +34,6 @@ const appRoutes = [
     component: HomeComponent
   },
   {
-    path: 'login',
-    component: LoginFormComponent
-  },
-  {
     path: 'register',
     component: RegisterComponent
   },
