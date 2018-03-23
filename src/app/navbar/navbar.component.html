@@ -7,7 +7,7 @@
   </div>
 </p-toolbar>
 
-<p-sidebar [(visible)]="sidebarOpen" class="dimmed" position="right">
+<p-sidebar [(visible)]="sidebarOpen" position="right">
   <br>
   <button pButton name="newEvent" (click)="toggle(1)" label="Add New Event"></button><br><hr>
   <button pButton name="viewFriends" (click)="toggle(2)" label="View Friends"></button><br><hr>
@@ -28,10 +28,13 @@
       <input pButton type="submit" value="SUBMIT" class="button">
     </div>
   </form>
-    <ul *ngIf="option == 2">
-      <p>friends</p>
+    <ul *ngIf="option == 2" style="list-style-type: none">
+      <!-- <p>friends</p> -->
       <li *ngFor="let friend of friends">
-        {{ friend }}
+        {{ friend.username }}
+        {{ friend.first_name }}
+        {{ friend.last_name }}
+        {{ friend.email }}
         <hr>
       </li>
     </ul>
@@ -39,7 +42,6 @@
     <input type="text" pInputText placeholder="Username" formControlName="friend_username">
     <input pButton type="submit" value="Add Friend" class="button"/>
   </form>
-   <!-- *ngIf="option == 3" -->
 </p-sidebar>
 
 <p-sidebar [(visible)]="filterDisplay" position="top">

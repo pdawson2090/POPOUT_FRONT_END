@@ -31,6 +31,9 @@ export class NavbarComponent implements OnInit {
   filterValue: string = "";
   eventFullAddress: string;
   friends: User[];
+  sidebarOpen:boolean;
+  option: number;
+  friend:User;
 
   constructor(
     private eventService: EventService,
@@ -81,24 +84,15 @@ export class NavbarComponent implements OnInit {
     ]
   }
 
-private option:number;
   toggle(opt:number){
     this.option = opt;
     if(opt == 2){
       this.friendService.getFriends()
       .subscribe(data=>{
-        console.log(data);
+        this.friends = data;
         
       });
     }
-  }
-
-  getFriends(){
-    this.friendService.getFriends().subscribe(data=>{
-      console.log(data);
-      
-      this.friends = data;
-    });
   }
 
   addFriend(friendForm){

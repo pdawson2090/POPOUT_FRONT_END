@@ -61,6 +61,7 @@ const appRoutes = [
     PageNotFoundComponent,
     MapComponent,
     RegisterComponent,
+    LoginFormComponent,
     HomeComponent
   ],
   imports: [
