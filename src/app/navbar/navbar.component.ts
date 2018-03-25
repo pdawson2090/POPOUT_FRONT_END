@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Injectable } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Event} from '../domain/event';
 import {EventService} from '../services/event.service';
@@ -6,6 +6,7 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import {User} from '../domain/user';
 import {SelectItem} from 'primeng/api';
+import { FriendsService } from '../services/friends.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ import {SelectItem} from 'primeng/api';
   styleUrls: ['./navbar.component.css']
 
 })
+
 export class NavbarComponent implements OnInit {
 
   newEventDisplay: boolean = false;
@@ -21,12 +23,17 @@ export class NavbarComponent implements OnInit {
   OPdisplay: boolean = false;
   loggedIn: boolean;
   eventForm : FormGroup;
+  friendForm: FormGroup;
   users: User;
   event: Event;
   eventTypes: SelectItem[];
   selectedEventType: string = "";
   filterValue: string = "";
   eventFullAddress: string;
+  friends: User[];
+  sidebarOpen:boolean;
+  option: number;
+  friend:User;
 
   constructor(
     private eventService: EventService,
@@ -34,6 +41,7 @@ export class NavbarComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private user: UserService,
+    private friendService: FriendsService
     ) { }
 
   @Output() newE = new EventEmitter();
@@ -46,15 +54,19 @@ export class NavbarComponent implements OnInit {
     this.loggedIn = this.userService.getUserLoggedIn();
 
     this.eventForm = this.fb.group({
-      event_date: new FormControl('',Validators.required),
-      event_description: new FormControl('',Validators.required),
-      event_time: new FormControl('',Validators.required),
-      event_title: new FormControl('',Validators.required),
-      event_address: new FormControl('',Validators.required),
-      event_city: new FormControl('', Validators.required),
-      event_state: new FormControl('', Validators.required),
-      event_zip: new FormControl('', Validators.required),
-      event_type: new FormControl('', Validators.required),
+      event_date: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_description: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_time: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_title: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_address: new FormControl('', [Validators.required, Validators.minLength(9)]),
+      event_city: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      event_state: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
+      event_zip: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
+      event_type: new FormControl('', [Validators.required, Validators.minLength(2)])
+    });
+
+    this.friendForm = this.fb.group({
+      friend_username: new FormControl('', Validators.required)
     });
 
     this.eventTypes = [
@@ -71,6 +83,22 @@ export class NavbarComponent implements OnInit {
 
     ]
   }
+
+  toggle(opt:number){
+    this.option = opt;
+    if(opt == 2){
+      this.friendService.getFriends()
+      .subscribe(data=>{
+        this.friends = data;
+        
+      });
+    }
+  }
+
+  addFriend(friendForm){
+    this.friendService.addFriend(this.friendForm.value.friend_username)
+  }
+
 
   newEvent(e){
     console.log(this.eventForm.value.event_address);

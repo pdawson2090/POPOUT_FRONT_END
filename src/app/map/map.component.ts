@@ -85,6 +85,8 @@ export class MapComponent implements OnInit {
   }
 
   geocodeEvents(): void {
+    this.markers = [];
+
     for (let i = 0; i < this.events.length; i++) {
 
       this.geocoder.geocode({'address': this.events[i].event_address}, (results, status) => {
@@ -151,6 +153,7 @@ export class MapComponent implements OnInit {
       console.log('i was called')
 
       this.events = data;
+      console.log(this.events);
       this.geocodeEvents();
 
     });
