@@ -1,95 +1,57 @@
-
 <div class="form">
 
   <ul class="tab-group">
-    <li class="tab active"><a href="#loginscreen"><img src="../../assets/user.png" style="width:40px; height:40px;"/></a></li>
-    <li class="tab"><a href="#signup"><img src="../../assets/regis.png" style="width:40px; height:40px;"/></a></li>
+    <li class="tab active"><a href="#loginscreen"><img src="../../assets/user.png"
+                                                       style="width:40px; height:40px;"/></a></li>
+    <li class="tab"><a href="#signup"><img src="../../assets/regis.png"
+                                           style="width:40px; height:40px;"/></a></li>
   </ul>
   <div class="tab-content">
 
+
+
     <div id="loginscreen">
-      <h1 style="font-family: 'Lato'"></h1>
-
-      <div>
-
+      <h1>Welcome</h1>
+      <form [formGroup]="userForm" (ngSubmit)="loginUser(userForm.value)">
         <div class="field-wrap">
           <label>
             Username<span class="req">*</span>
           </label>
-          <input type="email" [(ngModel)]="username" required autocomplete="off"/>
+          <input pInputText type="text" formControlName="username"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
-
         <div class="field-wrap">
           <label>
-            Password<span class="req">*</span>
+           Password<span class="req">*</span>
           </label>
-          <input type="password" [(ngModel)]="password" required autocomplete="off"/>
+          <input pInputText type="password" formControlName="password"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
-
-        <div id="hamburger1" class="hamburglar is-open" (click)="loginUser(username,password)" style="cursor: pointer" >
-
-
-          <div class="burger-icon">
-            <div class="burger-container">
-              <span class="burger-bun-top"></span>
-              <span class="burger-filling"></span>
-              <span class="burger-bun-bot"></span>
-            </div>
+        <section class="buttons">
+          <div class="containerB">
+            <input type="submit" class="btn btn-5" value="LOGIN">
           </div>
 
-          <!-- svg ring containter -->
-          <div class="burger-ring">
-            <svg class="svg-ring">
-              <path class="path" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4" d="M 34 2 C 16.3 2 2 16.3 2 34 s 14.3 32 32 32 s 32 -14.3 32 -32 S 51.7 2 34 2" />
-            </svg>
-          </div>
-          <!-- the masked path that animates the fill to the ring -->
-
-          <svg width="0" height="0">
-            <mask id="mask">
-              <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff0000" stroke-miterlimit="10" stroke-width="4" d="M 34 2 c 11.6 0 21.8 6.2 27.4 15.5 c 2.9 4.8 5 16.5 -9.4 16.5 h -4" />
-            </mask>
-          </svg>
-          <div class="path-burger">
-            <div class="animate-path">
-              <div class="path-rotation"></div>
-            </div>
-          </div>
-
-        </div>
-
-        <ul class="loader">
-          <li class="bar"></li>
-          <li class="bar"></li>
-          <li class="bar"></li>
-          <li class="bar"></li>
-          <li class="bar"></li>
-        </ul>
-
-        <!--<button class="button button-block">Log In</button>-->
-<div></div>
-      </div>
-
+        </section>
+      </form>
     </div>
 
     <div id="signup">
       <h1>Sign Up</h1>
 
-      <div>
+      <form [formGroup]="userForm" (ngSubmit)="registerUser(userForm.value)">
 
         <div class="top-row">
           <div class="field-wrap">
             <label>
               First Name<span class="req">*</span>
             </label>
-            <input pInputText type="text" [(ngModel)]="first"  required autocomplete="off"  pKeyFilter="alphanum"/>
+            <input pInputText type="text" formControlName="firstn"  required autocomplete="off"  pKeyFilter="alphanum"/>
           </div>
 
           <div class="field-wrap">
             <label>
               Last Name<span class="req">*</span>
             </label>
-            <input pInputText type="text" [(ngModel)]="last"  required autocomplete="off"  pKeyFilter="alphanum"/>
+            <input pInputText type="text" formControlName="lastn"  required autocomplete="off"  pKeyFilter="alphanum"/>
           </div>
         </div>
 
@@ -97,157 +59,39 @@
           <label>
             Username<span class="req">*</span>
           </label>
-          <input pInputText type="text" [(ngModel)]="username"  required autocomplete="off"  pKeyFilter="alphanum"/>
+          <input pInputText type="text" formControlName="username"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
         <div class="field-wrap">
           <label>
             Set A Password<span class="req">*</span>
           </label>
-          <input pInputText type="password" [(ngModel)]="password"  required autocomplete="off"  pKeyFilter="alphanum"/>
+          <input pInputText type="password" formControlName="password"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
         <div class="field-wrap">
           <label>
             Email<span class="req">*</span>
           </label>
-          <input pInputText type="text" [(ngModel)]="email"  required autocomplete="off"  pKeyFilter="alphanum"/>
+          <input pInputText type="text" formControlName="email"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
         <div class="field-wrap">
           <label>
             Favorite Event<span class="req">*</span>
           </label>
-          <input pInputText type="text" [(ngModel)]="favorite"  required autocomplete="off"  pKeyFilter="alphanum"/>
-s        </div>
-
-        <!--<input type="submit" text="SUBMIT" class="button button-block">-->
-        <!--
-article: https://raygun.io/blog/2014/07/making-svg-html-burger-button/
---><div></div>
-
-
-        <div id="hamburger" style="cursor: pointer" class="hamburglar is-open" (click)="registerUser(username,password,first,last,email,favorite)">
-
-          <div class="burger-icon">
-            <div class="burger-container">
-              <span class="burger-bun-top"></span>
-              <span class="burger-filling"></span>
-              <span class="burger-bun-bot"></span>
-            </div>
-          </div>
-
-          <!-- svg ring containter -->
-          <div class="burger-ring">
-            <svg class="svg-ring">
-              <path class="path" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4" d="M 34 2 C 16.3 2 2 16.3 2 34 s 14.3 32 32 32 s 32 -14.3 32 -32 S 51.7 2 34 2" />
-            </svg>
-          </div>
-          <!-- the masked path that animates the fill to the ring -->
-
-          <svg width="0" height="0">
-            <mask id="mask">
-              <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff0000" stroke-miterlimit="10" stroke-width="4" d="M 34 2 c 11.6 0 21.8 6.2 27.4 15.5 c 2.9 4.8 5 16.5 -9.4 16.5 h -4" />
-            </mask>
-          </svg>
-          <div class="path-burger">
-            <div class="animate-path">
-              <div class="path-rotation"></div>
-            </div>
-          </div>
-
+          <input pInputText type="text" formControlName="favorite"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
 
 
+        <section class="buttons">
+          <div class="containerB">
+            <input type="submit" class="btn btn-5" value="REGISTER">
+          </div>
+        </section>
 
-
-      </div>
-
+      </form>
+    </div>
     </div>
 
-  </div><!-- tab-content -->
+  </div>
 
-</div> <!-- /form -->
-<div></div>
-<!--<form [formGroup]="userForm" (ngSubmit)="registerUser(userForm.value)">-->
-  <!--<div class="ui-g ui-fluid">-->
-    <!--<div class="ui-g-6 ui-md-3 ui-g-offset-2">-->
-      <!--<div class="ui-inputgroup">-->
-        <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
-        <!--<input pInputText type="text" formControlName="username" placeholder="Username"  pKeyFilter="alphanum"/>-->
-        <!--<div class="ui-grid-col-4">-->
-          <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['username'].valid&&userForm.controls['username'].dirty">-->
-            <!--<i class="fa fa-close"></i>-->
-            <!--Username is required-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
 
-    <!--<div class="ui-g-6 ui-md-3">-->
-      <!--<div class="ui-inputgroup">-->
-        <!--<span class="ui-inputgroup-addon">$</span>-->
-        <!--<input pInputText type="text"  pKeyFilter="int" formControlName="password" placeholder="Password"/>-->
-        <!--<div class="ui-grid-col-4">-->
-          <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['password'].valid&&userForm.controls['password'].dirty">-->
-            <!--<i class="fa fa-close"></i>-->
-            <!--Password is required-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
 
-    <!--<div class="ui-g-6 ui-md-3">-->
-      <!--<div class="ui-inputgroup">-->
-        <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
-        <!--<input pInputText type="text" formControlName="firstn" pKeyFilter="alphanum" placeholder="First Name"/>-->
-        <!--<div class="ui-grid-col-4">-->
-          <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['firstn'].valid&&userForm.controls['firstn'].dirty">-->
-            <!--<i class="fa fa-close"></i>-->
-            <!--First Name is required-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="ui-g-6 ui-md-3 ui-g-offset-2">-->
-    <!--<div class="ui-inputgroup">-->
-      <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
-      <!--<input pInputText type="text" formControlName="lastn" placeholder="Last Name"  pKeyFilter="alphanum"/>-->
-      <!--<div class="ui-grid-col-4">-->
-        <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['lastn'].valid&&userForm.controls['lastn'].dirty">-->
-          <!--<i class="fa fa-close"></i>-->
-          <!--Last Name is required-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="ui-g-6 ui-md-3">-->
-    <!--<div class="ui-inputgroup">-->
-      <!--<span class="ui-inputgroup-addon">$</span>-->
-      <!--<input pInputText type="text"  pKeyFilter="int" formControlName="favorite" placeholder="Favorite Events"/>-->
-      <!--<div class="ui-grid-col-4">-->
-        <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['favorite'].valid&&userForm.controls['favorite'].dirty">-->
-
-          <!--Favorite is required-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="ui-g-6 ui-md-3">-->
-    <!--<div class="ui-inputgroup">-->
-      <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
-      <!--<input pInputText type="text" formControlName="email" pKeyFilter="alphanum" placeholder="Email"/>-->
-      <!--<div class="ui-grid-col-4">-->
-        <!--<div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userForm.controls['email'].valid&&userForm.controls['email'].dirty">-->
-          <!--Email is required-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="ui-g-6 ui-md-4 ui-g-offset-2">-->
-    <!--<div class="ui-inputgroup">-->
-      <!--<input type="submit" value="SUBMIT" class="button">-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</form>-->

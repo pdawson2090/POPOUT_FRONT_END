@@ -9,7 +9,7 @@ import {UserService} from '../services/user.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css','./register.scss','button.scss', '../home/home.scss']
+  styleUrls: ['./register.component.css','./register.scss','button.scss', '../home/home.scss','buttonstyle.css','button.styl']
 })
 export class RegisterComponent implements OnInit {
   msgs: Message[];
@@ -51,16 +51,17 @@ export class RegisterComponent implements OnInit {
     this.elementRef.nativeElement.appendChild(s);
   }
 
-  registerUser(u,p,f,l,e,fav) {
+  registerUser() {
     //e.preventDefault();
     var url = 'https://popout-back.herokuapp.com/register';
     const req = this.http.post(url, {
-      username: u,
-      password: p,
-      first_name: f,
-      last_name: l,
-      favorite_type: fav,
-      email: e,
+      username: this.userForm.value.username,
+      password: this.userForm.value.password,
+      first_name: this.userForm.value.firstn,
+      last_name: this.userForm.value.lastn,
+      favorite_type: this.userForm.value.favorite,
+      email: this.userForm.value.email,
+
 
 
     })
@@ -89,13 +90,13 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  loginUser(u,p) {
+  loginUser(e) {
 
 
     var url = 'https://popout-back.herokuapp.com/login';
     const req = this.http.post(url, {
-      username: u,
-      password: p,
+      username: this.userForm.value.username,
+      password: this.userForm.value.password,
 
     })
       .subscribe(
