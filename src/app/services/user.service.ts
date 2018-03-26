@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {User} from '../domain/user';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
@@ -10,7 +11,7 @@ export class UserService {
   private isUserManager;
   private id;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.isUserLoggedIn = false;
     this.id = 0;
     this.users = new User(0,"0","0","0","0","0")
@@ -49,6 +50,12 @@ export class UserService {
 
   getUserManager() {
     return this.isUserManager;
+  }
+
+  editProfile(user: User): void {
+
+    this.http.post('localhost:8080/update-user', user);
+
   }
 
 

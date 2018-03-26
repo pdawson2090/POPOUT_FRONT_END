@@ -36,6 +36,8 @@ export class NavbarComponent implements OnInit {
   sidebarOpen:boolean;
   option: number;
   friend:User;
+  profileEdit: boolean = false;
+  editProfileForm: FormGroup;
 
   constructor(
     private eventService: EventService,
@@ -70,11 +72,17 @@ export class NavbarComponent implements OnInit {
       event_type: new FormControl('', [Validators.required, Validators.minLength(2)])
     });
 
-    this.addFriendForm = this.fb.group({
-      friend_username: new FormControl('', Validators.required)
+    this.editProfileForm = this.fb.group({
+      email: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      favorite_event: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      favorite_foods: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      hobbies: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      birthday: new FormControl('', [Validators.required, Validators.minLength(9)]),
     });
 
-    this.deleteFriendForm = this.fb.group({
+    this.friendForm = this.fb.group({
+
+  
       friend_username: new FormControl('', Validators.required)
     });
 
@@ -179,6 +187,18 @@ export class NavbarComponent implements OnInit {
 
     this.eventFullAddress = this.eventForm.value.event_address + ', ' + this.eventForm.value.event_city + ', ' + this.eventForm.value.event_state + ' ' + this.eventForm.value.event_zip;
 
+
+  }
+
+  editProfile(): void {
+
+    this.users.email = this.editProfileForm.value.email;
+    this.users.birthday = this.editProfileForm.value.birthday;
+    this.users.favorite = this.editProfileForm.value.favorite_event;
+    this.users.favorite_food = this.editProfileForm.value.favorite_foods;
+    this.users.hobbies = this.editProfileForm.value.hobbies;
+    this.userService.editProfile(this.users);
+    this.profileEdit = false;
 
   }
 
