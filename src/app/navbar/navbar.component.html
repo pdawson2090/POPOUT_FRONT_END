@@ -18,7 +18,7 @@
         <a href="map#modal-two">Add Event</a>
       </li>
       <li>
-        <a href="map#modal-three">Friends</a>
+        <a href="map#modal-three" (click)="OPdisplay = true">Friends</a>
       </li>
       <li>
         <a href="#">Logout</a>
@@ -105,7 +105,7 @@
 
 
 <div class="modal" id="modal-three" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" ([visible])="OPdisplay">
     <div id="chatbox">
       <div id="friendslist">
         <div id="topmenu">
