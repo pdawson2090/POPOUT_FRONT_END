@@ -76,7 +76,9 @@
             </div>
             <div class="form-row">
               <label>Type</label>
+
               <p-dropdown [autoWidth]="true" [style]="{'width': '78%'}" [options]="Filters"
+
                           formControlName="event_type"></p-dropdown>
             </div>
             <div class="form-row">
@@ -188,9 +190,9 @@
 <!--<hr>-->
 <!--</li>-->
 <!--</ul>-->
-<form [formGroup]="friendForm" *ngIf="option == 3" (ngSubmit)="addFriend(friendForm.value)">
+<!-- <form [formGroup]="friendForm" *ngIf="option == 3" (ngSubmit)="addFriend(friendForm.value)">
 <input type="text" pInputText placeholder="Username" formControlName="friend_username">
 <input pButton type="submit" value="Add Friend" class="button"/>
-</form>
+</form> -->
 <!--</p-sidebar>-->
 

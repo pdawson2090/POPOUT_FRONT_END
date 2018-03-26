@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import {User} from '../domain/user';
 import {SelectItem} from 'primeng/api';
 import { FriendsService } from '../services/friends.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -23,7 +24,8 @@ export class NavbarComponent implements OnInit {
   OPdisplay: boolean = false;
   loggedIn: boolean;
   eventForm : FormGroup;
-  friendForm: FormGroup;
+  addFriendForm: FormGroup;
+  deleteFriendForm: FormGroup;
   users: User;
   event: Event;
   Filters: SelectItem[];
@@ -68,7 +70,11 @@ export class NavbarComponent implements OnInit {
       event_type: new FormControl('', [Validators.required, Validators.minLength(2)])
     });
 
-    this.friendForm = this.fb.group({
+    this.addFriendForm = this.fb.group({
+      friend_username: new FormControl('', Validators.required)
+    });
+
+    this.deleteFriendForm = this.fb.group({
       friend_username: new FormControl('', Validators.required)
     });
 
@@ -124,8 +130,12 @@ export class NavbarComponent implements OnInit {
   //   }
   // }
 
-  addFriend(friendForm){
-    this.friendService.addFriend(this.friendForm.value.friend_username)
+  addFriend(addfriendForm){
+    this.friendService.addFriend(this.addFriendForm.value.friend_username)
+  }
+
+  deleteFriend(deleteFriendForm){
+    this.friendService.deleteFriend(this.deleteFriendForm.value.friend_username)
   }
 
 
