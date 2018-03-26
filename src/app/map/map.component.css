@@ -1,14 +1,17 @@
+
 agm-map {
   height: 100%;
   width: 100%;
 }
+body{
+  height: 100%;
+}
 
 .container {
-  height: calc(100vh - 55px);
+  height: 100%;
 }
 
 .si-content {
-
  width: 300px;
   font-family: 'Montserrat', sans-serif;
 }

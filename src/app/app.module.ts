@@ -11,7 +11,6 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { SidebarModule } from 'primeng/sidebar';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { LoginFormComponent } from './login/login-form.component';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
@@ -30,6 +29,7 @@ import { DialogModule } from 'primeng/dialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+import {LightboxModule} from 'primeng/lightbox';
 
 
 
@@ -62,7 +62,6 @@ const appRoutes = [
     PageNotFoundComponent,
     MapComponent,
     RegisterComponent,
-    LoginFormComponent,
     HomeComponent
   ],
   imports: [
@@ -84,6 +83,7 @@ const appRoutes = [
     AgmSnazzyInfoWindowModule,
     FormsModule,
     HttpClientModule,
+    LightboxModule,
     SidebarModule,
     InputTextModule,
     DropdownModule,

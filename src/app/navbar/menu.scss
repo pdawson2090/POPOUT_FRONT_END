@@ -1,0 +1,84 @@
+//======================================================//
+//                      Menu styles                     //
+//======================================================//
+nav {
+  display: block;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+
+  text-align: center;
+
+  background-color: #fff;
+  border-top: 3px solid #09f;
+}
+
+nav:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -53px;
+  left: -30px;
+  width: 0;
+  height: 0;
+  z-index: 999;
+
+  border-right: 1000px solid transparent;
+  border-left: 30px solid transparent;
+  border-bottom: 50px solid #09f;
+}
+
+nav:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -33px;
+  right: -30px;
+  width: 0;
+  height: 0;
+  z-index: -1;
+
+  border-right: 30px solid transparent;
+  border-left: 1000px solid transparent;
+  border-bottom:30px solid #09f;
+}
+
+nav ul {
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  list-style: none;
+}
+
+.menu-item-active {
+  padding: 5px 20px;
+  border-top: 2px solid #09f;
+  border-bottom: 2px solid #09f;
+}
+
+nav ul li a {
+  display: block;
+  padding: 20px 20px;
+
+  color: #171717;
+  font-size: 1.3em;
+  text-decoration: none;
+
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+
+nav ul li a:hover {
+  padding: 5px 20px;
+  border-top: 2px solid #09f;
+  border-bottom: 2px solid #09f;
+}
