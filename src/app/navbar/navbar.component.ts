@@ -8,18 +8,18 @@ import {User} from '../domain/user';
 import {SelectItem} from 'primeng/api';
 import { FriendsService } from '../services/friends.service';
 
-//import {OverlayPanel} from '../node_modules/primeng/components/overlaypanel/overlaypanel'
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   //encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./navbar.component.css', 'profile.css','dialog.less','form.css','date.less','menu.scss']
+  styleUrls: ['./navbar.component.css', 'profile.css','dialog.less','form.css','menu.scss','friend.css']
 
 })
 
 export class NavbarComponent implements OnInit {
 
   newEventDisplay: boolean = false;
+  shouldShow: boolean = true;
   filterDisplay: boolean = false;
   OPdisplay: boolean = false;
   loggedIn: boolean;
@@ -51,6 +51,8 @@ export class NavbarComponent implements OnInit {
   @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit() {
+    this.friendService.getFriends().subscribe(data=>{
+          this.friends = data;});
 
     this.users = this.user.getUser();
     console.log(this.user.getUserId());
@@ -109,6 +111,10 @@ export class NavbarComponent implements OnInit {
     s = document.createElement("script");
     s.type = "text/javascript";
     s.src = "../../assets/menu2.js";
+    this.elementRef.nativeElement.appendChild(s);
+    s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/friend.js";
     this.elementRef.nativeElement.appendChild(s);
 
   }

@@ -39,16 +39,16 @@ $('.send__chat').click(function() {
 
 
 // slick.js (phone swipe slider)
-$('.slides').slick({
-  infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  dots: false,
-  prevArrow: false,
-  nextArrow: false,
-
-  centerMode: true,
-  centerPadding: 50,
-  slidesToShow: 3
-});
+// $('.slides').slick({
+//   infinite: true,
+//   slidesToShow: 3,
+//   slidesToScroll: 3,
+//   dots: false,
+//   prevArrow: false,
+//   nextArrow: false,
+//
+//   centerMode: true,
+//   centerPadding: 50,
+//   slidesToShow: 3
+// });
 $('.slides').on('swipe', function(event, slick, direction) {});
