@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import {User} from '../domain/user';
 import {SelectItem} from 'primeng/api';
 import { FriendsService } from '../services/friends.service';
-import {OverlayPanel} from 'C:/Users/pdaws/Documents/GitHub/POPOUT_FRONT_END/node_modules/primeng/components/overlaypanel/overlaypanel'
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
