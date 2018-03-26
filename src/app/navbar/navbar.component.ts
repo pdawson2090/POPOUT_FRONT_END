@@ -21,21 +21,17 @@ export class NavbarComponent implements OnInit {
   newEventDisplay: boolean = false;
   shouldShow: boolean = true;
   filterDisplay: boolean = false;
-  OPdisplay: boolean = false;
   loggedIn: boolean;
   eventForm : FormGroup;
+  friendForm: FormGroup;
   addFriendForm: FormGroup;
   deleteFriendForm: FormGroup;
   users: User;
   event: Event;
   Filters: SelectItem[];
-  selectedEventType: string = "";
   filterValue: string = "";
   eventFullAddress: string;
   friends: User[];
-  sidebarOpen:boolean;
-  option: number;
-  friend:User;
   profileEdit: boolean = false;
   editProfileForm: FormGroup;
 
@@ -82,7 +78,7 @@ export class NavbarComponent implements OnInit {
 
     this.friendForm = this.fb.group({
 
-  
+
       friend_username: new FormControl('', Validators.required)
     });
 
