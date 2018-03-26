@@ -113,6 +113,7 @@ export class RegisterComponent implements OnInit {
             var auth = JSON.parse(JSON.stringify(res));
 
             if (auth != null) {
+              alert('Login Success');
               this.users = new User(auth.id, auth.email, auth.favorite_type, auth.first_name, auth.last_name, auth.username);
               this.user.setUser(this.users);
               this.user.setUserLoggedIn();
@@ -120,8 +121,8 @@ export class RegisterComponent implements OnInit {
               this.router.navigate(['map']);
 
             } else {
-
-              // this.msgs.push({severity: 'ui-messages-error', summary: 'INVLAID', detail: 'Verification Failed'});
+              console.log('incorrect');
+              alert('Incorrect Username or Password');
             }
 
           },
@@ -130,6 +131,7 @@ export class RegisterComponent implements OnInit {
               console.log('Client-side error occured.');
             } else {
               console.log('Server-side error occured.');
+              alert('Incorrect Username or Password');
             }
           }
         );
