@@ -13,14 +13,14 @@ export class FriendsService {
   getFriends() {
     var id:number = this.user.getUserId();
     console.log(id);
-    
+
     return this.http.get<User[]>(`https://popout-back.herokuapp.com/getFriends?id=${id}`);
   }
 
   friend: User;
   getFriendId(username:string):Observable<User>{
     console.log(username);
-    
+
     return this.http.get<User>(`https://popout-back.herokuapp.com/name?username=${username}`);
   }
 
@@ -32,16 +32,16 @@ export class FriendsService {
     this.getFriendId(username).subscribe(data=>{
       let fid = data.id;
       console.log('got friend with uid = ' + fid);
-      
+
       this.http.get(`https://popout-back.herokuapp.com/newFriend?friendA=${uid}&friendB=${fid}`).subscribe(data => {
         console.log(data);
         console.log('added friend');
-        
-        
+
+
       });
-      
+
     });
-    
+
   }
 
   deleteFriend(username: string) {
@@ -52,7 +52,7 @@ export class FriendsService {
       let fid = data.id;
       console.log('got friend with uid = ' + fid);
 
-      this.http.get(`https://popout-back.herokuapp.com/deleteFriend?friendA=${uid}&friendB=${fid}`).subscribe(data => {
+      this.http.delete(`https://popout-back.herokuapp.com/deleteFriend?friendA=${uid}&friendB=${fid}`).subscribe(data => {
         console.log(data);
         console.log('added friend');
 

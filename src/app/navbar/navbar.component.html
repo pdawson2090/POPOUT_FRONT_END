@@ -106,11 +106,11 @@
 </div>
 <div class="modal" id="modal-three" aria-hidden="true">
   <div class="modal-dialog">
-    <form [formGroup]="friendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}" (ngSubmit)="addFriend(friendForm.value)">
+    <form [formGroup]="addFriendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}" (ngSubmit)="addFriend(addFriendForm.value)">
       <input type="text" pInputText placeholder="Username" formControlName="friend_username">
       <input pButton type="submit" value="Add Friend" class="button"/>
     </form>
-    <form [formGroup]="friendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}" (ngSubmit)="removeFriend(friendForm.value)">
+    <form [formGroup]="deleteFriendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}" (ngSubmit)="deleteFriend(deleteFriendForm.value)">
       <input type="text" pInputText placeholder="Username" formControlName="friend_username">
       <input pButton type="submit" value="Add Friend" class="button"/>
     </form>
