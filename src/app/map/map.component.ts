@@ -4,6 +4,7 @@ import {Event} from '../domain/event';
 import {EventService} from '../services/event.service';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../services/user.service';
+import {User} from '../domain/user';
 
 
 interface marker {
@@ -28,13 +29,17 @@ declare var google: any;
 })
 export class MapComponent implements OnInit {
 
+  mapStyle: any[];
   temp: any[];
   markers: marker[] = [];
   zoom: number = 8;
   geocoder: any;
+  newEventDisplay: boolean = false;
+  filterDisplay: boolean = false;
+  OPdisplay: boolean = false;
   events: Event[] = [];
   isSnazzyInfoWindowOpened: boolean = false;
-  eventTypes
+  users : User;
 
   constructor(
     private maps: MapsAPILoader,
@@ -45,6 +50,33 @@ export class MapComponent implements OnInit {
     ) {}
 
   ngOnInit() {
+    this.users = this.user.getUser();
+    this.mapStyle =[
+      {
+        "featureType": "all",
+        "elementType": "all",
+        "stylers": [
+          {
+            "invert_lightness": true
+          },
+          {
+            "saturation": 10
+          },
+          {
+            "lightness": 30
+          },
+          {
+            "gamma": 0.5
+          },
+          {
+            "hue": "#435158"
+          }
+        ]
+      }
+    ]
+
+
+
 
     this.eventService.getEvents().subscribe(data => {
       this.events = data;

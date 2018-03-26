@@ -11,7 +11,6 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { SidebarModule } from 'primeng/sidebar';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { LoginFormComponent } from './login/login-form.component';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
@@ -30,8 +29,12 @@ import { DialogModule } from 'primeng/dialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+<<<<<<< HEAD
 import { ToastModule, ToastsManager, ToastOptions, ToastContainer } from 'ng2-toastr/ng2-toastr';
 import { MessagesComponent } from './messages/messages.component';
+=======
+import {LightboxModule} from 'primeng/lightbox';
+>>>>>>> a73d3f026101bf689f0ceefb44e4b426783de783
 
 
 
@@ -64,10 +67,14 @@ const appRoutes = [
     PageNotFoundComponent,
     MapComponent,
     RegisterComponent,
+<<<<<<< HEAD
     LoginFormComponent,
     HomeComponent,
     MessagesComponent,
     ToastContainer
+=======
+    HomeComponent
+>>>>>>> a73d3f026101bf689f0ceefb44e4b426783de783
   ],
   imports: [
     BrowserModule,
@@ -88,6 +95,7 @@ const appRoutes = [
     AgmSnazzyInfoWindowModule,
     FormsModule,
     HttpClientModule,
+    LightboxModule,
     SidebarModule,
     InputTextModule,
     DropdownModule,
