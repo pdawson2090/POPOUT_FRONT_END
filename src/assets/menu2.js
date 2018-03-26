@@ -7,7 +7,7 @@ $(document).ready(function() {
   }, 500);
 
   //function to target the div's
-  $('#menu li a[href*=#]:not([href=#])').click(function() {
+  $('a[href*=\\#]:not([href=\\#])').click(function() {
 
     //Gives the button clicked on a class for style purposes
     if( $("#menu li a").hasClass("menu-item-active") ) {
