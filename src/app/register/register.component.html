@@ -12,7 +12,7 @@
 
     <div id="loginscreen">
       <h1>Welcome</h1>
-      <form [formGroup]="userForm" (ngSubmit)="loginUser(userForm.value)">
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
         <div class="field-wrap">
           <label>
             Username<span class="req">*</span>
