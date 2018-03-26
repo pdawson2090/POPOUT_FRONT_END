@@ -1,5 +1,5 @@
-<app-navbar (filter)="applyFilter($event)" (newE)="refreshMap()"></app-navbar>
-
+<app-navbar (filter)="applyFilter($event)" (newE)="ngOnInit()"></app-navbar>
+<button type="button" class="refresh" (click)="ngOnInit()">-</button>
 <div class="container">
   <agm-map
     [latitude]="38.9586"

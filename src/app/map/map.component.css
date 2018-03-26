@@ -6,7 +6,11 @@ agm-map {
 body{
   height: 100%;
 }
-
+.refresh{
+  z-index: 1;
+  background: whitesmoke;
+  color: #47b8e0;
+}
 .container {
   height: 100%;
 }
