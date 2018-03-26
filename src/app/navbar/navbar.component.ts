@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import {User} from '../domain/user';
 import {SelectItem} from 'primeng/api';
 import { FriendsService } from '../services/friends.service';
-import {OverlayPanel} from 'C:/Users/pdaws/Documents/GitHub/POPOUT_FRONT_END/node_modules/primeng/components/overlaypanel/overlaypanel'
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -34,6 +34,8 @@ export class NavbarComponent implements OnInit {
   sidebarOpen:boolean;
   option: number;
   friend:User;
+  profileEdit: boolean = false;
+  editProfileForm: FormGroup;
 
   constructor(
     private eventService: EventService,
@@ -64,6 +66,14 @@ export class NavbarComponent implements OnInit {
       event_state: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
       event_zip: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
       event_type: new FormControl('', [Validators.required, Validators.minLength(2)])
+    });
+
+    this.editProfileForm = this.fb.group({
+      email: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      favorite_event: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      favorite_foods: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      hobbies: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      birthday: new FormControl('', [Validators.required, Validators.minLength(9)]),
     });
 
     this.friendForm = this.fb.group({
@@ -163,6 +173,18 @@ export class NavbarComponent implements OnInit {
 
     this.eventFullAddress = this.eventForm.value.event_address + ', ' + this.eventForm.value.event_city + ', ' + this.eventForm.value.event_state + ' ' + this.eventForm.value.event_zip;
 
+
+  }
+
+  editProfile(): void {
+
+    this.users.email = this.editProfileForm.value.email;
+    this.users.birthday = this.editProfileForm.value.birthday;
+    this.users.favorite = this.editProfileForm.value.favorite_event;
+    this.users.favorite_food = this.editProfileForm.value.favorite_foods;
+    this.users.hobbies = this.editProfileForm.value.hobbies;
+    this.userService.editProfile(this.users);
+    this.profileEdit = false;
 
   }
 

@@ -25,18 +25,44 @@
   <div class="modal" id="modal-one" aria-hidden="true">
     <div class="modal-dialog">
 
-      <div class="container">
+      <div *ngIf="!profileEdit" class="container">
         <div class="card"><img src="https://www.w3schools.com/w3images/team2.jpg" alt="prof">
           <h1>"{{users.first_name}} {{users.last_name}}"</h1>
           <span>Email: {{users.email}}</span>
           <p>Favorite Event: {{users.favorite}}</p>
+          <!-- <p>Birthday: {{users.birthday}}</p>
+          <p>Favorite Food: {{users.favorite_food</p>
+          <p>Hobbies: {{users.hobbies}}</p> -->
           <a href="map#"><i class="fa fa-dribbble"></i></a>
           <a href="map#"><i class="fa fa-twitter"></i></a>
           <a href="map#"><i class="fa fa-linkedin"></i></a>
           <a href="map#"><i class="fa fa-facebook"></i></a>
           <button>contact</button>
+          <!-- <button (click)="profileEdit = true">Edit</button> -->
         </div>
       </div>
+      <!-- <div *ngIf="profileEdit" class="container">
+        <div class="form-modal-body">
+          <div class="card"><img src="https://www.w3schools.com/w3images/team2.jpg" alt="prof">
+            <form [formGroup]="editProfileForm" (ngSubmit)="editProfile()" class="form-modal-form">
+              <h1>"{{users.first_name}} {{users.last_name}}"</h1>
+              <div class="form-row">
+                <input type-"text" placeholder="Email" formControlName="email">
+              </div>
+              <input type-"text" placeholder="Favorite Event" formControlName="favorite_event">
+              <input type-"text" placeholder="Birthday" formControlName="birthday">
+              <input type-"text" placeholder="Hobbies" formControlName="hobbies">
+              <input type-"text" placeholder="Favorite Food" formControlName="favorite_food">
+              <!-- <a href="map#"><i class="fa fa-dribbble"></i></a>
+              <a href="map#"><i class="fa fa-twitter"></i></a>
+              <a href="map#"><i class="fa fa-linkedin"></i></a>
+              <a href="map#"><i class="fa fa-facebook"></i></a>
+              <button>contact</button> --> <!--
+              <button type="submit" class="button good" value="save">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -73,7 +99,7 @@
             </div>
             <div class="form-row">
               <label>Type</label>
-              <p-dropdown [autoWidth]="true" [style]="{'width': '78%'}" [options]="eventTypes"
+              <p-dropdown [autoWidth]="true" [style]="{'width': '78%'}" [options]="Filters"
                           formControlName="event_type"></p-dropdown>
             </div>
             <div class="form-row">
