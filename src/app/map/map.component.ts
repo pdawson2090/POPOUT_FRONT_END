@@ -73,10 +73,7 @@ export class MapComponent implements OnInit {
           }
         ]
       }
-    ]
-
-
-
+    ];
 
     this.eventService.getEvents().subscribe(data => {
       this.events = data;
