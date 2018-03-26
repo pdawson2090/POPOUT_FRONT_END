@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   loggedIn: boolean;
   eventForm : FormGroup;
   addFriendForm: FormGroup;
-  deleteFriendForm:FormGroup;
+  deleteFriendForm: FormGroup;
   users: User;
   event: Event;
   Filters: SelectItem[];
@@ -125,11 +125,11 @@ export class NavbarComponent implements OnInit {
   // }
 
   addFriend(addfriendForm){
-    this.friendService.addFriend(this.friendForm.value.friend_username)
+    this.friendService.addFriend(this.addFriendForm.value.friend_username)
   }
 
   deleteFriend(deleteFriendForm){
-    this.friendService.deleteFriend(this.deleteFriendForm.friend_username)
+    this.friendService.deleteFriend(this.deleteFriendForm.value.friend_username)
   }
 
 
