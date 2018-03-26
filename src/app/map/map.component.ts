@@ -153,7 +153,7 @@ export class MapComponent implements OnInit {
       id: this.events[i].id,
       address: this.temp[0],
       date: this.events[i].event_date,
-      time: this.events[i].event_time,
+      time: this.events[i].event_time.split("G")[0],
       description: this.events[i].event_description,
       type: this.events[i].event_type,
       draggable: false,
