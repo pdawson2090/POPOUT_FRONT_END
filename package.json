@@ -41,17 +41,14 @@
     "greensock": "^1.20.2",
     "import": "0.0.6",
     "jquery": "^3.3.1",
-<<<<<<< HEAD
     "ng2-toastr": "^4.1.2",
     "npm": "^5.8.0",
-=======
     "jquery-ui": "^1.12.1",
     "mdPickers": "^0.7.5",
     "modernizr": "^3.6.0",
     "moment": "^2.21.0",
     "nib": "^1.1.2",
     "npm": "^5.7.1",
->>>>>>> a73d3f026101bf689f0ceefb44e4b426783de783
     "primeng": "^5.2.3",
     "pug": "^2.0.3",
     "react-dom": "^16.2.0",
