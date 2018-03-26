@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import {User} from '../domain/user';
 import {SelectItem} from 'primeng/api';
 import { FriendsService } from '../services/friends.service';
-import { MessagesComponent } from '../messages/messages.component';
 
 //import {OverlayPanel} from '../node_modules/primeng/components/overlaypanel/overlaypanel'
 @Component({
