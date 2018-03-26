@@ -25,7 +25,7 @@ declare var google: any;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css','map.scss']
+  styleUrls: ['./map.component.css','map.scss','info.css']
 })
 export class MapComponent implements OnInit {
 
@@ -40,6 +40,7 @@ export class MapComponent implements OnInit {
   events: Event[] = [];
   isSnazzyInfoWindowOpened: boolean = false;
   users : User;
+  attend: User[];
 
   constructor(
     private maps: MapsAPILoader,
@@ -49,7 +50,7 @@ export class MapComponent implements OnInit {
     private elementRef: ElementRef
     ) {}
 
-  ngOnInit() {
+  ngOnInit(){
     this.users = this.user.getUser();
     this.mapStyle =[
       {
@@ -91,8 +92,14 @@ export class MapComponent implements OnInit {
     s.type = "text/javascript";
     s.src = "../../assets/map.js";
     this.elementRef.nativeElement.appendChild(s);
+    s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/info.js";
+    this.elementRef.nativeElement.appendChild(s);
   }
   clickedMarker(label: string, index: number) {
+    this.user.getAttends(index).subscribe(data=>{
+      this.attend = data;});
     console.log(`clicked the marker: ${label || index}`);
   }
 
@@ -127,6 +134,15 @@ export class MapComponent implements OnInit {
     }
 
   }
+
+
+  getVisitors(id:number): void{
+
+    this.user.getAttends(id).subscribe(data=>{
+      this.attend = data;});
+
+  }
+
 
   addMarker(lat: any, lng: any, i: number): void {
 

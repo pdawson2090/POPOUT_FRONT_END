@@ -10,7 +10,7 @@
         <button pButton label="Apply" class="filterbutton" (click)="applyFilter()"></button>
       </li>
       <li>
-      <li><a class="menu-item-active" href="map#" (click)="shouldShow=true" >Home</a></li>
+      <li><a class="menu-item-active" href="map#" (click)="shouldShow=true">Home</a></li>
       <li>
         <a href="map#modal-one" (click)="shouldShow=true">Profile</a>
       </li>
@@ -18,7 +18,10 @@
         <a href="map#modal-two" (click)="shouldShow=true">Add Event</a>
       </li>
       <li>
-        <a href="map#modal-three" (click)="shouldShow = !shouldShow" >Friends</a>
+        <a href="map#modal-twonhalf" (click)="shouldShow=true">Custom Details</a>
+      </li>
+      <li>
+        <a href="map#modal-three" (click)="shouldShow = !shouldShow">Friends</a>
       </li>
       <li>
         <a href="#">Logout</a>
@@ -27,199 +30,214 @@
   </nav>
   <div class="modal" id="modal-one" aria-hidden="true">
     <div class="modal-dialog">
+      <div></div>
 
-
-      <div *ngIf="!profileEdit" class="container">
+      <div class="container">
         <div class="card"><img src="https://www.w3schools.com/w3images/team2.jpg" alt="prof">
           <h1>"{{users.first_name}} {{users.last_name}}"</h1>
           <span>Email: {{users.email}}</span>
           <p>Favorite Event: {{users.favorite}}</p>
-          <!-- <p>Birthday: {{users.birthday}}</p>
-          <p>Favorite Food: {{users.favorite_food</p>
-          <p>Hobbies: {{users.hobbies}}</p> -->
-          <a href="map#"><i class="fa fa-dribbble"></i></a>
-          <a href="map#"><i class="fa fa-twitter"></i></a>
-          <a href="map#"><i class="fa fa-linkedin"></i></a>
-          <a href="map#"><i class="fa fa-facebook"></i></a>
+          <!--<p *ngIf="users.birthday != null">Birthday: {{users.birthday}}</p>-->
+          <p *ngIf="users.hobbies != null">Hobbies: {{users.hobbies}}</p>
+          <p *ngIf="users.favorite_food != null">Favorite Food: {{users.favorite_food}}</p>
+          <a href="map#">X</a>
           <button>contact</button>
-          <!-- <button (click)="profileEdit = true">Edit</button> -->
         </div>
       </div>
-      <!-- <div *ngIf="profileEdit" class="container">
-        <div class="form-modal-body">
-          <div class="card"><img src="https://www.w3schools.com/w3images/team2.jpg" alt="prof">
+
+    </div>
+  </div>
+  <div class="modal" id="modal-twonhalf" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="form-bod">
+        <div class="form-modal-content slideDown">
+          <div class="form-modal-header">
+            <a href="map#" class="close">&times;</a>
+            <h2>{{users.username}} Profile</h2>
+          </div>
+          <div class="form-modal-body">
             <form [formGroup]="editProfileForm" (ngSubmit)="editProfile()" class="form-modal-form">
-              <h1>"{{users.first_name}} {{users.last_name}}"</h1>
               <div class="form-row">
-                <input type-"text" placeholder="Email" formControlName="email">
+                <label>Email</label>
+                <input type="text" placeholder="Email" formControlName="email">
               </div>
-              <input type-"text" placeholder="Favorite Event" formControlName="favorite_event">
-              <input type-"text" placeholder="Birthday" formControlName="birthday">
-              <input type-"text" placeholder="Hobbies" formControlName="hobbies">
-              <input type-"text" placeholder="Favorite Food" formControlName="favorite_food">
-              <!-- <a href="map#"><i class="fa fa-dribbble"></i></a>
-              <a href="map#"><i class="fa fa-twitter"></i></a>
-              <a href="map#"><i class="fa fa-linkedin"></i></a>
-              <a href="map#"><i class="fa fa-facebook"></i></a>
-              <button>contact</button> --> <!--
-              <button type="submit" class="button good" value="save">Submit</button>
+              <div class="form-row">
+                <label>Hobbies</label>
+                <input type="text" placeholder="Hobbies" formControlName="hobbies">
+              </div>
+              <div class="form-row">
+                <label>Type</label>
+                <p-dropdown [autoWidth]="true" [style]="{'width': '78%'}" [options]="Filters"
+                            formControlName="favorite_event"></p-dropdown>
+              </div>
+              <div class="form-row">
+                <label>Favorite Food</label>
+                <input type="text" placeholder="Favorite Food" formControlName="favorite_foods">
+              </div>
+              <div class="form-modal-footer">
+                <input type="submit" class="button good" value="Save">
+              </div>
             </form>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal" id="modal-two" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="form-bod">
-      <div class="form-modal-content slideDown">
-        <div class="form-modal-header">
-          <a href="map#" class="close" id="closeModal">&times;</a>
-          <h2>Add Event</h2>
-        </div>
-        <div class="form-modal-body">
-          <form [formGroup]="eventForm" (ngSubmit)="newEvent(eventForm.value)" class="form-modal-form">
-            <div class="form-row">
-              <label>Title</label>
-              <input type="text" formControlName="event_title" placeholder="Title">
-            </div>
-            <div class="form-row">
-              <label>Address</label>
-              <input type="text" formControlName="event_address" placeholder="Address">
-            </div>
-            <div class="form-row">
-              <label>City</label>
-              <input type="text" formControlName="event_city" placeholder="City">
-            </div>
-            <div class="form-row">
-              <label>State</label>
-              <input type="text" formControlName="event_state" placeholder="State">
-            </div>
-            <div class="form-row">
-              <label>Zip</label>
-              <input type="text" formControlName="event_zip" placeholder="Zip">
-            </div>
-            <div class="form-row">
-              <label>Type</label>
+  <div class="modal" id="modal-two" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="form-bod">
+        <div class="form-modal-content slideDown">
+          <div class="form-modal-header">
+            <a href="map#" class="close" id="closeModal">&times;</a>
+            <h2>Add Event</h2>
+          </div>
+          <div class="form-modal-body">
+            <form [formGroup]="eventForm" (ngSubmit)="newEvent(eventForm.value)" class="form-modal-form">
+              <div class="form-row">
+                <label>Title</label>
+                <input type="text" formControlName="event_title" placeholder="Title">
+              </div>
+              <div class="form-row">
+                <label>Address</label>
+                <input type="text" formControlName="event_address" placeholder="Address">
+              </div>
+              <div class="form-row">
+                <label>City</label>
+                <input type="text" formControlName="event_city" placeholder="City">
+              </div>
+              <div class="form-row">
+                <label>State</label>
+                <input type="text" formControlName="event_state" placeholder="State">
+              </div>
+              <div class="form-row">
+                <label>Zip</label>
+                <input type="text" formControlName="event_zip" placeholder="Zip">
+              </div>
+              <div class="form-row">
+                <label>Type</label>
 
-              <p-dropdown [autoWidth]="true" [style]="{'width': '78%'}" [options]="Filters"
+                <p-dropdown [autoWidth]="true" [style]="{'width': '78%'}" [options]="Filters"
 
-                          formControlName="event_type"></p-dropdown>
-            </div>
-            <div class="form-row">
-              <label>Date</label>
-              <p-calendar [inputStyle]="{'width': '110px'}" formControlName="event_date" dateFormat="mm.dd.yy"
-                          placeholder="Event Date"></p-calendar>
-            </div>
-            <div class="form-row">
-              <label>Time</label>
-              <p-calendar [inputStyle]="{'width': '110px'}" showTime="true" hourFormat="12" timeOnly="true"
-                          placeholder="Event Time" formControlName="event_time"></p-calendar>
-            </div>
-            <div class="form-row">
-              <label>Description</label>
-              <input type="text" formControlName="event_description" placeholder="Description">
-            </div>
-            <div class="form-modal-footer">
-              <input type="submit" class="button good" value="Save">
-            </div>
-          </form>
+                            formControlName="event_type"></p-dropdown>
+              </div>
+              <div class="form-row">
+                <label>Date</label>
+                <p-calendar [inputStyle]="{'width': '110px'}" formControlName="event_date" dateFormat="mm.dd.yy"
+                            placeholder="Event Date"></p-calendar>
+              </div>
+              <div class="form-row">
+                <label>Time</label>
+                <p-calendar [inputStyle]="{'width': '110px'}" showTime="true" hourFormat="12" timeOnly="true"
+                            placeholder="Event Time" formControlName="event_time"></p-calendar>
+              </div>
+              <div class="form-row">
+                <label>Description</label>
+                <input type="text" formControlName="event_description" placeholder="Description">
+              </div>
+              <div class="form-modal-footer">
+                <input type="submit" class="button good" value="Save">
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="modal" id="modal-three" aria-hidden="true">
-  <div class="modal-dialog">
-    <form [formGroup]="addFriendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}" (ngSubmit)="addFriend(addFriendForm.value)">
-      <input type="text" pInputText placeholder="Username" formControlName="friend_username">
-      <input pButton type="submit" value="Add Friend" class="button"/>
-    </form>
-    <form [formGroup]="deleteFriendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}" (ngSubmit)="deleteFriend(deleteFriendForm.value)">
-      <input type="text" pInputText placeholder="Username" formControlName="friend_username">
-      <input pButton type="submit" value="Add Friend" class="button"/>
-    </form>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-    <div id="chatbox" [ngClass]="{show: shouldShow, hide: !shouldShow}">
 
-      <div id="friendslist">
-        <div id="topmenu">
-          <span class="friends"></span>
-          <span class="chats"></span>
-          <span class="history"></span>
-        </div>
 
-        <div id="friends">
-          <div class="friend" *ngFor="let f of friends">
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
-            <p>
-              <strong>{{f.username}}</strong>
-              <span>{{f.email}}</span>
+  <div class="modal" id="modal-three" aria-hidden="true">
+    <div class="modal-dialog">
+      <form [formGroup]="friendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}"
+            (ngSubmit)="addFriend(friendForm.value)">
+        <input type="text" pInputText placeholder="Username" formControlName="friend_username">
+        <input pButton type="submit" value="Add Friend" class="button"/>
+      </form>
+      <form [formGroup]="friendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}"
+            (ngSubmit)="deleteFriend(friendForm.value)">
+        <input type="text" pInputText placeholder="Username" formControlName="friend_username">
+        <input pButton type="submit" value="Remove Friend" class="button"/>
+      </form>
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet'
+            type='text/css'>
+      <div id="chatbox" [ngClass]="{show: shouldShow, hide: !shouldShow}">
 
-            </p>
+        <div id="friendslist">
+          <div id="topmenu">
+            <span class="friends"></span>
+            <span class="chats"></span>
+            <span class="history"></span>
           </div>
 
+          <div id="friends">
+            <div class="friend" *ngFor="let f of friends">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg"/>
+              <p>
+                <strong>{{f.username}}</strong>
+                <span>{{f.email}}</span>
 
-          <div id="search">
+              </p>
+            </div>
+
+
+            <div id="search">
+            </div>
+
           </div>
 
         </div>
 
+        <div id="chatview" class="p1">
+          <div id="profile">
+
+            <div id="close">
+              <div class="cy"></div>
+              <div class="cx"></div>
+            </div>
+
+            <p>Miro Badev</p>
+            <span>miro@badev@gmail.com</span>
+          </div>
+          <div id="chat-messages">
+            <label>Thursday 02</label>
+
+
+            <div class="message right">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg"/>
+              <div class="bubble">
+              </div>
+
+              <div id="sendmessage">
+                <input type="text" value="Send message..."/>
+                <button id="send"></button>
+              </div>
+
+            </div>
+          </div>
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        </div>
       </div>
 
-      <div id="chatview" class="p1">
-        <div id="profile">
+      <!--<button pButton name="viewFriends" (click)="toggle(2)" label="View Friends"></button><br><hr>-->
+      <!--<button pButton name="addFriends" (click)="toggle(3)" label="Add Friends"></button><br><hr>-->
+      <!--<button pButton name= "vewProfile" type="text" label="Profile" (click)="OPdisplay = true"></button><br><hr>-->
 
-          <div id="close">
-            <div class="cy"></div>
-            <div class="cx"></div>
-          </div>
-
-          <p>Miro Badev</p>
-          <span>miro@badev@gmail.com</span>
-        </div>
-        <div id="chat-messages">
-          <label>Thursday 02</label>
-
-
-
-          <div class="message right">
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg" />
-            <div class="bubble">
-        </div>
-
-        <div id="sendmessage">
-          <input type="text" value="Send message..." />
-          <button id="send"></button>
-        </div>
-
-      </div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-    </div>
-  </div>
-
-<!--<button pButton name="viewFriends" (click)="toggle(2)" label="View Friends"></button><br><hr>-->
-<!--<button pButton name="addFriends" (click)="toggle(3)" label="Add Friends"></button><br><hr>-->
-<!--<button pButton name= "vewProfile" type="text" label="Profile" (click)="OPdisplay = true"></button><br><hr>-->
-
-<!--<ul *ngIf="option == 2" style="list-style-type: none">-->
-<!--&lt;!&ndash; <p>friends</p> &ndash;&gt;-->
-<!--<li *ngformControlName=let friend of friends">-->
-<!--{{ friend.username }}-->
-<!--{{ friend.first_name }}-->
-<!--{{ friend.last_name }}-->
-<!--{{ friend.email }}-->
-<!--<hr>-->
-<!--</li>-->
-<!--</ul>-->
-<!-- <form [formGroup]="friendForm" *ngIf="option == 3" (ngSubmit)="addFriend(friendForm.value)">
-<input type="text" pInputText placeholder="Username" formControlName="friend_username">
-<input pButton type="submit" value="Add Friend" class="button"/>
-</form> -->
-<!--</p-sidebar>-->
+      <!--<ul *ngIf="option == 2" style="list-style-type: none">-->
+      <!--&lt;!&ndash; <p>friends</p> &ndash;&gt;-->
+      <!--<li *ngformControlName=let friend of friends">-->
+      <!--{{ friend.username }}-->
+      <!--{{ friend.first_name }}-->
+      <!--{{ friend.last_name }}-->
+      <!--{{ friend.email }}-->
+      <!--<hr>-->
+      <!--</li>-->
+      <!--</ul>-->
+      <!-- <form [formGroup]="friendForm" *ngIf="option == 3" (ngSubmit)="addFriend(friendForm.value)">
+      <input type="text" pInputText placeholder="Username" formControlName="friend_username">
+      <input pButton type="submit" value="Add Friend" class="button"/>
+      </form> -->
+      <!--</p-sidebar>-->
 

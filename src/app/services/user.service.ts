@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {User} from '../domain/user';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {Event} from '../domain/event';
 
 @Injectable()
 export class UserService {
@@ -18,6 +20,13 @@ export class UserService {
   }
 
   private users: User;
+
+
+  getAttends(id:number): Observable<User[]> {
+
+    return this.http.get<User[]>(`https://popout-back.herokuapp.com/allVisitors/?id=${id}`);
+
+  }
 
   setUserLoggedIn() {
     this.isUserLoggedIn = true;

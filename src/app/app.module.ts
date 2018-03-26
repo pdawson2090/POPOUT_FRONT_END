@@ -30,6 +30,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import {LightboxModule} from 'primeng/lightbox';
+import {TabMenuModule} from 'primeng/tabmenu';
+import {MenuItem} from 'primeng/api';
 
 
 
@@ -68,6 +70,7 @@ const appRoutes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     ToolbarModule,
+    TabMenuModule,
     FormsModule,
     DialogModule,
     OverlayPanelModule,
