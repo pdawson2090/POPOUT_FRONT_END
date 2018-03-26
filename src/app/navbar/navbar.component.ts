@@ -11,7 +11,7 @@ import { FriendsService } from '../services/friends.service';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   //encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./navbar.component.css', 'profile.css','dialog.less','form.css','date.less','menu.scss','friend.css']
+  styleUrls: ['./navbar.component.css', 'profile.css','dialog.less','form.css','menu.scss','friend.css']
 
 })
 
@@ -48,6 +48,8 @@ export class NavbarComponent implements OnInit {
   @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit() {
+    this.friendService.getFriends().subscribe(data=>{
+          this.friends = data;});
 
     this.users = this.user.getUser();
     console.log(this.user.getUserId());
