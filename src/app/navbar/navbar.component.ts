@@ -134,12 +134,12 @@ export class NavbarComponent implements OnInit {
   //   }
   // }
 
-  addFriend(addfriendForm){
-    this.friendService.addFriend(this.addFriendForm.value.friend_username)
+  addFriend(friendForm){
+    this.friendService.addFriend(this.friendForm.value.friend_username)
   }
 
   deleteFriend(deleteFriendForm){
-    this.friendService.deleteFriend(this.deleteFriendForm.value.friend_username)
+    this.friendService.deleteFriend(this.friendForm.value.friend_username)
   }
 
 
