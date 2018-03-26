@@ -44,4 +44,22 @@ export class FriendsService {
     
   }
 
+  deleteFriend(username: string) {
+    console.log('adding friend');
+    var uid: number = this.user.getUserId();
+    console.log('got userid = ' + uid);
+    this.getFriendId(username).subscribe(data => {
+      let fid = data.id;
+      console.log('got friend with uid = ' + fid);
+
+      this.http.get(`https://popout-back.herokuapp.com/deleteFriend?friendA=${uid}&friendB=${fid}`).subscribe(data => {
+        console.log(data);
+        console.log('added friend');
+
+
+      });
+
+    });
+
+  }
 }

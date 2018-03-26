@@ -9,7 +9,7 @@ import {UserService} from '../services/user.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css','./register.scss','button.scss', '../home/home.scss']
+  styleUrls: ['./register.component.css','./register.scss','button.scss', '../home/home.scss','buttonstyle.css','button.styl']
 })
 export class RegisterComponent implements OnInit {
   msgs: Message[];
@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   last: any;
 
   userForm: FormGroup;
+  loginForm: FormGroup;
 
   constructor(private elementRef: ElementRef, private fb: FormBuilder, private user: UserService, private http: HttpClient, private router: Router) {
 
@@ -38,6 +39,10 @@ export class RegisterComponent implements OnInit {
 
 
     });
+    this.loginForm = this.fb.group({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    });
   }
 
   ngAfterViewInit() {
@@ -51,79 +56,84 @@ export class RegisterComponent implements OnInit {
     this.elementRef.nativeElement.appendChild(s);
   }
 
-  registerUser(u,p,f,l,e,fav) {
+  registerUser() {
     //e.preventDefault();
-    var url = 'https://popout-back.herokuapp.com/register';
-    const req = this.http.post(url, {
-      username: u,
-      password: p,
-      first_name: f,
-      last_name: l,
-      favorite_type: fav,
-      email: e,
+    if(this.userForm.valid){
+      var url = 'https://popout-back.herokuapp.com/register';
+      const req = this.http.post(url, {
+        username: this.userForm.value.username,
+        password: this.userForm.value.password,
+        first_name: this.userForm.value.firstn,
+        last_name: this.userForm.value.lastn,
+        favorite_type: this.userForm.value.favorite,
+        email: this.userForm.value.email,
 
 
-    })
-      .subscribe(
-        res => {
 
-          var auth = JSON.parse(JSON.stringify(res));
-          if (auth.booleanValue) {
-            this.router.navigate(['register']);
+      })
+        .subscribe(
+          res => {
 
-          } else {
-            this.router.navigate(['']);
+            var auth = JSON.parse(JSON.stringify(res));
+            if (auth.booleanValue) {
+              this.router.navigate(['register']);
 
+            } else {
+              this.router.navigate(['']);
+
+            }
+
+          },
+          (err: HttpErrorResponse) => {
+            if (err.error instanceof Error) {
+              console.log('Client-side error occured.');
+            } else {
+              console.log('Server-side error occured.');
+            }
           }
-
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log('Client-side error occured.');
-          } else {
-            console.log('Server-side error occured.');
-          }
-        }
-      );
+        );
+    }
 
   }
 
 
-  loginUser(u,p) {
+  loginUser(e) {
 
+    if(this.loginForm.valid){
+      var url = 'https://popout-back.herokuapp.com/login';
+      const req = this.http.post(url, {
+        username: this.loginForm.value.username,
+        password: this.loginForm.value.password,
 
-    var url = 'https://popout-back.herokuapp.com/login';
-    const req = this.http.post(url, {
-      username: u,
-      password: p,
+      })
+        .subscribe(
+          res => {
+            this.msgs = [];
 
-    })
-      .subscribe(
-        res => {
-          this.msgs = [];
+            var auth = JSON.parse(JSON.stringify(res));
 
-          var auth = JSON.parse(JSON.stringify(res));
+            if (auth != null) {
+              this.users = new User(auth.id, auth.email, auth.favorite_type, auth.first_name, auth.last_name, auth.username);
+              this.user.setUser(this.users);
+              this.user.setUserLoggedIn();
+              this.user.setManager(auth.Manager);
+              this.router.navigate(['map']);
 
-          if (auth != null) {
-            this.users = new User(auth.id, auth.email, auth.favorite_type, auth.first_name, auth.last_name, auth.username);
-            this.user.setUser(this.users);
-            this.user.setUserLoggedIn();
-            this.user.setManager(auth.Manager);
-            this.router.navigate(['map']);
+            } else {
 
-          } else {
+              // this.msgs.push({severity: 'ui-messages-error', summary: 'INVLAID', detail: 'Verification Failed'});
+            }
 
-            // this.msgs.push({severity: 'ui-messages-error', summary: 'INVLAID', detail: 'Verification Failed'});
+          },
+          (err: HttpErrorResponse) => {
+            if (err.error instanceof Error) {
+              console.log('Client-side error occured.');
+            } else {
+              console.log('Server-side error occured.');
+            }
           }
-
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log('Client-side error occured.');
-          } else {
-            console.log('Server-side error occured.');
-          }
-        }
-      );
+        );
+    }
+    
   }
 }

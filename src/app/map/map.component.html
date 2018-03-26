@@ -1,12 +1,13 @@
+<app-navbar (filter)="applyFilter($event)" (newE)="refreshMap()"></app-navbar>
+
 <div class="container">
-  <app-navbar (filter)="applyFilter($event)" (newE)="refreshMap()"></app-navbar>
   <agm-map
     [latitude]="38.9586"
     [longitude]="-77.3570"
     [zoom]="zoom"
+    [styles]="mapStyle"
     [disableDefaultUI]="false"
-    [zoomControl]="false">
-    <!--(mapClick)="mapClicked($event)">-->
+    [zoomControl]="false" >
 
     <agm-marker
       *ngFor="let m of markers; let i = index"
@@ -16,7 +17,7 @@
       [label]="m.title"
       [markerDraggable]="m.draggable"
       (dragEnd)="markerDragEnd(m, $event)"
-      [visible]="m.visible">
+      [visible]="m.visible" >
 
       <agm-snazzy-info-window #snazzyInfoWindow
                               [closeWhenOthersOpen]="true"
@@ -26,6 +27,7 @@
                               padding="10px"
                               [isOpen]="isSnazzyInfoWindowOpened"
                               [latitude]="m.lat" [longitude]="m.lng">
+
         <ng-template class="si-content">
           <p-card styleClass="ui-card-shadow ui-grid">
             <div class="ui-g ui-card-title ui-grid-responsive ">
@@ -49,11 +51,9 @@
           </p-card>
         </ng-template>
       </agm-snazzy-info-window>
-
     </agm-marker>
-
   </agm-map>
-
 </div>
+
 
 

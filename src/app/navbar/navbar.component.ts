@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Injectable } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, Output, EventEmitter, Injectable, ElementRef} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Event} from '../domain/event';
 import {EventService} from '../services/event.service';
@@ -8,11 +8,12 @@ import {User} from '../domain/user';
 import {SelectItem} from 'primeng/api';
 import { FriendsService } from '../services/friends.service';
 
+//import {OverlayPanel} from '../node_modules/primeng/components/overlaypanel/overlaypanel'
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   //encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css', 'profile.css','dialog.less','form.css','date.less','menu.scss']
 
 })
 
@@ -23,10 +24,11 @@ export class NavbarComponent implements OnInit {
   OPdisplay: boolean = false;
   loggedIn: boolean;
   eventForm : FormGroup;
-  friendForm: FormGroup;
+  addFriendForm: FormGroup;
+  deleteFriendForm: FormGroup;
   users: User;
   event: Event;
-  eventTypes: SelectItem[];
+  Filters: SelectItem[];
   selectedEventType: string = "";
   filterValue: string = "";
   eventFullAddress: string;
@@ -41,7 +43,8 @@ export class NavbarComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private user: UserService,
-    private friendService: FriendsService
+    private friendService: FriendsService,
+    private elementRef : ElementRef
     ) { }
 
   @Output() newE = new EventEmitter();
@@ -65,18 +68,20 @@ export class NavbarComponent implements OnInit {
       event_type: new FormControl('', [Validators.required, Validators.minLength(2)])
     });
 
-    this.friendForm = this.fb.group({
+    this.addFriendForm = this.fb.group({
       friend_username: new FormControl('', Validators.required)
     });
 
-    this.eventTypes = [
+    this.deleteFriendForm = this.fb.group({
+      friend_username: new FormControl('', Validators.required)
+    });
 
-      {label: "Select Event Type", value: null},
+    this.Filters = [
+
+      {label: "Filter Type", value: null},
       {label: "Pickup Game", value: "Pickup Game"},
       {label: "Bar Crawl", value: "Bar Crawl"},
-      {label: "Birthday Party", value: "Birthday Party"},
       {label: "Club", value: "Club"},
-      {label: "Brunch", value: "Brunch"},
       {label: "Televised Event", value: "Televised Event"},
       {label: "Dancing", value: "Dancing"},
       {label: "Custom", value: "Custom"}
@@ -84,26 +89,54 @@ export class NavbarComponent implements OnInit {
     ]
   }
 
-  toggle(opt:number){
-    this.option = opt;
-    if(opt == 2){
-      this.friendService.getFriends()
-      .subscribe(data=>{
-        this.friends = data;
-        
-      });
-    }
+  ngAfterViewInit() {
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/menu.js";
+    this.elementRef.nativeElement.appendChild(s);
+    s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/profile.js";
+    this.elementRef.nativeElement.appendChild(s);
+    s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/dialog.js";
+    this.elementRef.nativeElement.appendChild(s);
+    s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/form.js";
+    this.elementRef.nativeElement.appendChild(s);
+    s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/menu2.js";
+    this.elementRef.nativeElement.appendChild(s);
+
   }
 
-  addFriend(friendForm){
-    this.friendService.addFriend(this.friendForm.value.friend_username)
+  // toggle(opt:number){
+  //   this.option = opt;
+  //   if(opt == 2){
+  //     this.friendService.getFriends()
+  //     .subscribe(data=>{
+  //       this.friends = data;
+  //
+  //     });
+  //   }
+  // }
+
+  addFriend(addfriendForm){
+    this.friendService.addFriend(this.addFriendForm.value.friend_username)
+  }
+
+  deleteFriend(deleteFriendForm){
+    this.friendService.deleteFriend(this.deleteFriendForm.value.friend_username)
   }
 
 
   newEvent(e){
     console.log(this.eventForm.value.event_address);
     this.makeFullAddress();
-    this.event = new Event(0,this.eventForm.value.event_title,this.eventForm.value.event_description,this.eventForm.value.event_type,this.users.id,this.eventFullAddress,this.eventForm.value.event_date,this.eventForm.value.event_time,0,0);
+    this.event = new Event(0,this.eventForm.value.event_title,this.eventForm.value.event_description,this.eventForm.value.event_type,this.users.id,this.eventFullAddress,this.eventForm.value.event_date.toDateString(),this.eventForm.value.event_time.toTimeString(),0,0);
     this.eventService.newEvent(this.event);
     this.event = new Event(0,"","","",this.users.id,"","","",0,0);
     this.newE.emit();
