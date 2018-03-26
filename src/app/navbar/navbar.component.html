@@ -1,4 +1,7 @@
 <p-toolbar class="toolbar">
+  <div class = "uid=toolbar-group-left">
+    <button pButton type="button" label="Messages" icon="fa-envelope" (click)="toggleMessages = true"></button>
+  </div>
   <div class="ui-toolbar-group-right">
     <button pButton type="button" label="Filter Events" icon="fa-filter" (click)="filterDisplay = true"></button>
     <!-- <button pButton type="button" label="Add New Event" icon="fa-plus" (click)="newEventDisplay = true"></button> -->
@@ -49,6 +52,19 @@
   {{filterValue}}
   <button pButton label="Apply Filter" (click)="applyFilter()"></button>
   <!-- {{selectedEventType.value}} -->
+</p-sidebar>
+
+<p-sidebar [(visible)]="toggleMessages" position="left">
+  <app-messages></app-messages>
+  <!-- <div class="notification"
+    *ngIf="!message.dismissed"
+    [ngClass]="{
+      'is-info':message.style=='info',
+      'is-success':message.style=='success',
+      'is-warning':message.style=='warning'
+    }">
+    <button class="delete" ></button>
+  </div> -->
 </p-sidebar>
 
 <p-dialog [(visible)]="OPdisplay">

@@ -30,6 +30,8 @@ import { DialogModule } from 'primeng/dialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+import { ToastModule, ToastsManager, ToastOptions, ToastContainer } from 'ng2-toastr/ng2-toastr';
+import { MessagesComponent } from './messages/messages.component';
 
 
 
@@ -63,7 +65,9 @@ const appRoutes = [
     MapComponent,
     RegisterComponent,
     LoginFormComponent,
-    HomeComponent
+    HomeComponent,
+    MessagesComponent,
+    ToastContainer
   ],
   imports: [
     BrowserModule,
@@ -90,6 +94,9 @@ const appRoutes = [
     CalendarModule
     //BrowserAnimationsModule,
   ],
+  entryComponents: [
+    ToastContainer
+  ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
@@ -97,7 +104,11 @@ const appRoutes = [
     EventService,
     UserService,
     FriendsService,
-    AuthguardGuard
+    AuthguardGuard,
+    ToastModule,
+    ToastsManager,
+    ToastOptions
+    
   ],
   bootstrap: [AppComponent]
 })
