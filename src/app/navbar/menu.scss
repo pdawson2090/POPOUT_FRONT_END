@@ -1,7 +1,7 @@
 //======================================================//
 //                      Menu styles                     //
 //======================================================//
-nav {
+nav.mod {
   display: block;
   position: fixed;
   left: 0;
@@ -15,7 +15,7 @@ nav {
   border-top: 3px solid #09f;
 }
 
-nav:before {
+nav.mod:before {
   content: "";
   display: block;
   position: absolute;
@@ -30,7 +30,7 @@ nav:before {
   border-bottom: 50px solid #09f;
 }
 
-nav:after {
+nav.mod:after {
   content: "";
   display: block;
   position: absolute;
@@ -45,11 +45,11 @@ nav:after {
   border-bottom:30px solid #09f;
 }
 
-nav ul {
+nav.mod ul {
   margin: 0;
 }
 
-nav ul li {
+nav.mod ul li {
   display: inline-block;
   list-style: none;
 }
@@ -60,7 +60,7 @@ nav ul li {
   border-bottom: 2px solid #09f;
 }
 
-nav ul li a {
+nav.mod ul li a {
   display: block;
   padding: 20px 20px;
 
@@ -77,7 +77,7 @@ nav ul li a {
   transition: all .25s ease;
 }
 
-nav ul li a:hover {
+nav.mod ul li a:hover {
   padding: 5px 20px;
   border-top: 2px solid #09f;
   border-bottom: 2px solid #09f;

@@ -12,7 +12,7 @@ import {OverlayPanel} from 'C:/Users/pdaws/Documents/GitHub/POPOUT_FRONT_END/nod
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   //encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./navbar.component.css', 'profile.css','dialog.less','form.css','date.less','menu.scss']
+  styleUrls: ['./navbar.component.css', 'profile.css','dialog.less','form.css','date.less','menu.scss','friend.css']
 
 })
 
@@ -103,6 +103,10 @@ export class NavbarComponent implements OnInit {
     s = document.createElement("script");
     s.type = "text/javascript";
     s.src = "../../assets/menu2.js";
+    this.elementRef.nativeElement.appendChild(s);
+    s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../../assets/friend.js";
     this.elementRef.nativeElement.appendChild(s);
 
   }

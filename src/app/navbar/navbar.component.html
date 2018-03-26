@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   </head>
-  <nav>
+  <nav class="mod">
     <ul id="menu">
       <li>
         <p-dropdown [options]="Filters" [(ngModel)]="filterValue"></p-dropdown>
@@ -16,6 +16,9 @@
       </li>
       <li>
         <a href="map#modal-two">Add Event</a>
+      </li>
+      <li>
+        <a href="map#modal-three">Friends</a>
       </li>
       <li>
         <a href="#">Logout</a>
@@ -73,7 +76,7 @@
             </div>
             <div class="form-row">
               <label>Type</label>
-              <p-dropdown [autoWidth]="true" [style]="{'width': '78%'}" [options]="eventTypes"
+              <p-dropdown [autoWidth]="true" [style]="{'width': '78%'}" [options]="Filters"
                           formControlName="event_type"></p-dropdown>
             </div>
             <div class="form-row">
@@ -101,41 +104,147 @@
 </div>
 
 
-<!--<div class="ui-toolbar-group-right">-->
-<!--<button pButton type="button" label="Filter Events" icon="fa-filter" (click)="filterDisplay = true"></button>-->
+<div class="modal" id="modal-three" aria-hidden="true">
+  <div class="modal-dialog">
+    <div id="chatbox">
+      <div id="friendslist">
+        <div id="topmenu">
+          <span class="friends"></span>
+          <span class="chats"></span>
+          <span class="history"></span>
+        </div>
 
-<!--<button type="menu" pButton icon="fa-bars" (click)="sidebarOpen = true"></button>-->
-<!--</div>-->
-<!--</p-toolbar>-->
-<!--&lt;!&ndash; Navigation &ndash;&gt;-->
+        <div id="friends">
+          <div class="friend">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+            <p>
+              <strong>Miro Badev</strong>
+              <span>mirobadev@gmail.com</span>
+            </p>
+            <div class="status available"></div>
+          </div>
 
-<!--&lt;!&ndash; Content panel &ndash;&gt;-->
-<!--<div id="content">-->
-<!--<div class="menu-trigger"></div>-->
-<!--<h1>iOS style sliding menu</h1>-->
-<!--<p>Here's an easy way to create an iOS style, side sliding menu.</p>-->
-<!--</div>-->
-<!--<p-sidebar [(visible)]="sidebarOpen" position="right">-->
-<!--<br>-->
-<!--<button pButton name="newEvent" (click)="toggle(1)" label="Add New Event"></button><br><hr>-->
+          <div class="friend">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg" />
+            <p>
+              <strong>Martin Joseph</strong>
+              <span>marjoseph@gmail.com</span>
+            </p>
+            <div class="status away"></div>
+          </div>
+
+          <div class="friend">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/3_copy.jpg" />
+            <p>
+              <strong>Tomas Kennedy</strong>
+              <span>tomaskennedy@gmail.com</span>
+            </p>
+            <div class="status inactive"></div>
+          </div>
+
+          <div class="friend">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/4_copy.jpg" />
+            <p>
+              <strong>Enrique	Sutton</strong>
+              <span>enriquesutton@gmail.com</span>
+            </p>
+            <div class="status inactive"></div>
+          </div>
+
+          <div class="friend">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/5_copy.jpg" />
+            <p>
+              <strong>	Darnell	Strickland</strong>
+              <span>darnellstrickland@gmail.com</span>
+            </p>
+            <div class="status inactive"></div>
+          </div>
+
+          <div id="search">
+            <input type="text" id="searchfield" value="Search contacts..." />
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="chatview" class="p1">
+        <div id="profile">
+
+          <div id="close">
+            <div class="cy"></div>
+            <div class="cx"></div>
+          </div>
+
+          <p>Miro Badev</p>
+          <span>miro@badev@gmail.com</span>
+        </div>
+        <div id="chat-messages">
+          <label>Thursday 02</label>
+
+          <div class="message">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+            <div class="bubble">
+              Really cool stuff!
+              <div class="corner"></div>
+              <span>3 min</span>
+            </div>
+          </div>
+
+          <div class="message right">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg" />
+            <div class="bubble">
+              Can you share a link for the tutorial?
+              <div class="corner"></div>
+              <span>1 min</span>
+            </div>
+          </div>
+
+          <div class="message">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+            <div class="bubble">
+              Yeah, hold on
+              <div class="corner"></div>
+              <span>Now</span>
+            </div>
+          </div>
+
+          <div class="message right">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg" />
+            <div class="bubble">
+              Can you share a link for the tutorial?
+              <div class="corner"></div>
+              <span>1 min</span>
+            </div>
+          </div>
+
+          <div class="message">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+            <div class="bubble">
+              Yeah, hold on
+              <div class="corner"></div>
+              <span>Now</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="sendmessage">
+          <input type="text" value="Send message..." />
+          <button id="send"></button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 <!--<button pButton name="viewFriends" (click)="toggle(2)" label="View Friends"></button><br><hr>-->
 <!--<button pButton name="addFriends" (click)="toggle(3)" label="Add Friends"></button><br><hr>-->
 <!--<button pButton name= "vewProfile" type="text" label="Profile" (click)="OPdisplay = true"></button><br><hr>-->
-<!--<form [formGroup]="eventForm" *ngIf="option == 1" (ngSubmit)="newEvent(eventForm.value)">-->
-<!--<input pInputText type="text" placeholder="Event Title" formControlName="event_title">-->
-<!--<input type="text" pInputText placeholder="Event Description" formControlName="event_description">-->
-<!--<p-dropdown [options]="eventTypes" formControlName="event_type"></p-dropdown>-->
-<!--&lt;!&ndash; <input *ngIf="eventForm.event_type === 'Custom'" type="text" pInputText placeholder="Enter Custom Event" formControlName="event_type"> &ndash;&gt;-->
-<!--<input type="text" pInputText placeholder="Event Address" formControlName="event_address">-->
-<!--<input type="text" pInputText placeholder="Event City" formControlName="event_city">-->
-<!--<input type="text" pInputText placeholder="Event State" formControlName="event_state">-->
-<!--<input type="text" pInputText placeholder="Event Zip" formControlName="event_zip">-->
-<!--<p-calendar formControlName="event_date" dateFormat="mm.dd.yy" placeholder="Event Date"></p-calendar>-->
-<!--<p-calendar showTime="true" hourFormat="12" timeOnly="true" placeholder="Event Time" formControlName="event_time"></p-calendar>-->
-<!--<div class="ui-g-12">-->
-<!--<input pButton type="submit" value="SUBMIT" class="button">-->
-<!--</div>-->
-<!--</form>-->
+
 <!--<ul *ngIf="option == 2" style="list-style-type: none">-->
 <!--&lt;!&ndash; <p>friends</p> &ndash;&gt;-->
 <!--<li *ngformControlName=let friend of friends">-->
@@ -152,7 +261,3 @@
 <!--</form>-->
 <!--</p-sidebar>-->
 
-<p-sidebar [(visible)]="filterDisplay" position="top">
-
-  <!-- {{selectedEventType.value}} -->
-</p-sidebar>
