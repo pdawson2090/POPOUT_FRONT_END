@@ -18,6 +18,7 @@ import { FriendsService } from '../services/friends.service';
 export class NavbarComponent implements OnInit {
 
   newEventDisplay: boolean = false;
+  shouldShow: boolean = true;
   filterDisplay: boolean = false;
   OPdisplay: boolean = false;
   loggedIn: boolean;

@@ -10,15 +10,15 @@
         <button pButton label="Apply" class="filterbutton" (click)="applyFilter()"></button>
       </li>
       <li>
-      <li><a class="menu-item-active" href="map#">Home</a></li>
+      <li><a class="menu-item-active" href="map#" (click)="shouldShow=true" >Home</a></li>
       <li>
-        <a href="map#modal-one">Profile</a>
+        <a href="map#modal-one" (click)="shouldShow=true">Profile</a>
       </li>
       <li>
-        <a href="map#modal-two">Add Event</a>
+        <a href="map#modal-two" (click)="shouldShow=true">Add Event</a>
       </li>
       <li>
-        <a href="map#modal-three" (click)="OPdisplay = true">Friends</a>
+        <a href="map#modal-three" (click)="shouldShow = !shouldShow" >Friends</a>
       </li>
       <li>
         <a href="#">Logout</a>
@@ -27,7 +27,7 @@
   </nav>
   <div class="modal" id="modal-one" aria-hidden="true">
     <div class="modal-dialog">
-
+<div></div>
       <div class="container">
         <div class="card"><img src="https://www.w3schools.com/w3images/team2.jpg" alt="prof">
           <h1>"{{users.first_name}} {{users.last_name}}"</h1>
@@ -102,9 +102,78 @@
     </div>
   </div>
 </div>
+<div class="modal" id="modal-three" aria-hidden="true">
+  <div class="modal-dialog">
+    <form [formGroup]="friendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}" (ngSubmit)="addFriend(friendForm.value)">
+      <input type="text" pInputText placeholder="Username" formControlName="friend_username">
+      <input pButton type="submit" value="Add Friend" class="button"/>
+    </form>
+    <form [formGroup]="friendForm" [ngClass]="{show: shouldShow, hide: !shouldShow}" (ngSubmit)="removeFriend(friendForm.value)">
+      <input type="text" pInputText placeholder="Username" formControlName="friend_username">
+      <input pButton type="submit" value="Add Friend" class="button"/>
+    </form>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <div id="chatbox" [ngClass]="{show: shouldShow, hide: !shouldShow}">
+
+      <div id="friendslist">
+        <div id="topmenu">
+          <span class="friends"></span>
+          <span class="chats"></span>
+          <span class="history"></span>
+        </div>
+
+        <div id="friends">
+          <div class="friend" *ngFor="let f of friends">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+            <p>
+              <strong>{{f.username}}</strong>
+              <span>{{f.email}}</span>
+
+            </p>
+          </div>
 
 
-<div></div>
+          <div id="search">
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="chatview" class="p1">
+        <div id="profile">
+
+          <div id="close">
+            <div class="cy"></div>
+            <div class="cx"></div>
+          </div>
+
+          <p>Miro Badev</p>
+          <span>miro@badev@gmail.com</span>
+        </div>
+        <div id="chat-messages">
+          <label>Thursday 02</label>
+
+
+
+          <div class="message right">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg" />
+            <div class="bubble">
+        </div>
+
+        <div id="sendmessage">
+          <input type="text" value="Send message..." />
+          <button id="send"></button>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    </div>
+  </div>
+
 <!--<button pButton name="viewFriends" (click)="toggle(2)" label="View Friends"></button><br><hr>-->
 <!--<button pButton name="addFriends" (click)="toggle(3)" label="Add Friends"></button><br><hr>-->
 <!--<button pButton name= "vewProfile" type="text" label="Profile" (click)="OPdisplay = true"></button><br><hr>-->
@@ -119,9 +188,9 @@
 <!--<hr>-->
 <!--</li>-->
 <!--</ul>-->
-<!--<form [formGroup]="friendForm" *ngIf="option == 3" (ngSubmit)="addFriend(friendForm.value)">-->
-<!--<input type="text" pInputText placeholder="Username" formControlName="friend_username">-->
-<!--<input pButton type="submit" value="Add Friend" class="button"/>-->
-<!--</form>-->
+<form [formGroup]="friendForm" *ngIf="option == 3" (ngSubmit)="addFriend(friendForm.value)">
+<input type="text" pInputText placeholder="Username" formControlName="friend_username">
+<input pButton type="submit" value="Add Friend" class="button"/>
+</form>
 <!--</p-sidebar>-->
 
