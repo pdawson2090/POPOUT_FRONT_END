@@ -116,6 +116,7 @@ export class MapComponent implements OnInit {
   //   });
   // }
 
+
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
   }

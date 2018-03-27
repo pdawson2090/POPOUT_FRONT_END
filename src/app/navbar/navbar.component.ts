@@ -135,7 +135,8 @@ export class NavbarComponent implements OnInit {
   // }
 
   addFriend(friendForm){
-    this.friendService.addFriend(this.friendForm.value.friend_username)
+    this.friendService.addFriend(this.friendForm.value.friend_username);
+    this.ngOnInit();
   }
 
   deleteFriend(deleteFriendForm){
