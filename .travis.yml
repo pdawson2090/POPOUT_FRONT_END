@@ -1,33 +1,8 @@
-sudo: false
-cache: bundler
 language: node.js
 
-# branches:
-#   only:
-#   - master
-#   - /live-deploy*/
+install:
+  - npm install
 
-# script:
-# - bundle exec rspec --format=documentation --color
+script:
 
-# env:
-#   global:
-#     - CF_API= api.run.pivotal.io
-#     - CF_ORGANIZATION= DawsonDesign
-#     - CF_USERNAME= pdawson2090@gmail.com
-#     - secure: # your Cloud Foundry password encrypted, see: https://docs.travis-ci.com/user/encryption-keys
 
-before_deploy:
-- find . -type f -perm 0444
-- export CF_TRACE=true
-
- deploy:
-   provider: cloudfoundry
-   username: pdawson2090@gmail.com
-   password: passwordDONT!1
-   api: https://api.run.pivotal.io
-   organization: DawsonDesign
-   space: development
-
-after_deploy:
-# Smoke tests could also be run here to verify all is well post blue-green deploy
