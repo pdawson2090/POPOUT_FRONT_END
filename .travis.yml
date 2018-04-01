@@ -1,11 +1,9 @@
-# sudo: false
-# cache: bundler
 language: node.js
 
 install:
   - npm install
 
-
+script: 
 # branches:
 #   only:
 #   - master
@@ -33,5 +31,5 @@ install:
    organization: DawsonDesign
    space: development
 
-after_deploy:
+# after_deploy:
 # Smoke tests could also be run here to verify all is well post blue-green deploy
