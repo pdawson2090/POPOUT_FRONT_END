@@ -21,9 +21,9 @@ install:
 #     - CF_USERNAME= pdawson2090@gmail.com
 #     - secure: # your Cloud Foundry password encrypted, see: https://docs.travis-ci.com/user/encryption-keys
 
-before_deploy:
-- find . -type f -perm 0444
-- export CF_TRACE=true
+# before_deploy:
+# - find . -type f -perm 0444
+# - export CF_TRACE=true
 
  deploy:
    provider: cloudfoundry
