@@ -2,58 +2,94 @@
 <div class="form">
 
   <ul class="tab-group">
-    <li class="tab active"><a href="#loginscreen">Log In</a></li>
-    <li class="tab"><a href="#signup">Sign Up</a></li>
+    <li class="tab active"><a href="#loginscreen"><img src="../../assets/user.png" style="width:40px; height:40px;"/></a></li>
+    <li class="tab"><a href="#signup"><img src="../../assets/regis.png" style="width:40px; height:40px;"/></a></li>
   </ul>
-
   <div class="tab-content">
 
     <div id="loginscreen">
-      <h1>Welcome</h1>
+      <h1 style="font-family: 'Lato'"></h1>
 
-      <form (submit)="loginUser($event)">
+      <div>
 
         <div class="field-wrap">
           <label>
             Username<span class="req">*</span>
           </label>
-          <input type="email"required autocomplete="off"/>
+          <input type="email" [(ngModel)]="username" required autocomplete="off"/>
         </div>
 
         <div class="field-wrap">
           <label>
             Password<span class="req">*</span>
           </label>
-          <input type="password"required autocomplete="off"/>
+          <input type="password" [(ngModel)]="password" required autocomplete="off"/>
         </div>
 
-        <input type="submit" value="SUBMIT" class="button button-block">
+        <div id="hamburger1" class="hamburglar is-open" (click)="loginUser(username,password)" style="cursor: pointer" >
 
+
+          <div class="burger-icon">
+            <div class="burger-container">
+              <span class="burger-bun-top"></span>
+              <span class="burger-filling"></span>
+              <span class="burger-bun-bot"></span>
+            </div>
+          </div>
+
+          <!-- svg ring containter -->
+          <div class="burger-ring">
+            <svg class="svg-ring">
+              <path class="path" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4" d="M 34 2 C 16.3 2 2 16.3 2 34 s 14.3 32 32 32 s 32 -14.3 32 -32 S 51.7 2 34 2" />
+            </svg>
+          </div>
+          <!-- the masked path that animates the fill to the ring -->
+
+          <svg width="0" height="0">
+            <mask id="mask">
+              <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff0000" stroke-miterlimit="10" stroke-width="4" d="M 34 2 c 11.6 0 21.8 6.2 27.4 15.5 c 2.9 4.8 5 16.5 -9.4 16.5 h -4" />
+            </mask>
+          </svg>
+          <div class="path-burger">
+            <div class="animate-path">
+              <div class="path-rotation"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <ul class="loader">
+          <li class="bar"></li>
+          <li class="bar"></li>
+          <li class="bar"></li>
+          <li class="bar"></li>
+          <li class="bar"></li>
+        </ul>
 
         <!--<button class="button button-block">Log In</button>-->
-
-      </form>
+<div></div>
+      </div>
 
     </div>
 
     <div id="signup">
       <h1>Sign Up</h1>
 
-      <form [formGroup]="userForm" (ngSubmit)="registerUser(userForm.value)">
+      <div>
 
         <div class="top-row">
           <div class="field-wrap">
             <label>
               First Name<span class="req">*</span>
             </label>
-            <input pInputText type="text" formControlName="firstn"  required autocomplete="off"  pKeyFilter="alphanum"/>
+            <input pInputText type="text" [(ngModel)]="first"  required autocomplete="off"  pKeyFilter="alphanum"/>
           </div>
 
           <div class="field-wrap">
             <label>
               Last Name<span class="req">*</span>
             </label>
-            <input pInputText type="text" formControlName="lastn"  required autocomplete="off"  pKeyFilter="alphanum"/>
+            <input pInputText type="text" [(ngModel)]="last"  required autocomplete="off"  pKeyFilter="alphanum"/>
           </div>
         </div>
 
@@ -61,31 +97,68 @@
           <label>
             Username<span class="req">*</span>
           </label>
-          <input pInputText type="text" formControlName="username"  required autocomplete="off"  pKeyFilter="alphanum"/>
+          <input pInputText type="text" [(ngModel)]="username"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
         <div class="field-wrap">
           <label>
             Set A Password<span class="req">*</span>
           </label>
-          <input pInputText type="password" formControlName="password"  required autocomplete="off"  pKeyFilter="alphanum"/>
+          <input pInputText type="password" [(ngModel)]="password"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
         <div class="field-wrap">
           <label>
             Email<span class="req">*</span>
           </label>
-          <input pInputText type="text" formControlName="email"  required autocomplete="off"  pKeyFilter="alphanum"/>
+          <input pInputText type="text" [(ngModel)]="email"  required autocomplete="off"  pKeyFilter="alphanum"/>
         </div>
         <div class="field-wrap">
           <label>
             Favorite Event<span class="req">*</span>
           </label>
-          <input pInputText type="text" formControlName="favorite"  required autocomplete="off"  pKeyFilter="alphanum"/>
+          <input pInputText type="text" [(ngModel)]="favorite"  required autocomplete="off"  pKeyFilter="alphanum"/>
 s        </div>
 
+        <!--<input type="submit" text="SUBMIT" class="button button-block">-->
+        <!--
+article: https://raygun.io/blog/2014/07/making-svg-html-burger-button/
+--><div></div>
 
-        <input type="submit" value="SUBMIT" class="button button-block">
 
-      </form>
+        <div id="hamburger" style="cursor: pointer" class="hamburglar is-open" (click)="registerUser(username,password,first,last,email,favorite)">
+
+          <div class="burger-icon">
+            <div class="burger-container">
+              <span class="burger-bun-top"></span>
+              <span class="burger-filling"></span>
+              <span class="burger-bun-bot"></span>
+            </div>
+          </div>
+
+          <!-- svg ring containter -->
+          <div class="burger-ring">
+            <svg class="svg-ring">
+              <path class="path" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="4" d="M 34 2 C 16.3 2 2 16.3 2 34 s 14.3 32 32 32 s 32 -14.3 32 -32 S 51.7 2 34 2" />
+            </svg>
+          </div>
+          <!-- the masked path that animates the fill to the ring -->
+
+          <svg width="0" height="0">
+            <mask id="mask">
+              <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ff0000" stroke-miterlimit="10" stroke-width="4" d="M 34 2 c 11.6 0 21.8 6.2 27.4 15.5 c 2.9 4.8 5 16.5 -9.4 16.5 h -4" />
+            </mask>
+          </svg>
+          <div class="path-burger">
+            <div class="animate-path">
+              <div class="path-rotation"></div>
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+      </div>
 
     </div>
 

@@ -1,14 +1,19 @@
 <p-toolbar class="toolbar">
   <div class="ui-toolbar-group-right">
-    <button type="text" pButton label="Basic" (click)="OPdisplay = true"></button>
     <button pButton type="button" label="Filter Events" icon="fa-filter" (click)="filterDisplay = true"></button>
-    <button pButton type="button" label="Add New Event" icon="fa-plus" (click)="newEventDisplay = true"></button>
+    <!-- <button pButton type="button" label="Add New Event" icon="fa-plus" (click)="newEventDisplay = true"></button> -->
     <button *ngIf="loggedIn" pButton type="button" label="Logout" icon="fa-minus" (click)="logOut()"></button>
+    <button type="menu" pButton icon="fa-bars" (click)="sidebarOpen = true"></button>
   </div>
 </p-toolbar>
 
-<p-sidebar [(visible)]="newEventDisplay" position="right">
-  <form [formGroup]="eventForm" (ngSubmit)="newEvent(eventForm.value)">
+<p-sidebar [(visible)]="sidebarOpen" position="right">
+  <br>
+  <button pButton name="newEvent" (click)="toggle(1)" label="Add New Event"></button><br><hr>
+  <button pButton name="viewFriends" (click)="toggle(2)" label="View Friends"></button><br><hr>
+  <button pButton name="addFriends" (click)="toggle(3)" label="Add Friends"></button><br><hr>
+  <button pButton name= "vewProfile" type="text" label="Profile" (click)="OPdisplay = true"></button><br><hr>
+  <form [formGroup]="eventForm" *ngIf="option == 1" (ngSubmit)="newEvent(eventForm.value)">
     <input pInputText type="text" placeholder="Event Title" formControlName="event_title">
     <input type="text" pInputText placeholder="Event Description" formControlName="event_description">
     <p-dropdown [options]="eventTypes" formControlName="event_type"></p-dropdown>
@@ -17,11 +22,25 @@
     <input type="text" pInputText placeholder="Event City" formControlName="event_city">
     <input type="text" pInputText placeholder="Event State" formControlName="event_state">
     <input type="text" pInputText placeholder="Event Zip" formControlName="event_zip">
-    <input type="text" pInputText placeholder="Event Date" formControlName="event_date">
-    <input type="text" pInputText placeholder="Event Time" formControlName="event_time">
+    <p-calendar formControlName="event_date" dateFormat="mm.dd.yy" placeholder="Event Date"></p-calendar>
+    <p-calendar showTime="true" hourFormat="12" timeOnly="true" placeholder="Event Time" formControlName="event_time"></p-calendar>
     <div class="ui-g-12">
       <input pButton type="submit" value="SUBMIT" class="button">
     </div>
+  </form>
+    <ul *ngIf="option == 2" style="list-style-type: none">
+      <!-- <p>friends</p> -->
+      <li *ngFor="let friend of friends">
+        {{ friend.username }}
+        {{ friend.first_name }}
+        {{ friend.last_name }}
+        {{ friend.email }}
+        <hr>
+      </li>
+    </ul>
+  <form [formGroup]="friendForm" *ngIf="option == 3" (ngSubmit)="addFriend(friendForm.value)">
+    <input type="text" pInputText placeholder="Username" formControlName="friend_username">
+    <input pButton type="submit" value="Add Friend" class="button"/>
   </form>
 </p-sidebar>
 

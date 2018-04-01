@@ -4,7 +4,7 @@ $body-bg: #111111;
 $form-bg: #111111;
 $white: #ffffff;
 
-$main: #1D2E5C;
+$main: whitesmoke;
 $main-light: lighten($main,5%);
 $main-dark: darken($main,5%);
 
@@ -28,6 +28,10 @@ body {
   background:$body-bg;
   font-family: 'Titillium Web', sans-serif;
 }
+.login{
+
+  background: url("../../assets/user.png");
+}
 
 a {
   text-decoration:none;
@@ -41,8 +45,8 @@ a {
 .form {
   background:rgba($form-bg,.9);
   padding: 40px;
-  max-width:600px;
-  margin:40px auto;
+  max-width:400px;
+  margin:120px auto;
   border-radius:$br;
   box-shadow:0 4px 10px 4px rgba($form-bg,.3);
 }
@@ -60,7 +64,7 @@ a {
     display:block;
     text-decoration:none;
     padding:15px;
-    background:rgba($gray-light,.25);
+    background:rgba(purple,.25);
     color:$gray-light;
     font-size:20px;
     float:left;
@@ -69,13 +73,16 @@ a {
     cursor:pointer;
     transition:.5s ease;
     &:hover {
-      background:$main-dark;
-      color:$white;
+      background:$main;
+      color:mediumblue;
+      box-shadow: 0 5px 25px rgba(mediumblue, .7);
+
     }
   }
   .active a {
     background:$main;
-    color:$white;
+    box-shadow: 0 5px 25px rgba(255, 0, 0, .7);
+    color:deeppink;
   }
 }
 
@@ -128,8 +135,8 @@ input, textarea {
   padding:5px 10px;
   background:none;
   background-image:none;
-  border:1px solid $gray-light;
-  color:$white;
+  border:1px solid white;
+  color:white;
   border-radius:0;
   transition:border-color .25s ease, box-shadow .25s ease;
   &:focus {
@@ -174,8 +181,9 @@ textarea {
   font-weight:$bold;
   text-transform:uppercase;
   letter-spacing:.1em;
-  background:$main;
-  color:$white;
+  box-shadow: 0 5px 25px rgba(255, 0, 0, .7);
+  background:blue;
+  color:red;
   transition:all.5s ease;
   -webkit-appearance: none;
   &:hover, &:focus {
