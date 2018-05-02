@@ -43,15 +43,8 @@ const appRoutes = [
     component: RegisterComponent
   },
   {
-    path: '',
-    canActivate: [AuthguardGuard],
-    children: [
-      {
-        path: 'map',
-        component: MapComponent
-      },
-
-    ]
+    path: 'map',
+    component: MapComponent
   },
 
 ];
