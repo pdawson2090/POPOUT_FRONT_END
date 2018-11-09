@@ -7,10 +7,8 @@
 
 Repo for development purposes
 
-- Paul Fox
 - Peter Dawson
-- Justin Jarrard
-- Max Qi
+
 
 ## Travis CI 
 - https://travis-ci.org/pdawson2090
